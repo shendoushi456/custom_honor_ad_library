@@ -1,0 +1,4 @@
+dependencies {
+    configurations.maybeCreate("default")
+    artifacts.add("default", file('base_ad_common_library-release.aar'))
+}
