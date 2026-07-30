@@ -1,6 +1,5 @@
 package com.ep.custom_honor_library.ui;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.LinearLayout;
@@ -11,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.ep.custom_honor_library.R;
 import com.ep.custom_honor_library.adlp.AdController;
 import com.ep.custom_honor_library.bean.ControlAdBean;
-import com.ep.custom_honor_library.utils.CommonAPI;
+import com.lx.c_interface_library.CommonAPI;
 import com.ep.custom_honor_library.utils.CustomLogUtils;
 
 import java.lang.ref.WeakReference;

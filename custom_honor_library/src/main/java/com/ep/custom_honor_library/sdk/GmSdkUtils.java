@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.bytedance.sdk.openadsdk.TTAdConfig;
 import com.bytedance.sdk.openadsdk.TTAdSdk;
-import com.ep.custom_honor_library.utils.CommonAPI;
+import com.lx.c_interface_library.CommonAPI;
 import com.ep.custom_honor_library.utils.DefContextUtils;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;

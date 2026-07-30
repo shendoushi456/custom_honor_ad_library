@@ -1,13 +1,10 @@
-package com.ep.custom_honor_library.utils;
+package com.lx.c_interface_library;
 
-import com.ep.custom_honor_library.bean.AdBean;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import com.ep.custom_honor_library.BuildConfig;
 public class CommonAPI {
 
-    public static final HashMap<String,AdBean> cacheAdMap = new HashMap<String,AdBean> ();
+
 
     public static boolean switchLog = BuildConfig.LOGSWITCH;
 

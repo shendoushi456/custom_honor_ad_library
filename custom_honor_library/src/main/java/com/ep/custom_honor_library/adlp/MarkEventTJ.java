@@ -7,6 +7,7 @@ import com.blankj.utilcode.util.GsonUtils;
 import com.ep.custom_honor_library.bean.EventTJBean;
 import com.ep.custom_honor_library.http.CommonHttpUtils;
 import com.ep.custom_honor_library.utils.DefAPIUtils;
+import com.lx.c_interface_library.OnHttpListener;
 
 import java.util.TreeMap;
 
@@ -85,7 +86,7 @@ public final class MarkEventTJ {
     private static void toTJRequest(TreeMap<String, Object> params, String url) {
         Log.i("ADTJ==", params.toString());
         
-        CommonHttpUtils.getInstance().initDefOaidDoPost(url,params,new CommonHttpUtils.OnHttpListener(){
+        CommonHttpUtils.getInstance().initDefOaidDoPost(url,params,new OnHttpListener(){
             @Override
             public void onSuccess() {
                 

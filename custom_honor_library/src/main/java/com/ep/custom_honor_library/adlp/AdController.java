@@ -8,7 +8,8 @@ import com.ep.custom_honor_library.bean.ControlAdBean;
 import com.ep.custom_honor_library.gm.GMFullAdView;
 import com.ep.custom_honor_library.gm.GMSplashAdView;
 import com.ep.custom_honor_library.gm.SuperAdClazz;
-import com.ep.custom_honor_library.utils.CommonAPI;
+import com.ep.custom_honor_library.utils.DefAPIUtils;
+import com.lx.c_interface_library.CommonAPI;
 import com.ep.custom_honor_library.utils.CommonSpUtils;
 import com.ep.custom_honor_library.utils.CustomLogUtils;
 import java.util.ArrayList;
@@ -32,10 +33,10 @@ public class AdController {
 
     public void intentAd(ControlAdBean controlAdBean){
 
-        if (CommonAPI.cacheAdMap.isEmpty() || controlAdBean == null){
+        if (DefAPIUtils.cacheAdMap.isEmpty() || controlAdBean == null){
             return;
         }
-        AdBean adChildBean = CommonAPI.cacheAdMap.get(controlAdBean.getAdSCreen());
+        AdBean adChildBean = DefAPIUtils.cacheAdMap.get(controlAdBean.getAdSCreen());
         if (adChildBean == null){
             CustomLogUtils.e("adChildBean == null", CommonSpUtils.AD_LOG,null);
             return;

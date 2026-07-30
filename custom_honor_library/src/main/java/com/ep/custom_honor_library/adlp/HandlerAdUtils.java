@@ -4,7 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.ep.custom_honor_library.ControllerUtils;
-import com.ep.custom_honor_library.utils.CommonAPI;
+import com.lx.c_interface_library.CommonAPI;
 import com.ep.custom_honor_library.utils.CustomLogUtils;
 
 public class HandlerAdUtils {

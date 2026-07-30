@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.ep.custom_honor_library.http.CommonHttpUtils;
 import com.ep.custom_honor_library.utils.DefAPIUtils;
+import com.lx.c_interface_library.OnHttpListener;
 import com.tencent.mmkv.MMKV;
 import java.util.HashMap;
 import java.util.TreeMap;
@@ -95,7 +96,7 @@ public class LopTimeTJ {
         String uuid = MMKV.defaultMMKV().decodeString("uu_idid");
         params.put("uuid", uuid);
         params.put("os_sdk_version", "android_" + Build.VERSION.SDK_INT);
-        CommonHttpUtils.getInstance().initDefOaidDoPost(DefAPIUtils.getRandomActive(), params, new CommonHttpUtils.OnHttpListener() {
+        CommonHttpUtils.getInstance().initDefOaidDoPost(DefAPIUtils.getRandomActive(), params, new  OnHttpListener() {
             @Override
             public void onSuccess() {
                 MMKV.defaultMMKV().encode("cunhuo_time:lastreport", System.currentTimeMillis());

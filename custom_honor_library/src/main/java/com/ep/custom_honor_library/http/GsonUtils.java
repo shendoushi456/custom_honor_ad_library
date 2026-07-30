@@ -3,7 +3,7 @@ package com.ep.custom_honor_library.http;
 import android.text.TextUtils;
 
 import com.ep.custom_honor_library.bean.AdBean;
-import com.ep.custom_honor_library.utils.CommonAPI;
+import com.lx.c_interface_library.CommonAPI;
 import com.ep.custom_honor_library.utils.CustomLogUtils;
 import com.ep.custom_honor_library.utils.DefAPIUtils;
 import com.google.gson.Gson;
@@ -63,14 +63,14 @@ public class GsonUtils {
 
                     CustomLogUtils.i("config=="+adBeanList,"config==");
                     //缓存
-                    CommonAPI.cacheAdMap.clear();
+                    DefAPIUtils.cacheAdMap.clear();
                     for (AdBean adBean : adBeanList){
                         for (AdBean.AdChildBean adChildBean : adBean.getAd_list_beans()){
                             adChildBean.setAllName(adBean.getScene_key()+":"+adChildBean.getKey()+":"+adChildBean.getType());
                         }
 
-                        CommonAPI.cacheAdMap.put(adBean.getScene_key(),adBean);
-                        CustomLogUtils.i("Cache === end === "+CommonAPI.cacheAdMap.toString(),"config==");
+                        DefAPIUtils.cacheAdMap.put(adBean.getScene_key(),adBean);
+                        CustomLogUtils.i("Cache === end === "+DefAPIUtils.cacheAdMap.toString(),"config==");
                     }
                 }
 

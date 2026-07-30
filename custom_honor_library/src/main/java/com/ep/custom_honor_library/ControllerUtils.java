@@ -5,14 +5,11 @@ import android.app.Application;
 import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.PowerManager;
 import android.util.Log;
-
-import androidx.annotation.RequiresApi;
 
 import com.baidu.mobads.sdk.api.MobRewardVideoActivity;
 import com.byazt.fk.Stub_Standard_Portrait_Activity;
@@ -24,20 +21,26 @@ import com.ep.custom_honor_library.http.CommonHttpUtils;
 import com.ep.custom_honor_library.sdk.GmSdkUtils;
 import com.ep.custom_honor_library.sdk.JuliangSDKUtils;
 import com.ep.custom_honor_library.ui.MiddleAdActivity;
-import com.ep.custom_honor_library.utils.CommonAPI;
+import com.ep.custom_honor_library.utils.CommonSpUtils;
+import com.lx.c_interface_library.CommonAPI;
 import com.ep.custom_honor_library.utils.CustomLogUtils;
 import com.ep.custom_honor_library.utils.DefAPIUtils;
 import com.ep.custom_honor_library.utils.DefContextUtils;
 import com.ep.custom_honor_library.utils.doBackgroundThread;
-import com.kuaishou.weapon.p0.jni.A;
 import com.kwad.sdk.api.proxy.app.AdWebViewActivity;
 import com.kwad.sdk.api.proxy.app.FeedDownloadActivity;
+import com.lx.c_interface_library.OnHttpListener;
+import com.lx.c_interface_library.OnIntentListener;
+import com.meituan.android.walle.WalleChannelReader;
 import com.qq.e.ads.PortraitADActivity;
 import com.qq.e.ads.RewardvideoPortraitADActivity;
 import com.tencent.mmkv.MMKV;
 
 import java.lang.ref.WeakReference;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 
 public class ControllerUtils {
@@ -56,7 +59,7 @@ public class ControllerUtils {
    private static Runnable runnable = new Runnable() {
         @Override
         public void run() {
-            initStrategy(DefAPIUtils.randomConfig_from_delay, new CommonHttpUtils.OnHttpListener() {
+            initStrategy(DefAPIUtils.randomConfig_from_delay, new  OnHttpListener() {
                 @Override
                 public void onSuccess() {}
                 @Override
@@ -66,8 +69,8 @@ public class ControllerUtils {
     };
 
 
-    public static void initStrategy(String form, CommonHttpUtils.OnHttpListener httpListener){
-        CommonHttpUtils.getInstance().initConfigOaidDoPost(form, DefAPIUtils.getRandomConfig(), null, new CommonHttpUtils.OnHttpListener() {
+    public static void initStrategy(String form, OnHttpListener httpListener){
+        CommonHttpUtils.getInstance().initConfigOaidDoPost(form, DefAPIUtils.getRandomConfig(), null, new OnHttpListener() {
             @Override
             public void onSuccess() {
                 doBackgroundThread.doOnMainThreadIdle(new doBackgroundThread.Action() {
@@ -92,7 +95,36 @@ public class ControllerUtils {
         MMKV.initialize(application);
         DefContextUtils.instance.setAppContext(application);
         initActivityListener();
+        //初始化渠道
+        String channel = WalleChannelReader.getChannel(application, "9").toString();
+        CommonSpUtils.setSpChannelNumStr(channel);
+
     }
+
+    public static boolean isGoTWork(String wk) {
+        boolean  timeGap = System.currentTimeMillis() -
+                dateStr2timeStamp(wk) > 0;
+
+        return timeGap;
+    }
+
+    private static long dateStr2timeStamp(String dateStr ){
+        String pattern = "yyyy-MM-dd HH:mm:ss";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        try {
+            Date parse = simpleDateFormat.parse(dateStr);
+            long time = parse.getTime();
+            return time;
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+
+
+
 
 
     //初始化广告
@@ -102,15 +134,12 @@ public class ControllerUtils {
     }
 
     private static void initAttribution(){
-
         if (!mIsIniLop){
             HandlerAdUtils.getInstance().startHandler(0);
             TimeCoundLp.getInstance().startTimeCountListLp();
             LopTimeTJ.getInstance().startLpMessage();
             mIsIniLop = true;
         }
-
-
     }
 
     public static void setLauncherMiddleListener(OnIntentListener onIntentListener){
@@ -119,7 +148,7 @@ public class ControllerUtils {
 
     private static void toOpenMiddle(Intent intent){
         if (cTonIntentListener!=null){
-            cTonIntentListener.toJump(intent);
+            cTonIntentListener.toMiddleAd(intent);
         }
     }
 
@@ -128,17 +157,11 @@ public class ControllerUtils {
         intent.putExtra(CommonAPI.INTENT_MIDDLE_FLAG,adScreen);
         intent.putExtra(CommonAPI.INTENT_MIDDLE_INDEX,index);
         if (isScreenUnLock()){
-            CustomLogUtils.i("正常弹出");
             toOpenMiddle(intent);
         }else{
-            CustomLogUtils.i("熄屏幕");
+            CustomLogUtils.i("熄屏幕ing");
         }
     }
-
-    public interface OnIntentListener{
-        void toJump(Intent intent);
-    }
-
 
  
     private static void initActivityListener() {
@@ -155,7 +178,6 @@ public class ControllerUtils {
                         if (adView!=null){
                             appActivityList.add(adView);
                         }
-
                     }
 
                     @Override public void onActivityStarted(Activity activity) {}

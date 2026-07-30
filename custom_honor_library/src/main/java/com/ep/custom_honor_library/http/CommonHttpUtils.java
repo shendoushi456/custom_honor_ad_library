@@ -6,13 +6,14 @@ import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Base64;
 
-import com.ep.custom_honor_library.utils.CommonAPI;
+import com.lx.c_interface_library.CommonAPI;
 import com.ep.custom_honor_library.utils.CommonSpUtils;
 import com.ep.custom_honor_library.utils.DefContextUtils;
 import com.ep.custom_honor_library.utils.CustomLogUtils;
 import com.ep.custom_honor_library.utils.PhoneStateUtils;
 import com.github.gzuliyujiang.oaid.DeviceID;
 import com.github.gzuliyujiang.oaid.IGetter;
+import com.lx.c_interface_library.OnHttpListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -149,7 +150,7 @@ public class CommonHttpUtils {
 
 
 
-    private void postConfigHttp(String from,String url, TreeMap<String,Object> params,OnHttpListener onHttpListener){
+    private void postConfigHttp(String from, String url, TreeMap<String,Object> params, OnHttpListener onHttpListener){
         if (params == null){
             params = new TreeMap<>();
         }
@@ -309,10 +310,6 @@ public class CommonHttpUtils {
 
 
 
-    public interface OnHttpListener{
-        void onSuccess();
-        void onFail(Exception e);
 
-    }
 
 }

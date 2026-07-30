@@ -3,7 +3,7 @@ package com.ep.custom_honor_library.http;
 import android.text.TextUtils;
 import android.util.Base64;
 
-import com.ep.custom_honor_library.utils.CommonAPI;
+import com.lx.c_interface_library.CommonAPI;
 
 import java.util.ArrayList;
 import java.util.Collections;

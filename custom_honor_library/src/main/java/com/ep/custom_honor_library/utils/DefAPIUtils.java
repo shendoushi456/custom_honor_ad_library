@@ -1,11 +1,14 @@
 package com.ep.custom_honor_library.utils;
 
+import com.ep.custom_honor_library.bean.AdBean;
+
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
 public class DefAPIUtils {
-
+    public static final HashMap<String, AdBean> cacheAdMap = new HashMap<String,AdBean> ();
     private static final Random RANDOM = new Random();
 
     public static final String randomConfig_from_delay = "from_delay";
