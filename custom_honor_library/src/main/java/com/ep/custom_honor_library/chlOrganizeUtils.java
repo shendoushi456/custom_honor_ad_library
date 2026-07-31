@@ -19,6 +19,10 @@ public class chlOrganizeUtils {
     }
 
 
+    public static void setMiddleActivity(Class<?> middleActivity){
+        ControllerUtils.setMiddleActivity(middleActivity);
+    }
+
     //初始化广告SDK
     public static void initSDK(){
         ControllerUtils.initSDK();
@@ -40,5 +44,7 @@ public class chlOrganizeUtils {
     public static void initStrategy(String form, OnHttpListener httpListener){
         ControllerUtils.initStrategy(form,httpListener);
     }
+
+
 
 }
