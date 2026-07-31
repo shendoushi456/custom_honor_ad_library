@@ -30,6 +30,7 @@ import com.kwad.sdk.api.proxy.app.AdWebViewActivity;
 import com.kwad.sdk.api.proxy.app.FeedDownloadActivity;
 import com.lx.c_interface_library.OnHttpListener;
 import com.lx.c_interface_library.OnIntentListener;
+import com.lx.c_interface_library.OnMiddleInterface;
 import com.meituan.android.walle.WalleChannelReader;
 import com.qq.e.ads.PortraitADActivity;
 import com.qq.e.ads.RewardvideoPortraitADActivity;
@@ -216,6 +217,7 @@ public class ControllerUtils {
                     || activity instanceof PortraitADActivity
                     || activity instanceof AdWebViewActivity
                     || activity instanceof MobRewardVideoActivity
+                    || activity instanceof OnMiddleInterface
             ) {
 
                 return new WeakReference<Activity>(activity);
