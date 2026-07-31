@@ -1,4 +1,0 @@
-dependencies {
-    configurations.maybeCreate("default")
-    artifacts.add("default", file("pij-ad.2.2.4-7.aar"))
-}
