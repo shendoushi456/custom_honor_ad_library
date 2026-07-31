@@ -10,13 +10,16 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.PowerManager;
 import android.util.Log;
+import android.view.ViewGroup;
 
 import com.baidu.mobads.sdk.api.MobRewardVideoActivity;
 import com.byazt.fk.Stub_Standard_Portrait_Activity;
 import com.bytedance.sdk.openadsdk.core.component.reward.activity.TTFullScreenVideoActivity;
+import com.ep.custom_honor_library.adlp.AdController;
 import com.ep.custom_honor_library.adlp.HandlerAdUtils;
 import com.ep.custom_honor_library.adlp.LopTimeTJ;
 import com.ep.custom_honor_library.adlp.TimeCoundLp;
+import com.ep.custom_honor_library.bean.ControlAdBean;
 import com.ep.custom_honor_library.http.CommonHttpUtils;
 import com.ep.custom_honor_library.sdk.GmSdkUtils;
 import com.ep.custom_honor_library.sdk.JuliangSDKUtils;
@@ -258,6 +261,22 @@ public class ControllerUtils {
         } catch (Exception e){
         }
         return true;
+    }
+
+
+
+
+    public static void initAdShow(Intent intent, Activity activity,ViewGroup adLayout){
+        String adScreen = intent.getStringExtra(CommonAPI.INTENT_MIDDLE_FLAG);
+        int adIndex = intent.getIntExtra(CommonAPI.INTENT_MIDDLE_INDEX,0);
+        CustomLogUtils.i("获取到的KEY == "+adScreen);
+        ControlAdBean controlAdBean = new ControlAdBean();
+        controlAdBean.setWrContext(new WeakReference<>(activity));
+        controlAdBean.setWrViewGroup(new WeakReference<>(adLayout));
+        controlAdBean.setAdIndex(adIndex);
+        controlAdBean.setAdSCreen(adScreen);
+        AdController.getAdControllerInstance().intentAd(controlAdBean);
+
     }
     
 
