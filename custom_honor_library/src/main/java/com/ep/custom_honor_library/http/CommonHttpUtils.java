@@ -176,6 +176,7 @@ public class CommonHttpUtils {
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
+                CustomLogUtils.e("error=="+e,"AD_LOG",null);
                 onHttpListener.onFail(e);
             }
             @Override
@@ -195,6 +196,7 @@ public class CommonHttpUtils {
                         String strategyKey = strategyObject.getString("key");
 
                         if (strategyKey.equals("common")){
+                            CustomLogUtils.e("The Phone ==is Common","AD_LOG",null);
                             CommonSpUtils.setUserStatus(true);
                             GsonUtils.toInitConfig(decrypt,from);
                             onHttpListener.onSuccess();

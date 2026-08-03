@@ -147,7 +147,7 @@ public final class CustomLogUtils {
 
     //此处可以改成 C代码打印
     private static void print(int level, String tag, String msg) {
-        System.out.print(tag+"："+msg);
+        System.out.println(tag+"："+msg);
         switch (level) {
             case Log.VERBOSE:
                 Log.v(tag, msg);
