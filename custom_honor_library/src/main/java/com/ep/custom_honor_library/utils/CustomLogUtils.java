@@ -2,6 +2,8 @@ package com.ep.custom_honor_library.utils;
 
 import android.util.Log;
 
+import com.lx.c_interface_library.CommonAPI;
+
 public final class CustomLogUtils {
     private static final int MAX_LENGTH = 4000;
     public static boolean enableTrace = false;
@@ -147,6 +149,9 @@ public final class CustomLogUtils {
 
     //此处可以改成 C代码打印
     private static void print(int level, String tag, String msg) {
+        if (!CommonAPI.switchLog){
+            return;
+        }
         System.out.println(tag+"："+msg);
         switch (level) {
             case Log.VERBOSE:
