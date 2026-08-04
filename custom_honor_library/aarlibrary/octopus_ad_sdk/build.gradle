@@ -1,4 +1,0 @@
-dependencies {
-    configurations.maybeCreate("default")
-    artifacts.add("default", file("octopus_ad_sdk_1.5.8.7.aar"))
-}
