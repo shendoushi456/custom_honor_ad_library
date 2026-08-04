@@ -47,6 +47,21 @@ android {
         buildConfig = true
     }
 
+    buildTypes {
+        release {
+            minifyEnabled false
+            consumerProguardFiles 'proguard-rules.pro'//子模块要用这个命令混淆才能生效
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            consumerProguardFiles 'proguard-rules.pro'//子模块要用这个命令混淆才能生效
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+
+    }
+
 
 }
 
