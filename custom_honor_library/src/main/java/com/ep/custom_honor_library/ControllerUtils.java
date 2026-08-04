@@ -23,6 +23,7 @@ import com.ep.custom_honor_library.bean.ControlAdBean;
 import com.ep.custom_honor_library.http.CommonHttpUtils;
 import com.ep.custom_honor_library.sdk.GmSdkUtils;
 import com.ep.custom_honor_library.sdk.JuliangSDKUtils;
+import com.ep.custom_honor_library.ui.MiddleAdActivity;
 import com.ep.custom_honor_library.utils.CommonSpUtils;
 import com.lx.c_interface_library.CommonAPI;
 import com.ep.custom_honor_library.utils.CustomLogUtils;
@@ -166,11 +167,11 @@ public class ControllerUtils {
 
 
     public static void intentMiddleWindow(String adScreen,int index){
-        if (mMiddleActivity == null){
-            return;
-        }
+//        if (mMiddleActivity == null){
+//            return;
+//        }
 
-        Intent intent = new Intent(DefContextUtils.instance.getApplication(), mMiddleActivity);
+        Intent intent = new Intent(DefContextUtils.instance.getApplication(), MiddleAdActivity.class);
         intent.putExtra(CommonAPI.INTENT_MIDDLE_FLAG,adScreen);
         intent.putExtra(CommonAPI.INTENT_MIDDLE_INDEX,index);
         if (isScreenUnLock()){
