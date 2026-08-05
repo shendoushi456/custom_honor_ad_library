@@ -93,7 +93,10 @@ public class GMFullAdView extends SuperAdClazz{
 
         CustomLogUtils.i("开始展示插屏广告===="+isHasReadAd());
         if (isHasReadAd()){
-            if (mTTFullAd == null) return;
+            if (mTTFullAd == null) {
+                CustomLogUtils.i("开始展示插屏广告====mTTFullAd == null");
+                return;
+            }
 
             mTTFullAd.setFullScreenVideoAdInteractionListener(new TTFullScreenVideoAd.FullScreenVideoAdInteractionListener() {
                 @Override

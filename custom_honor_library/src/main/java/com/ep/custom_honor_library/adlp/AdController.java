@@ -111,8 +111,9 @@ public class AdController {
                         @Override
                         public void run() {
                             int addSize = currentSize+1;
-                            ControllerUtils.intentMiddleWindow(controlAdBean.getAdSCreen(),addSize);
                             ControllerUtils.lopClearApp();
+                            ControllerUtils.intentMiddleWindow(controlAdBean.getAdSCreen(),addSize);
+
                         }
                     },CommonAPI.AD_AUTO_CLOSE_TIME * 1000L);
 
