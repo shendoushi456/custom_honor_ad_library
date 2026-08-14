@@ -1,0 +1,6 @@
+dependencies {
+    configurations.maybeCreate("default")
+    artifacts.add("default", file('ads-splash-1.0.35.310.aar'))
+
+
+}

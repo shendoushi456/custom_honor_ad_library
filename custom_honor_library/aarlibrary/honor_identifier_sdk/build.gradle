@@ -1,0 +1,12 @@
+dependencies {
+    configurations.maybeCreate("default")
+//    artifacts.add("default", file('ads-splash-1.0.35.310.aar'))
+//    artifacts.add("default", file('ads-interstitial-1.0.35.310.aar'))
+//    artifacts.add("default", file('ads-banner-1.0.35.310.aar'))
+    artifacts.add("default", file('ads-identifier-1.0.3.300.aar'))
+//    artifacts.add("default", file('ads-identifier-1.0.3.300.aar'))
+//    artifacts.add("default", file('ads-reward-1.0.35.310.aar'))
+//    artifacts.add("default", file('ads-picture-text-1.0.35.310.aar'))
+//    artifacts.add("default", file('ads-lite-1.0.35.310.aar'))
+//    artifacts.add("default", file('aggregation-access-1.0.35.310.aar'))
+}

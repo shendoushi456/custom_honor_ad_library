@@ -1,0 +1,5 @@
+dependencies {
+    configurations.maybeCreate("default")
+    artifacts.add("default", file('security-ssl-1.2.5.312.aar'))
+
+}

@@ -1,0 +1,4 @@
+dependencies {
+    configurations.maybeCreate("default")
+    artifacts.add("default", file("anythink_network_mobrain_mix_plus_7.6.1.1.1.0.aar"))
+}

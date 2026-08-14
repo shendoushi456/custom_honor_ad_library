@@ -1,0 +1,4 @@
+dependencies {
+    configurations.maybeCreate("default")
+    artifacts.add("default", file("anythink_network_honor_1.0.35.310.1.1.aar"))
+}

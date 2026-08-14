@@ -1,0 +1,5 @@
+dependencies {
+    configurations.maybeCreate("default")
+    artifacts.add("default", file('aggregation-access-1.0.35.310.aar'))
+
+}

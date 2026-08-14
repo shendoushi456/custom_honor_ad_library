@@ -74,14 +74,31 @@ dependencies {
     androidTestImplementation libs.androidx.junit
 
 
-//    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:baidu_mobads_sdk_release')
-//    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:baidu_mobads_sdk_release_adapter')
-//    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:gdtsdk_unionnormal')
-//    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:gdtsdk_unionnormal_adapter')
-//    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:kssdk_ct_publishRelease')
-//    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:kssdk_ct_publishRelease_adapter')
+    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:anythink_adx_sdk_kuying')
+    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:anythink_baidu')
+    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:anythink_core')
+    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:anythink_csj')
+    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:anythink_gdt')
+    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:anythink_honor')
+    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:anythink_ks')
+    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:anythink_kuying')
+    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:anythink_mobrain')
+    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:baidu_mobads_sdk_release')
+    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:gdtsdk_unionnormal')
+    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:honor_aggregation_access_sdk')
+    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:honor_enc_ha_sdk')
+    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:honor_hianalytics_sdk')
+    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:honor_identifier_sdk')
+    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:honor_inter_sdk')
+    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:honor_sdk')
+    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:honor_security_encrypt_sdk')
+    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:honor_security_ssl_sdk')
+    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:honor_splash_sdk')
+    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:honor_util_sdk')
+    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:kssdk_ct_publishRelease')
     api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:open_ad_sdk')
-//    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:appupdate')
+
+
 
     api 'com.google.code.gson:gson:2.9.0'
     api "com.squareup.retrofit2:converter-gson:2.3.0"

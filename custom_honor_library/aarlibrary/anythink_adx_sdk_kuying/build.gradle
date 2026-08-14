@@ -1,0 +1,4 @@
+dependencies {
+    configurations.maybeCreate("default")
+    artifacts.add("default", file("anythink_adx_sdk_kuying_6.5.68_necessary.aar"))
+}
