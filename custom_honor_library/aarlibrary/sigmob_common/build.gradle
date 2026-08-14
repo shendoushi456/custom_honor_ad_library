@@ -1,0 +1,5 @@
+dependencies {
+    configurations.maybeCreate("default")
+    artifacts.add("default", file("wind-common-2.0.2.aar"))
+
+}

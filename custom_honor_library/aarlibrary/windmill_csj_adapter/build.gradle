@@ -1,0 +1,4 @@
+dependencies {
+    configurations.maybeCreate("default")
+    artifacts.add("default", file("windmill-csj-adapter-7.6.1.1-4.8.9.aar"))
+}

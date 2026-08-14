@@ -1,0 +1,4 @@
+dependencies {
+    configurations.maybeCreate("default")
+    artifacts.add("default", file("windmill-kuaishou-adapter-5.4.10.2-4.8.8.aar"))
+}

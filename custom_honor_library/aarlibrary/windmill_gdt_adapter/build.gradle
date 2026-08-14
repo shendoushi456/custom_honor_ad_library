@@ -1,0 +1,4 @@
+dependencies {
+    configurations.maybeCreate("default")
+    artifacts.add("default", file("windmill-gdt-adapter-4.690.1560-4.8.9.aar"))
+}
