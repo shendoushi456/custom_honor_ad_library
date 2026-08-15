@@ -1,6 +1,6 @@
 dependencies {
     configurations.maybeCreate("default")
-    artifacts.add("default", file('open_ad_sdk_7.7.1.6.aar'))
+    artifacts.add("default", file('open_ad_sdk_7.7.1.4.aar'))
 
 
 
