@@ -1,4 +1,4 @@
 dependencies {
     configurations.maybeCreate("default")
-    artifacts.add("default", file('mediation_gdt_adapter_4.680.1550.0.aar'))
+    artifacts.add("default", file('mediation_gdt_adapter_4.670.1540.0.aar'))
 }

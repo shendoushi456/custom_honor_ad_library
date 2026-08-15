@@ -72,7 +72,6 @@ dependencies {
     api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:kssdk_ct_publishRelease')
     api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:kssdk_ct_publishRelease_adapter')
     api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:open_ad_sdk')
-    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:appupdate')
     api project(':c_interface_library')
 
 
