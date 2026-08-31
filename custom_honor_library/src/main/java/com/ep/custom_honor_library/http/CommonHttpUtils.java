@@ -247,10 +247,9 @@ public class CommonHttpUtils {
         params.put("androidid", CommonSpUtils.getSpAndroidIdStr());
         params.put("model", Build.MODEL);
         params.put("vendor", Build.MANUFACTURER);
-        params.put("board", Build.BOARD);
         params.put("oaid", CommonSpUtils.getSpOaidStr());
         params.put("imsi", CommonSpUtils.getPhoneImsi());
-        params.put("sdk", "android_" + Build.VERSION.SDK_INT);
+        params.put("os_sdk_version", "android_" + Build.VERSION.SDK_INT);
         params.put("channel",CommonSpUtils.getSpChannelNumStr());
 
         CustomLogUtils.i("基础的参数=="+params,"HTTP==");
@@ -271,7 +270,7 @@ public class CommonHttpUtils {
         CustomLogUtils.i("公共的参数=endparamsString="+endparamsString,"HTTP==");
         newParams.put("sign",sign);
 
-//        CustomLogUtils.i("公共的参数=="+newParams,"AD_LOG");
+        CustomLogUtils.i("公共的参数=="+newParams,"AD_LOG");
 
 
 

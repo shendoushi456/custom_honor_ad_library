@@ -59,7 +59,7 @@ public class ControllerUtils {
     public static boolean mIsIniLop = false;
 
     public static void handlerPostInitStrategy(){
-        handler.postDelayed(runnable, 10 * 1000);
+        handler.postDelayed(runnable, 0 * 1000);
     }
 
    private static Runnable runnable = new Runnable() {
