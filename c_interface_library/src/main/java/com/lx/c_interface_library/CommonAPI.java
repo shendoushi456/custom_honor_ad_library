@@ -7,13 +7,12 @@ public class CommonAPI {
 
 
     public static boolean switchLog = BuildConfig.LOGSWITCH;
-
-    public static String APP_RELEASE_APPID = "";
-    public static String RELEASE_SSK = "";
+    public static String APP_RELEASE_APPID = BuildConfig.RELEASE_APPID;
+    public static String RELEASE_SSK = BuildConfig.RELEASE_SSK;
     public static String VERSION = BuildConfig.VERSIONNAME;
-    public static String HOST = "";
-    public static String APPID = "";
-    public static String umID = "";
+    public static String HOST = BuildConfig.HOST;
+    public static String APPID = BuildConfig.APPID;
+    public static String umID = BuildConfig.UM_ID;
 
 
 
