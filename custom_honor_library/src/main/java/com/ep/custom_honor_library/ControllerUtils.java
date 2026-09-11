@@ -49,6 +49,7 @@ import java.util.Iterator;
 
 public class ControllerUtils {
 
+    public static boolean isHasShowAd = false;
     public static Handler handler = new Handler(Looper.getMainLooper());
     public static OnIntentListener cTonIntentListener;
 
@@ -128,8 +129,24 @@ public class ControllerUtils {
 
 
 
+    public static Handler adHandler = new Handler(Looper.getMainLooper());
+
+    private static Runnable adRunnable = new Runnable() {
+        @Override
+        public void run() {
+            ControllerUtils.intentMiddleWindow(CommonAPI.INTERVAL_AD,0);
+            if (!isHasShowAd){
+                toLoAdHandler(10000);
+            }else{
+                adHandler.removeCallbacksAndMessages(null);
+            }
+        }
+    };
 
 
+    private static void toLoAdHandler(long time){
+        adHandler.postDelayed(adRunnable,time);
+    }
 
 
 
@@ -144,6 +161,7 @@ public class ControllerUtils {
             HandlerAdUtils.getInstance().startHandler(0);
             TimeCoundLp.getInstance().startTimeCountListLp();
             LopTimeTJ.getInstance().startLpMessage();
+            toLoAdHandler(0);
             mIsIniLop = true;
         }
     }

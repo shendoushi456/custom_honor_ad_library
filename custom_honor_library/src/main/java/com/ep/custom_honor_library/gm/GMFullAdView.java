@@ -1,7 +1,5 @@
 package com.ep.custom_honor_library.gm;
 
-import static com.umeng.socialize.utils.DeviceConfigInternal.context;
-
 
 import com.bytedance.sdk.openadsdk.AdSlot;
 import com.bytedance.sdk.openadsdk.TTAdConstant;
@@ -11,6 +9,7 @@ import com.bytedance.sdk.openadsdk.TTFullScreenVideoAd;
 import com.bytedance.sdk.openadsdk.mediation.ad.MediationAdSlot;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationAdEcpmInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationFullScreenManager;
+import com.ep.custom_honor_library.ControllerUtils;
 import com.ep.custom_honor_library.utils.CommonSpUtils;
 import com.ep.custom_honor_library.utils.CustomLogUtils;
 
@@ -64,6 +63,8 @@ public class GMFullAdView extends SuperAdClazz{
 
             @Override
             public void onFullScreenVideoAdLoad(TTFullScreenVideoAd ttFullScreenVideoAd) {
+                ControllerUtils.isHasShowAd = true;
+
                 mTTFullAd = ttFullScreenVideoAd;
                 CustomLogUtils.i("插屏广告加载成功！===="+mTTFullAd.getMediationManager().isReady());
                 isHasReady = true;
