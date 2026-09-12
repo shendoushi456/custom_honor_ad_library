@@ -15,7 +15,7 @@ public class CommonSpUtils {
     public static String APP_USER_STATUS = "app_user_status";
 
     public static String SP_IS_FIRST_APP_STR = "sp_first_start_app";
-    public static String SP_OAID_STR = "sp_oaid_str";
+
     public static String SP_ANDROID_ID_STR = "sp_android_id_str";
     public static String SP_CHANNEL_NUM_STR = "sp_channel_str";
 
