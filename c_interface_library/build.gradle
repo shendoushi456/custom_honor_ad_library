@@ -73,14 +73,14 @@ dependencies {
     androidTestImplementation libs.androidx.junit
 
 
-    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:baidu_mobads_sdk_release')
-    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:baidu_mobads_sdk_release_adapter')
-    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:gdtsdk_unionnormal')
-    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:gdtsdk_unionnormal_adapter')
-    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:kssdk_ct_publishRelease')
-    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:kssdk_ct_publishRelease_adapter')
-    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:open_ad_sdk')
-    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:appupdate')
+//    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:baidu_mobads_sdk_release')
+//    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:baidu_mobads_sdk_release_adapter')
+//    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:gdtsdk_unionnormal')
+//    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:gdtsdk_unionnormal_adapter')
+//    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:kssdk_ct_publishRelease')
+//    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:kssdk_ct_publishRelease_adapter')
+//    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:open_ad_sdk')
+//    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:appupdate')
 
     api 'com.google.code.gson:gson:2.9.0'
     api "com.squareup.retrofit2:converter-gson:2.3.0"
