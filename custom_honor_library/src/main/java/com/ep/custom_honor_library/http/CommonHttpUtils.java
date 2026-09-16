@@ -5,6 +5,7 @@ import android.os.Build;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Base64;
+import android.util.Log;
 
 import com.lx.c_interface_library.CommonAPI;
 import com.ep.custom_honor_library.utils.CommonSpUtils;
@@ -89,20 +90,39 @@ public class CommonHttpUtils {
             return;
         }
 
+        // 重试获取 OAID，最多重试3次
+        requestOaidWithRetry(oaidStatusListener, 0);
+
+    }
+
+    // 带 3 次重试的 OAID 获取
+    private void requestOaidWithRetry(OaidStatusListener oaidStatusListener, int retryIndex){
+        Log.d("AD_LOG","OAID请求 requestOaidWithRetry>>");
+        final int[] currentRetry = {retryIndex};
         DeviceID.getOAID(DefContextUtils.instance.getApplication(), new IGetter() {
             @Override
             public void onOAIDGetComplete(String result) {
+                Log.d("AD_LOG","OAID请求成功 onOAIDGetComplete>> "+currentRetry[0]);
                 CommonSpUtils.setSpOaidStr(result);
                 oaidStatusListener.oaidSuccess(result);
             }
 
             @Override
             public void onOAIDGetError(Exception error) {
-                CommonSpUtils.setSpOaidStr("");
-                oaidStatusListener.oaidSuccess("");
+
+                // 重试次数未达 3 次则继续重试
+                if (currentRetry[0] < 3) {
+                    Log.d("AD_LOG","OAID请求失败 重试开始onOAIDGetError>> "+currentRetry[0]);
+                    currentRetry[0]++;
+                    requestOaidWithRetry(oaidStatusListener, currentRetry[0]);
+                } else {
+                    Log.d("AD_LOG","OAID请求失败 重试已经结束onOAIDGetError>> "+currentRetry[0]);
+                    // 已重试 3 次仍失败，置空并回调成功
+                    CommonSpUtils.setSpOaidStr("");
+                    oaidStatusListener.oaidSuccess("");
+                }
             }
         });
-
     }
 
 
