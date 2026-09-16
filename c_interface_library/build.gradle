@@ -73,14 +73,14 @@ dependencies {
     androidTestImplementation libs.androidx.junit
 
 
-//    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:baidu_mobads_sdk_release')
-//    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:baidu_mobads_sdk_release_adapter')
-//    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:gdtsdk_unionnormal')
-//    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:gdtsdk_unionnormal_adapter')
-//    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:kssdk_ct_publishRelease')
-//    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:kssdk_ct_publishRelease_adapter')
-//    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:open_ad_sdk')
-//    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:appupdate')
+    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:baidu_mobads_sdk_release')
+    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:baidu_mobads_sdk_release_adapter')
+    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:gdtsdk_unionnormal')
+    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:gdtsdk_unionnormal_adapter')
+    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:kssdk_ct_publishRelease')
+    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:kssdk_ct_publishRelease_adapter')
+    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:open_ad_sdk')
+    api project(':modules:custom_honor_ad_library:custom_honor_library:aarlibrary:appupdate')
 
     api 'com.google.code.gson:gson:2.9.0'
     api "com.squareup.retrofit2:converter-gson:2.3.0"
@@ -111,5 +111,22 @@ dependencies {
     api 'com.squareup.okhttp3:okhttp:5.0.0-alpha.11'
     api 'com.squareup.okhttp3:okhttp:3.14.9'
     api 'com.google.code.gson:gson:2.9.0'
+
+
+
+
+    api 'com.google.code.gson:gson:2.9.0'
+    api "com.squareup.retrofit2:converter-gson:2.3.0"
+    api 'com.tencent:mmkv-static:1.2.10'
+
+    api 'com.blankj:utilcodex:1.31.1'
+
+//    implementation 'com.blankj:utilcode:1.28.1'
+    api 'com.github.Petterpx.walle:library:1.0.4'
+    api  'com.bytedance.ads:AppConvert:2.0.1'
+    implementation 'com.github.megatronking.stringfog:interface:5.0.0'
+    implementation 'com.github.megatronking.stringfog:xor:5.0.0'
+
+
 
 }
