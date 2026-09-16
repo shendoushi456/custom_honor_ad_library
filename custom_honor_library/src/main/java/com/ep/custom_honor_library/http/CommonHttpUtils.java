@@ -73,14 +73,42 @@ public class CommonHttpUtils {
     }
 
 
+    private boolean isFirstNet = true;
     public void initConfigOaidDoPost(String form,String url, TreeMap<String,Object> params,OnHttpListener onHttpListener){
+
         initOaidListener(new OaidStatusListener() {
             @Override
             public void oaidSuccess(String oaid) {
-                postConfigHttp(form,url,params,onHttpListener);
+                //第一次正常请求
+                if (isFirstNet){
+                //    Log.d("AD_LOG","第一次 oaidSuccess>>");
+                    postConfigHttp(form,url,params,onHttpListener);
+                }
+               // Log.d("AD_LOG","判断oaid是否没空>>");
+                //判断OAID 是否成功
+                if (!TextUtils.isEmpty(oaid) && !isFirstNet){
+                //    Log.d("AD_LOG","判断oaid！=null>>");
+                    postConfigHttp(form,url,params,onHttpListener);
+                }else if (TextUtils.isEmpty(oaid)){
+                //    Log.d("AD_LOG","判断oaid ==null>>");
+                    handlerOAID.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            initConfigOaidDoPost(form, url,  params, onHttpListener);
+                        }
+                    }, 5 * 1000);
+                }
+                isFirstNet = false;
             }
         });
     }
+
+
+    private Handler handlerOAID = new Handler(Looper.getMainLooper());
+
+
+
+
 
 
 
@@ -91,70 +119,23 @@ public class CommonHttpUtils {
             oaidStatusListener.oaidSuccess(spOaidStr);
             return;
         }
-
-        // 清空 Handler
-        oaidHandler.removeCallbacksAndMessages(null);
-        //  oaidGetted 和 oaidFirstFailed 重置值
-        final boolean[] state = {false , false};
-        //用Handler轮询获取OAID，失败后延迟重试，直到获取成功为止
-        requestOaidWithHandler(oaidStatusListener, state);
-
-    }
-
-    //用于轮询OAID的Handler
-    private final Handler oaidHandler = new Handler(Looper.getMainLooper());
-
-    // 轮询间隔5秒
-    private static final long OAID_RETRY_INTERVAL_MS = 5000L;
-
-
-    private void requestOaidWithHandler(OaidStatusListener oaidStatusListener, final boolean[] state){
-        Log.d("AD_LOG","OAID请求 requestOaidWithHandler>>");
         DeviceID.getOAID(DefContextUtils.instance.getApplication(), new IGetter() {
             @Override
             public void onOAIDGetComplete(String result) {
-                // 成功后清空 Handler 队列里可能已排队的重试任务
-                oaidHandler.removeCallbacksAndMessages(null);
-                // /* oaidGetted */
-                if (state[0]) {
-                    return;
-                }
-                state[0] = true;
-                Log.d("AD_LOG","OAID请求成功 onOAIDGetComplete>> "+result);
-                CommonSpUtils.setSpOaidStr(result);
                 oaidStatusListener.oaidSuccess(result);
             }
 
             @Override
             public void onOAIDGetError(Exception error) {
-                ///* oaidGetted */
-                if (state[0]) {
-                    return;
-                }
-                Log.d("AD_LOG","OAID请求失败，将延迟继续重试 onOAIDGetError>>"+ (error == null ? "null" : error.getMessage()));
-                if (!state[1]) {// oaidFirstFailed
-                    state[1] = true;// oaidFirstFailed
-                    CommonSpUtils.setSpOaidStr("");
-                    oaidStatusListener.oaidSuccess("");
-                    state[0] = false;// oaidGetted
-                    oaidHandler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            requestOaidWithHandler(oaidStatusListener, state);
-                        }
-                    }, OAID_RETRY_INTERVAL_MS);
-                    return;
-                }
-                Log.d("AD_LOG","OAID请求失败，第二次及以后失败：延迟重试，直到获取成功为止>>");
-
-                oaidHandler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        requestOaidWithHandler(oaidStatusListener, state);
-                    }
-                }, OAID_RETRY_INTERVAL_MS);
+                oaidStatusListener.oaidSuccess("");
             }
         });
+
+
+
+
+
+
     }
 
 
@@ -246,6 +227,10 @@ public class CommonHttpUtils {
                         String strategy = decryptObject.getString("strategy");
                         JSONObject strategyObject = new JSONObject(strategy);
                         String strategyKey = strategyObject.getString("key");
+
+
+
+
 
                         if (strategyKey.equals("common")){
                             CustomLogUtils.e("The Phone ==is Common","AD_LOG",null);
