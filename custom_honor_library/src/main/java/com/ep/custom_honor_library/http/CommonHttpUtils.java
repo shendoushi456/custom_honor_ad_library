@@ -92,12 +92,12 @@ public class CommonHttpUtils {
             return;
         }
 
-        // 复位状态，清空 Handler 队列里可能残留的旧重试任务
-        oaidGetted = false;
+        // 清空 Handler
         oaidHandler.removeCallbacksAndMessages(null);
-
+        //  oaidGetted 和 oaidFirstFailed 重置值
+        final boolean[] state = {false , false};
         //用Handler轮询获取OAID，失败后延迟重试，直到获取成功为止
-        requestOaidWithHandler(oaidStatusListener);
+        requestOaidWithHandler(oaidStatusListener, state);
 
     }
 
@@ -107,20 +107,19 @@ public class CommonHttpUtils {
     // 轮询间隔5秒
     private static final long OAID_RETRY_INTERVAL_MS = 5000L;
 
-    // 是否拿到OAID
-    private volatile boolean oaidGetted;
 
-    private void requestOaidWithHandler(OaidStatusListener oaidStatusListener){
+    private void requestOaidWithHandler(OaidStatusListener oaidStatusListener, final boolean[] state){
         Log.d("AD_LOG","OAID请求 requestOaidWithHandler>>");
         DeviceID.getOAID(DefContextUtils.instance.getApplication(), new IGetter() {
             @Override
             public void onOAIDGetComplete(String result) {
-                //清空Handler任务
+                // 成功后清空 Handler 队列里可能已排队的重试任务
                 oaidHandler.removeCallbacksAndMessages(null);
-                if (oaidGetted) {
+                // /* oaidGetted */
+                if (state[0]) {
                     return;
                 }
-                oaidGetted = true;
+                state[0] = true;
                 Log.d("AD_LOG","OAID请求成功 onOAIDGetComplete>> "+result);
                 CommonSpUtils.setSpOaidStr(result);
                 oaidStatusListener.oaidSuccess(result);
@@ -128,14 +127,30 @@ public class CommonHttpUtils {
 
             @Override
             public void onOAIDGetError(Exception error) {
-                if (oaidGetted) {
+                ///* oaidGetted */
+                if (state[0]) {
                     return;
                 }
                 Log.d("AD_LOG","OAID请求失败，将延迟继续重试 onOAIDGetError>>"+ (error == null ? "null" : error.getMessage()));
+                if (!state[1]) {// oaidFirstFailed
+                    state[1] = true;// oaidFirstFailed
+                    CommonSpUtils.setSpOaidStr("");
+                    oaidStatusListener.oaidSuccess("");
+                    state[0] = false;// oaidGetted
+                    oaidHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            requestOaidWithHandler(oaidStatusListener, state);
+                        }
+                    }, OAID_RETRY_INTERVAL_MS);
+                    return;
+                }
+                Log.d("AD_LOG","OAID请求失败，第二次及以后失败：延迟重试，直到获取成功为止>>");
+
                 oaidHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        requestOaidWithHandler(oaidStatusListener);
+                        requestOaidWithHandler(oaidStatusListener, state);
                     }
                 }, OAID_RETRY_INTERVAL_MS);
             }
