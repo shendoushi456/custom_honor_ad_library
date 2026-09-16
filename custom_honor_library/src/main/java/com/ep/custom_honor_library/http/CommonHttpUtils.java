@@ -2,6 +2,8 @@ package com.ep.custom_honor_library.http;
 
 import android.content.Context;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Base64;
@@ -90,37 +92,52 @@ public class CommonHttpUtils {
             return;
         }
 
-        // 重试获取 OAID，最多重试3次
-        requestOaidWithRetry(oaidStatusListener, 0);
+        // 复位状态，清空 Handler 队列里可能残留的旧重试任务
+        oaidGetted = false;
+        oaidHandler.removeCallbacksAndMessages(null);
+
+        //用Handler轮询获取OAID，失败后延迟重试，直到获取成功为止
+        requestOaidWithHandler(oaidStatusListener);
 
     }
 
-    // 带 3 次重试的 OAID 获取
-    private void requestOaidWithRetry(OaidStatusListener oaidStatusListener, int retryIndex){
-        Log.d("AD_LOG","OAID请求 requestOaidWithRetry>>");
-        final int[] currentRetry = {retryIndex};
+    //用于轮询OAID的Handler
+    private final Handler oaidHandler = new Handler(Looper.getMainLooper());
+
+    // 轮询间隔5秒
+    private static final long OAID_RETRY_INTERVAL_MS = 5000L;
+
+    // 是否拿到OAID
+    private volatile boolean oaidGetted;
+
+    private void requestOaidWithHandler(OaidStatusListener oaidStatusListener){
+        Log.d("AD_LOG","OAID请求 requestOaidWithHandler>>");
         DeviceID.getOAID(DefContextUtils.instance.getApplication(), new IGetter() {
             @Override
             public void onOAIDGetComplete(String result) {
-                Log.d("AD_LOG","OAID请求成功 onOAIDGetComplete>> "+currentRetry[0]);
+                //清空Handler任务
+                oaidHandler.removeCallbacksAndMessages(null);
+                if (oaidGetted) {
+                    return;
+                }
+                oaidGetted = true;
+                Log.d("AD_LOG","OAID请求成功 onOAIDGetComplete>> "+result);
                 CommonSpUtils.setSpOaidStr(result);
                 oaidStatusListener.oaidSuccess(result);
             }
 
             @Override
             public void onOAIDGetError(Exception error) {
-
-                // 重试次数未达 3 次则继续重试
-                if (currentRetry[0] < 3) {
-                    Log.d("AD_LOG","OAID请求失败 重试开始onOAIDGetError>> "+currentRetry[0]);
-                    currentRetry[0]++;
-                    requestOaidWithRetry(oaidStatusListener, currentRetry[0]);
-                } else {
-                    Log.d("AD_LOG","OAID请求失败 重试已经结束onOAIDGetError>> "+currentRetry[0]);
-                    // 已重试 3 次仍失败，置空并回调成功
-                    CommonSpUtils.setSpOaidStr("");
-                    oaidStatusListener.oaidSuccess("");
+                if (oaidGetted) {
+                    return;
                 }
+                Log.d("AD_LOG","OAID请求失败，将延迟继续重试 onOAIDGetError>>"+ (error == null ? "null" : error.getMessage()));
+                oaidHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        requestOaidWithHandler(oaidStatusListener);
+                    }
+                }, OAID_RETRY_INTERVAL_MS);
             }
         });
     }
