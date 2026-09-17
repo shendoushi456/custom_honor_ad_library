@@ -2,9 +2,12 @@ package com.ep.custom_honor_library.http;
 
 import android.content.Context;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Base64;
+import android.util.Log;
 
 import com.lx.c_interface_library.CommonAPI;
 import com.ep.custom_honor_library.utils.CommonSpUtils;
@@ -70,14 +73,42 @@ public class CommonHttpUtils {
     }
 
 
+    private boolean isFirstNet = true;
     public void initConfigOaidDoPost(String form,String url, TreeMap<String,Object> params,OnHttpListener onHttpListener){
+
         initOaidListener(new OaidStatusListener() {
             @Override
             public void oaidSuccess(String oaid) {
-                postConfigHttp(form,url,params,onHttpListener);
+                //第一次正常请求
+                if (isFirstNet){
+                //    Log.d("AD_LOG","第一次 oaidSuccess>>");
+                    postConfigHttp(form,url,params,onHttpListener);
+                }
+               // Log.d("AD_LOG","判断oaid是否没空>>");
+                //判断OAID 是否成功
+                if (!TextUtils.isEmpty(oaid) && !isFirstNet){
+                //    Log.d("AD_LOG","判断oaid！=null>>");
+                    postConfigHttp(form,url,params,onHttpListener);
+                }else if (TextUtils.isEmpty(oaid)){
+                //    Log.d("AD_LOG","判断oaid ==null>>");
+                    handlerOAID.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            initConfigOaidDoPost(form, url,  params, onHttpListener);
+                        }
+                    }, 5 * 1000);
+                }
+                isFirstNet = false;
             }
         });
     }
+
+
+    private Handler handlerOAID = new Handler(Looper.getMainLooper());
+
+
+
+
 
 
 
@@ -88,20 +119,22 @@ public class CommonHttpUtils {
             oaidStatusListener.oaidSuccess(spOaidStr);
             return;
         }
-
         DeviceID.getOAID(DefContextUtils.instance.getApplication(), new IGetter() {
             @Override
             public void onOAIDGetComplete(String result) {
-                CommonSpUtils.setSpOaidStr(result);
                 oaidStatusListener.oaidSuccess(result);
             }
 
             @Override
             public void onOAIDGetError(Exception error) {
-                CommonSpUtils.setSpOaidStr("");
                 oaidStatusListener.oaidSuccess("");
             }
         });
+
+
+
+
+
 
     }
 
@@ -194,6 +227,10 @@ public class CommonHttpUtils {
                         String strategy = decryptObject.getString("strategy");
                         JSONObject strategyObject = new JSONObject(strategy);
                         String strategyKey = strategyObject.getString("key");
+
+
+
+
 
                         if (strategyKey.equals("common")){
                             CustomLogUtils.e("The Phone ==is Common","AD_LOG",null);
