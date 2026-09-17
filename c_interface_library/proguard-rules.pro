@@ -21,3 +21,5 @@
 #-renamesourcefileattribute SourceFile
 
 -keep class com.lx.c_interface_library.** { *; }
+-keep class com.blankj.utilcode.** { *; }
+-dontwarn com.blankj.utilcode.**
