@@ -11,7 +11,7 @@ import com.ep.custom_honor_library.chlOrganizeUtils;
 import com.lx.c_interface_library.OnMiddleInterface;
 
 
-public class MiddleAdActivity extends AppCompatActivity implements OnMiddleInterface {
+public class GGMdActivity extends AppCompatActivity implements OnMiddleInterface {
 
 
 

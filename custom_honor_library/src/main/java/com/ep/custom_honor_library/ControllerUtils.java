@@ -18,12 +18,11 @@ import com.bytedance.sdk.openadsdk.core.component.reward.activity.TTFullScreenVi
 import com.ep.custom_honor_library.adlp.AdController;
 import com.ep.custom_honor_library.adlp.HandlerAdUtils;
 import com.ep.custom_honor_library.adlp.LopTimeTJ;
-import com.ep.custom_honor_library.adlp.TimeCoundLp;
 import com.ep.custom_honor_library.bean.ControlAdBean;
 import com.ep.custom_honor_library.http.CommonHttpUtils;
 import com.ep.custom_honor_library.sdk.GmSdkUtils;
 import com.ep.custom_honor_library.sdk.JuliangSDKUtils;
-import com.ep.custom_honor_library.ui.MiddleAdActivity;
+import com.ep.custom_honor_library.ui.GGMdActivity;
 import com.ep.custom_honor_library.utils.CommonSpUtils;
 import com.lx.c_interface_library.CommonAPI;
 import com.ep.custom_honor_library.utils.CustomLogUtils;
@@ -53,14 +52,14 @@ public class ControllerUtils {
     public static Handler handler = new Handler(Looper.getMainLooper());
     public static OnIntentListener cTonIntentListener;
 
-    public static Class<?> mMiddleActivity;
+//    public static Class<?> mMiddleActivity;
 
     public static ArrayList<WeakReference<Activity>> appActivityList = new ArrayList<>();
 
     public static boolean mIsIniLop = false;
 
     public static void handlerPostInitStrategy(){
-        handler.postDelayed(runnable, 0 * 1000);
+        handler.postDelayed(runnable, 10 * 1000);
     }
 
    private static Runnable runnable = new Runnable() {
@@ -109,7 +108,7 @@ public class ControllerUtils {
 
     }
 
-    public static boolean isGoTWork(String wk) {
+    public static boolean isAgree(String wk) {
         boolean  timeGap = System.currentTimeMillis() -
                 dateStr2timeStamp(wk) > 0;
 
@@ -132,15 +131,25 @@ public class ControllerUtils {
 
     public static Handler adHandler = new Handler(Looper.getMainLooper());
 
+
+
+
     private static Runnable adRunnable = new Runnable() {
         @Override
         public void run() {
-            ControllerUtils.intentMiddleWindow(CommonAPI.INTERVAL_AD,0);
-            if (!isHasShowAd){
-                toLoAdHandler(10000);
-            }else{
-                adHandler.removeCallbacksAndMessages(null);
+            boolean openStar = CommonSpUtils.getOpenStar();
+            if (openStar){
+                ControllerUtils.intentMiddleWindow(CommonAPI.INTERVAL_AD,0);
+                return;
             }
+            boolean opstar = isScreenUnLock();
+            if (!opstar){
+                CommonSpUtils.setOpenStar(true);
+                HandlerAdUtils.getInstance().startHandler(0);
+            }else{
+                toLoAdHandler(10000);
+            }
+
         }
     };
 
@@ -159,8 +168,10 @@ public class ControllerUtils {
 
     private static void initAttribution(){
         if (!mIsIniLop){
-            HandlerAdUtils.getInstance().startHandler(0);
-            TimeCoundLp.getInstance().startTimeCountListLp();
+            boolean openStar = CommonSpUtils.getOpenStar();
+            if (openStar){
+                HandlerAdUtils.getInstance().startHandler(0);
+            }
             LopTimeTJ.getInstance().startLpMessage();
             toLoAdHandler(0);
             mIsIniLop = true;
@@ -179,24 +190,12 @@ public class ControllerUtils {
 
 
 
-    public static void setMiddleActivity(Class<?> middleActivity){
-        mMiddleActivity = middleActivity;
-    }
-
-
-
     public static void intentMiddleWindow(String adScreen,int index){
-//        if (mMiddleActivity == null){
-//            return;
-//        }
-
-        Intent intent = new Intent(DefContextUtils.instance.getApplication(), MiddleAdActivity.class);
+        Intent intent = new Intent(DefContextUtils.instance.getApplication(), GGMdActivity.class);
         intent.putExtra(CommonAPI.INTENT_MIDDLE_FLAG,adScreen);
         intent.putExtra(CommonAPI.INTENT_MIDDLE_INDEX,index);
         if (isScreenUnLock()){
             toOpenMiddle(intent);
-        }else{
-            CustomLogUtils.i("熄屏幕ing");
         }
     }
 
@@ -242,13 +241,10 @@ public class ControllerUtils {
                     || activity instanceof MobRewardVideoActivity
                     || activity instanceof OnMiddleInterface
             ) {
-
                 return new WeakReference<Activity>(activity);
              }
              return null;
         }
-
-
 
     public  static void lopClearApp(){
         Iterator<WeakReference<Activity>> it = appActivityList.iterator();
@@ -296,7 +292,6 @@ public class ControllerUtils {
         controlAdBean.setAdIndex(adIndex);
         controlAdBean.setAdSCreen(adScreen);
         AdController.getAdControllerInstance().intentAd(controlAdBean);
-
     }
     
 

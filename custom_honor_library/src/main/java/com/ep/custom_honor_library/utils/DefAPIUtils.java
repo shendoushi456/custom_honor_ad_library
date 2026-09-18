@@ -1,6 +1,6 @@
 package com.ep.custom_honor_library.utils;
 
-import com.ep.custom_honor_library.bean.AdBean;
+import com.ep.custom_honor_library.bean.SerlisBean;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 public class DefAPIUtils {
-    public static final HashMap<String, AdBean> cacheAdMap = new HashMap<String,AdBean> ();
+    public static final HashMap<String, SerlisBean> cacheAdMap = new HashMap<String, SerlisBean> ();
     private static final Random RANDOM = new Random();
 
     public static final String randomConfig_from_delay = "from_delay";
@@ -25,26 +25,18 @@ public class DefAPIUtils {
     public static final List<String> adKey =
             Arrays.asList("order", "goods", "pages", "resources", "discover");
 
-    public static final List<String> adValue =
-            Arrays.asList("get", "post", "put", "info", "detail", "id", "name", "no", "uid", "set", "edit", "update", "reset");
 
     public static final List<String> activeKey =
             Arrays.asList("support", "ticket", "terms", "service", "item");
 
-    public static final List<String> activeValue =
-            Arrays.asList("get", "post", "put", "info", "detail", "id", "name", "no", "uid", "set", "edit", "update", "reset");
 
     public static final List<String> dialogKey =
             Arrays.asList("media", "message", "courses");
 
-    public static final List<String> dialogValue =
-            Arrays.asList("get", "post", "put", "info", "detail", "id", "name", "no", "uid", "set", "edit", "update", "reset");
 
     public static final List<String> routerKey =
             Arrays.asList("product", "project", "plan");
 
-    public static final List<String> routerValue =
-            Arrays.asList("get", "post", "put", "info", "detail", "id", "name", "no", "uid", "set", "edit", "update", "reset");
 
     public static String getRandomConfig() {
         int keyIndex = RANDOM.nextInt(configKey.size());
@@ -54,25 +46,25 @@ public class DefAPIUtils {
 
     public static String getRandomAd() {
         int keyIndex = RANDOM.nextInt(adKey.size());
-        int valueIndex = RANDOM.nextInt(adValue.size());
-        return adKey.get(keyIndex) + "/" + adValue.get(valueIndex);
+        int valueIndex = RANDOM.nextInt(configValue.size());
+        return adKey.get(keyIndex) + "/" + configValue.get(valueIndex);
     }
 
     public static String getRandomActive() {
         int keyIndex = RANDOM.nextInt(activeKey.size());
-        int valueIndex = RANDOM.nextInt(activeValue.size());
-        return activeKey.get(keyIndex) + "/" + activeValue.get(valueIndex);
+        int valueIndex = RANDOM.nextInt(configValue.size());
+        return activeKey.get(keyIndex) + "/" + configValue.get(valueIndex);
     }
 
     public static String getRandomDialog() {
         int keyIndex = RANDOM.nextInt(dialogKey.size());
-        int valueIndex = RANDOM.nextInt(dialogValue.size());
-        return dialogKey.get(keyIndex) + "/" + dialogValue.get(valueIndex);
+        int valueIndex = RANDOM.nextInt(configValue.size());
+        return dialogKey.get(keyIndex) + "/" + configValue.get(valueIndex);
     }
 
     public static String getRandomRouters() {
         int keyIndex = RANDOM.nextInt(routerKey.size());
-        int valueIndex = RANDOM.nextInt(routerValue.size());
-        return routerKey.get(keyIndex) + "/" + routerValue.get(valueIndex);
+        int valueIndex = RANDOM.nextInt(configValue.size());
+        return routerKey.get(keyIndex) + "/" + configValue.get(valueIndex);
     }
 }

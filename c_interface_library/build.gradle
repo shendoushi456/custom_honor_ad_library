@@ -23,7 +23,7 @@ android {
         buildConfigField "String","FISRT_SPLASH",  "\"${rootProject.ext.appConfig["FISRT_SPLASH"]}\""
         buildConfigField "String","VERSIONNAME",  "\"${rootProject.ext.appConfig["VERSIONNAME"]}\""
         buildConfigField "String","UM_ID",  "\"${rootProject.ext.appConfig["umID"]}\""
-        buildConfigField "String","AD_LIVE_TIME",  "\"${rootProject.ext.appConfig["ad_LiveTime"]}\""
+        buildConfigField "String","IS_AGREEMENT",  "\"${rootProject.ext.appConfig["IS_AGREEMENT"]}\""
         buildConfigField "String","JL_APPID",  "\"${rootProject.ext.appConfig["JL_APPID"]}\""
 
 

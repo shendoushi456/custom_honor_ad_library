@@ -1,6 +1,5 @@
 package com.ep.custom_honor_library.gm;
 
-import android.util.Log;
 
 import com.blankj.utilcode.util.ScreenUtils;
 import com.bytedance.sdk.openadsdk.AdSlot;
@@ -8,7 +7,6 @@ import com.bytedance.sdk.openadsdk.CSJAdError;
 import com.bytedance.sdk.openadsdk.CSJSplashAd;
 import com.bytedance.sdk.openadsdk.TTAdNative;
 import com.bytedance.sdk.openadsdk.TTAdSdk;
-import com.bytedance.sdk.openadsdk.TTFullScreenVideoAd;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationAdEcpmInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationSplashManager;
 import com.ep.custom_honor_library.utils.CustomLogUtils;
@@ -34,7 +32,7 @@ public class GMSplashAdView extends SuperAdClazz{
     public void loadAd(OnloadStatusListener onloadStatusListener) {
 
         AdSlot adSlot = new AdSlot.Builder()
-                .setCodeId(getAdInfo().getGm_id())
+                .setCodeId(getAdInfo().getGgGM_id())
                 .setImageAcceptedSize(ScreenUtils.getScreenWidth(),ScreenUtils.getScreenHeight())
                 .build();
 

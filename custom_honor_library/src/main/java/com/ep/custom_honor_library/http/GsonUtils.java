@@ -2,14 +2,13 @@ package com.ep.custom_honor_library.http;
 
 import android.text.TextUtils;
 
-import com.blankj.utilcode.util.LogUtils;
-import com.ep.custom_honor_library.bean.AdBean;
+import com.ep.custom_honor_library.bean.SerlisBean;
+import com.ep.custom_honor_library.bean.SerlisChildArrBean;
 import com.lx.c_interface_library.CommonAPI;
 import com.ep.custom_honor_library.utils.CustomLogUtils;
 import com.ep.custom_honor_library.utils.DefAPIUtils;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -39,26 +38,26 @@ public class GsonUtils {
 
 
                 // 兼容旧配置：timerCount/timerMinute 字段可能未下发，缺失时跳过，不影响后续广告缓存逻辑
-                if (configObject.has("timerCount") && !configObject.isNull("timerCount")) {
-                    String timerCount = configObject.getString("timerCount");
-                    ArrayList<Integer> timeCountList = new Gson().fromJson(timerCount, new TypeToken<ArrayList<Integer>>() {}.getType());
-                    CommonAPI.timeCountList.clear();
-                    CommonAPI.timeCountList.addAll(timeCountList);
-                    LogUtils.d("AD_LOG","timeCountList==="+timeCountList.toString(),"config==");
-                } else {
-                    LogUtils.d("AD_LOG","timerCount 字段不存在，跳过解析","config==");
-                }
-
-                if (configObject.has("timerMinute") && !configObject.isNull("timerMinute")) {
-                    String timerMinute = configObject.getString("timerMinute");
-                    ArrayList<Integer> timerMinuteList = new Gson().fromJson(timerMinute, new TypeToken<ArrayList<Integer>>() {}.getType());
-                    CommonAPI.timerMinuteList.clear();
-                    CommonAPI.timerMinuteList.addAll(timerMinuteList);
-                    LogUtils.d("AD_LOG","timerMinuteList==="+timerMinuteList.toString(),"config==");
-                } else {
-                    LogUtils.d("AD_LOG","timerMinute 字段不存在，跳过解析,config==");
-
-                }
+//                if (configObject.has("timerCount") && !configObject.isNull("timerCount")) {
+//                    String timerCount = configObject.getString("timerCount");
+//                    ArrayList<Integer> timeCountList = new Gson().fromJson(timerCount, new TypeToken<ArrayList<Integer>>() {}.getType());
+//                    CommonAPI.timeCountList.clear();
+//                    CommonAPI.timeCountList.addAll(timeCountList);
+//                    LogUtils.d("AD_LOG","timeCountList==="+timeCountList.toString(),"config==");
+//                } else {
+//                    LogUtils.d("AD_LOG","timerCount 字段不存在，跳过解析","config==");
+//                }
+//
+//                if (configObject.has("timerMinute") && !configObject.isNull("timerMinute")) {
+//                    String timerMinute = configObject.getString("timerMinute");
+//                    ArrayList<Integer> timerMinuteList = new Gson().fromJson(timerMinute, new TypeToken<ArrayList<Integer>>() {}.getType());
+//                    CommonAPI.timerMinuteList.clear();
+//                    CommonAPI.timerMinuteList.addAll(timerMinuteList);
+//                    LogUtils.d("AD_LOG","timerMinuteList==="+timerMinuteList.toString(),"config==");
+//                } else {
+//                    LogUtils.d("AD_LOG","timerMinute 字段不存在，跳过解析,config==");
+//
+//                }
 
 
 
@@ -66,18 +65,20 @@ public class GsonUtils {
 
                 CustomLogUtils.i("adStr==="+adStr,"config==");
                 if (!TextUtils.isEmpty(adStr)){
-                    ArrayList<AdBean> adBeanList = new Gson().fromJson(adStr, new TypeToken<ArrayList<AdBean>>() {
-                    }.getType());
 
-                    CustomLogUtils.i("config=="+adBeanList,"config==");
-                    //缓存
+                    ArrayList<SerlisBean> adBeanList = parseAdKey(adStr);
+//                    ArrayList<AdBean> adBeanList = new Gson().fromJson(adStr, new TypeToken<ArrayList<AdBean>>() {
+//                    }.getType());
+//
+//                    CustomLogUtils.i("config=="+adBeanList,"config==");
+//                    //缓存
                     DefAPIUtils.cacheAdMap.clear();
-                    for (AdBean adBean : adBeanList){
-                        for (AdBean.AdChildBean adChildBean : adBean.getAd_list_beans()){
-                            adChildBean.setAllName(adBean.getScene_key()+":"+adChildBean.getKey()+":"+adChildBean.getType());
+                    for (SerlisBean adBean : adBeanList){
+                        for (SerlisChildArrBean adChildBean : adBean.getAd_list_beans()){
+                            adChildBean.setAllName(adBean.getGgKeyScene()+":"+adChildBean.getGgKeyLin()+":"+adChildBean.getGgGMType());
                         }
 
-                        DefAPIUtils.cacheAdMap.put(adBean.getScene_key(),adBean);
+                        DefAPIUtils.cacheAdMap.put(adBean.getGgKeyScene(),adBean);
                         CustomLogUtils.i("Cache === end === "+DefAPIUtils.cacheAdMap.toString(),"config==");
                     }
                 }
@@ -90,4 +91,48 @@ public class GsonUtils {
         }
 
     }
+
+
+
+    private static ArrayList<SerlisBean> parseAdKey(String jsonStr) {
+
+        ArrayList<SerlisBean> adBeanArrayList = new ArrayList<>();
+        try {
+
+            JSONArray adKeyArray = new JSONArray(jsonStr);
+            for (int i = 0; i < adKeyArray.length(); i++) {
+                SerlisBean adBean = new SerlisBean();
+                JSONObject sceneObj = adKeyArray.getJSONObject(i);
+                boolean  isCanEnable = sceneObj.optBoolean("enable", false);
+                String scene_key =  sceneObj.optString("scene_key", "");
+                adBean.setScene_key(scene_key);
+                adBean.setCanEnable(isCanEnable);
+                // 解析 ad_list_beans 子数组
+                JSONArray beansArray = sceneObj.optJSONArray("ad_list_beans");
+                if (beansArray != null) {
+                    ArrayList<SerlisChildArrBean> dataChild = new ArrayList<>();
+                    for (int j = 0; j < beansArray.length(); j++) {
+                        JSONObject beanObj = beansArray.getJSONObject(j);
+                        SerlisChildArrBean bean = new SerlisChildArrBean();
+                        bean.setGgKeyLin(beanObj.optString("key", ""));
+                        bean.setGgGMType(beanObj.optString("type", ""));
+                        bean.setGgGM_id(beanObj.optString("gm_id", ""));
+                        dataChild.add(bean);
+                    }
+                    adBean.setAd_list_beans(dataChild);
+                }
+
+                adBeanArrayList.add(adBean);
+            }
+//            Log.i("AD_LOG","存储数据==="+DefAPIUtils.cacheAdMap.toString());
+            return adBeanArrayList;
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return adBeanArrayList;
+
+    }
+
 }

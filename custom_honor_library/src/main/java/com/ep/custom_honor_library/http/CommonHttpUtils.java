@@ -307,7 +307,7 @@ public class CommonHttpUtils {
         CustomLogUtils.i("公共的参数=endparamsString="+endparamsString,"HTTP==");
         newParams.put("sign",sign);
 
-        CustomLogUtils.i("公共的参数=="+newParams,"AD_LOG");
+//        CustomLogUtils.i("公共的参数=="+newParams,"AD_LOG");
 
 
 

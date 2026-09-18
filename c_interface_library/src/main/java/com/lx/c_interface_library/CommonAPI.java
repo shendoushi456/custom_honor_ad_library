@@ -14,14 +14,12 @@ public class CommonAPI {
     public static String APPID = BuildConfig.APPID;
     public static String umID = BuildConfig.UM_ID;
 
+    public static int HOUR_TURN_TIME = 100;
+    public static int AD_AUTO_CLOSE_TIME = 10;
 
 
-    public static int HOUR_TURN_TIME = 1;
-    public static int AD_AUTO_CLOSE_TIME = 5;
-
-
-    public static ArrayList<Integer> timeCountList = new ArrayList<>();
-    public static ArrayList<Integer> timerMinuteList = new ArrayList<>();
+//    public static ArrayList<Integer> timeCountList = new ArrayList<>();
+//    public static ArrayList<Integer> timerMinuteList = new ArrayList<>();
 
 
 

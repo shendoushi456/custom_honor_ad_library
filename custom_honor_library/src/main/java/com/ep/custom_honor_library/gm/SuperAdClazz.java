@@ -4,7 +4,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationAdEcpmInfo;
 import com.ep.custom_honor_library.adlp.MarkEventTJ;
-import com.ep.custom_honor_library.bean.AdBean;
+import com.ep.custom_honor_library.bean.SerlisChildArrBean;
 import com.ep.custom_honor_library.bean.ControlAdBean;
 import com.ep.custom_honor_library.bean.EventTJBean;
 
@@ -13,7 +13,7 @@ import java.util.UUID;
 public abstract class SuperAdClazz {
 
     public boolean isHasReady = false;
-    private AdBean.AdChildBean adChildBean;
+    private SerlisChildArrBean adChildBean;
     private ControlAdBean controlAdBean;
     private String adType;
     public abstract void loadAd(OnloadStatusListener onloadStatusListener);
@@ -21,12 +21,12 @@ public abstract class SuperAdClazz {
     public abstract void showAd(OnShowStatusListener onShowStatusListener);
     public abstract boolean isHasReadAd();
 
-    public SuperAdClazz setAdInfo(AdBean.AdChildBean adChildBean){
+    public SuperAdClazz setAdInfo(SerlisChildArrBean adChildBean){
       this.adChildBean = adChildBean;
         return this;
     }
 
-    public AdBean.AdChildBean getAdInfo(){
+    public SerlisChildArrBean getAdInfo(){
         return adChildBean;
     }
 
@@ -41,7 +41,7 @@ public abstract class SuperAdClazz {
 
 
 
-    public static EventTJBean createNATAdInfo(MediationAdEcpmInfo mediationAdEcpm,AdBean.AdChildBean adChildBean){
+    public static EventTJBean createNATAdInfo(MediationAdEcpmInfo mediationAdEcpm, SerlisChildArrBean adChildBean){
         EventTJBean natAdInfo;
         if (mediationAdEcpm != null) {
             String ecpm = mediationAdEcpm.getEcpm();

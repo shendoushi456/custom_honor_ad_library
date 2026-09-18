@@ -1,10 +1,8 @@
 package com.ep.custom_honor_library.adlp;
 
-import android.os.Handler;
-import android.os.Looper;
-import com.ep.custom_honor_library.ControllerUtils;
-import com.ep.custom_honor_library.bean.AdBean;
+import com.ep.custom_honor_library.bean.SerlisBean;
 import com.ep.custom_honor_library.bean.ControlAdBean;
+import com.ep.custom_honor_library.bean.SerlisChildArrBean;
 import com.ep.custom_honor_library.gm.GMFullAdView;
 import com.ep.custom_honor_library.gm.GMSplashAdView;
 import com.ep.custom_honor_library.gm.SuperAdClazz;
@@ -17,7 +15,6 @@ import java.util.ArrayList;
 public class AdController {
 
 
-    public static Handler handler = new Handler(Looper.getMainLooper());
     private static AdController instance;
     public  static AdController getAdControllerInstance(){
         if (instance == null){
@@ -36,13 +33,13 @@ public class AdController {
         if (DefAPIUtils.cacheAdMap.isEmpty() || controlAdBean == null){
             return;
         }
-        AdBean adChildBean = DefAPIUtils.cacheAdMap.get(controlAdBean.getAdSCreen());
+        SerlisBean adChildBean = DefAPIUtils.cacheAdMap.get(controlAdBean.getAdSCreen());
         if (adChildBean == null){
             CustomLogUtils.e("adChildBean == null", CommonSpUtils.AD_LOG,null);
             return;
         }
         if (adChildBean.getAd_list_beans()!=null && !adChildBean.getAd_list_beans().isEmpty()){
-            ArrayList<AdBean.AdChildBean> adListBeans = adChildBean.getAd_list_beans();
+            ArrayList<SerlisChildArrBean> adListBeans = adChildBean.getAd_list_beans();
             int allAdSize = adListBeans.size();
             controlAdBean.setAdBean(adChildBean);
             getAdType(controlAdBean,controlAdBean.adIndex,allAdSize);
@@ -58,14 +55,14 @@ public class AdController {
         CustomLogUtils.i("allSize=="+allSize);
 
         if (currentSize>=allSize){
-            ControllerUtils.lopClearApp();
+//            ControllerUtils.lopClearApp();
             CustomLogUtils.i("当前广告场景结束");
             return;
         }
 
-        AdBean.AdChildBean currentAdInfo = controlAdBean.getAdBean().getAd_list_beans().get(currentSize);
+        SerlisChildArrBean currentAdInfo = controlAdBean.getAdBean().getAd_list_beans().get(currentSize);
         SuperAdClazz superAdClazz = null;
-        switch (currentAdInfo.getType()){
+        switch (currentAdInfo.getGgGMType()){
             case CommonAPI.INTER_TYPE:
             case CommonAPI.FULL_TYPE:
             case CommonAPI.INTER_FULL_TYPE:
@@ -107,15 +104,15 @@ public class AdController {
                 @Override
                 public void showAdSuccess() {
                     CustomLogUtils.i("OnShowStatusListener");
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            int addSize = currentSize+1;
-                            ControllerUtils.lopClearApp();
-                            ControllerUtils.intentMiddleWindow(controlAdBean.getAdSCreen(),addSize);
-
-                        }
-                    },CommonAPI.AD_AUTO_CLOSE_TIME * 1000L);
+//                    handler.postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            int addSize = currentSize+1;
+//                            ControllerUtils.lopClearApp();
+//                            ControllerUtils.intentMiddleWindow(controlAdBean.getAdSCreen(),addSize);
+//
+//                        }
+//                    },CommonAPI.AD_AUTO_CLOSE_TIME * 1000L);
 
                 }
 

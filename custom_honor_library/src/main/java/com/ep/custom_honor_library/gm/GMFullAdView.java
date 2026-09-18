@@ -1,6 +1,8 @@
 package com.ep.custom_honor_library.gm;
 
 
+import static com.ep.custom_honor_library.ControllerUtils.lopClearApp;
+
 import com.bytedance.sdk.openadsdk.AdSlot;
 import com.bytedance.sdk.openadsdk.TTAdConstant;
 import com.bytedance.sdk.openadsdk.TTAdNative;
@@ -40,7 +42,7 @@ public class GMFullAdView extends SuperAdClazz{
         }
         CustomLogUtils.i("开始load 插屏");
         AdSlot adSlot =  new AdSlot.Builder()
-                .setCodeId(getAdInfo().getGm_id())
+                .setCodeId(getAdInfo().getGgGM_id())
                 .setOrientation(TTAdConstant.ORIENTATION_VERTICAL)
                 .setMediationAdSlot(new MediationAdSlot.Builder()
                         .setMuted(false)
@@ -132,6 +134,7 @@ public class GMFullAdView extends SuperAdClazz{
                 @Override
                 public void onAdClose() {
                     CustomLogUtils.i("onAdClose");
+                    lopClearApp();
                 }
 
                 @Override

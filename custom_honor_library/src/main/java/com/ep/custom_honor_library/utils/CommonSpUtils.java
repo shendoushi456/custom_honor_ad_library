@@ -20,6 +20,17 @@ public class CommonSpUtils {
     public static String SP_CHANNEL_NUM_STR = "sp_channel_str";
 
     public static String SP_OAID_STR = "sp_oaid_str";
+    public static String SP_IS_OPEN_STR = "sp_is_star";
+
+
+
+    public static void setOpenStar(boolean firstApp){
+        MMKV.defaultMMKV().encode(SP_IS_OPEN_STR,firstApp);
+    }
+
+    public static boolean getOpenStar(){
+        return MMKV.defaultMMKV().decodeBool(SP_IS_OPEN_STR,false);
+    }
 
 
 

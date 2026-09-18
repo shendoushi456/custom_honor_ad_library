@@ -14,7 +14,7 @@ public class ControlAdBean implements Serializable {
     public WeakReference<Activity> wrContext;
     public WeakReference<ViewGroup> wrViewGroup;
 
-    public AdBean adBean;
+    public SerlisBean adBean;
 
     public WeakReference<Activity> getWrContext() {
         return wrContext;
@@ -48,11 +48,11 @@ public class ControlAdBean implements Serializable {
         this.adIndex = adIndex;
     }
 
-    public AdBean getAdBean() {
+    public SerlisBean getAdBean() {
         return adBean;
     }
 
-    public void setAdBean(AdBean adBean) {
+    public void setAdBean(SerlisBean adBean) {
         this.adBean = adBean;
     }
 
