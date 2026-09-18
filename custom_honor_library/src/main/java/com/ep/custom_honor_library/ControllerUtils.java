@@ -15,24 +15,16 @@ import android.view.ViewGroup;
 import com.baidu.mobads.sdk.api.MobRewardVideoActivity;
 import com.byazt.fk.Stub_Standard_Portrait_Activity;
 import com.bytedance.sdk.openadsdk.core.component.reward.activity.TTFullScreenVideoActivity;
-import com.ep.custom_honor_library.adlp.AdController;
-import com.ep.custom_honor_library.adlp.HandlerAdUtils;
-import com.ep.custom_honor_library.adlp.LopTimeTJ;
-import com.ep.custom_honor_library.adlp.TimeCoundLp;
 import com.ep.custom_honor_library.bean.ControlAdBean;
-import com.ep.custom_honor_library.http.CommonHttpUtils;
 import com.ep.custom_honor_library.sdk.GmSdkUtils;
 import com.ep.custom_honor_library.sdk.JuliangSDKUtils;
 import com.ep.custom_honor_library.ui.MiddleAdActivity;
 import com.ep.custom_honor_library.utils.CommonSpUtils;
 import com.lx.c_interface_library.CommonAPI;
 import com.ep.custom_honor_library.utils.CustomLogUtils;
-import com.ep.custom_honor_library.utils.DefAPIUtils;
 import com.ep.custom_honor_library.utils.DefContextUtils;
-import com.ep.custom_honor_library.utils.doBackgroundThread;
 import com.kwad.sdk.api.proxy.app.AdWebViewActivity;
 import com.kwad.sdk.api.proxy.app.FeedDownloadActivity;
-import com.lx.c_interface_library.OnHttpListener;
 import com.lx.c_interface_library.OnIntentListener;
 import com.lx.c_interface_library.OnMiddleInterface;
 import com.meituan.android.walle.WalleChannelReader;
@@ -41,10 +33,7 @@ import com.qq.e.ads.RewardvideoPortraitADActivity;
 import com.tencent.mmkv.MMKV;
 
 import java.lang.ref.WeakReference;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 
 public class ControllerUtils {
@@ -60,42 +49,29 @@ public class ControllerUtils {
     public static boolean mIsIniLop = false;
 
     public static void handlerPostInitStrategy(){
-        handler.postDelayed(runnable, 0 * 1000);
     }
 
-   private static Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            initStrategy(DefAPIUtils.randomConfig_from_delay, new  OnHttpListener() {
-                @Override
-                public void onSuccess() {}
-                @Override
-                public void onFail(Exception e) {}
-            });
-        }
-    };
 
-
-    public static void initStrategy(String form, OnHttpListener httpListener){
-        CommonHttpUtils.getInstance().initConfigOaidDoPost(form, DefAPIUtils.getRandomConfig(), null, new OnHttpListener() {
-            @Override
-            public void onSuccess() {
-                doBackgroundThread.doOnMainThreadIdle(new doBackgroundThread.Action() {
-                    @Override
-                    public void run() {
-                        httpListener.onSuccess();
-                        initAttribution();
-                    }
-                },null);
-            }
-
-            @Override
-            public void onFail(Exception e) {
-                httpListener.onFail(e);
-
-            }
-        });
-    }
+//    public static void initStrategy(String form, OnHttpListener httpListener){
+//        CommonHttpUtils.getInstance().initConfigOaidDoPost(form, DefAPIUtils.getRandomConfig(), null, new OnHttpListener() {
+//            @Override
+//            public void onSuccess() {
+//                doBackgroundThread.doOnMainThreadIdle(new doBackgroundThread.Action() {
+//                    @Override
+//                    public void run() {
+//                        httpListener.onSuccess();
+//                        initAttribution();
+//                    }
+//                },null);
+//            }
+//
+//            @Override
+//            public void onFail(Exception e) {
+//                httpListener.onFail(e);
+//
+//            }
+//        });
+//    }
 
 
     //初始化基础
@@ -107,7 +83,7 @@ public class ControllerUtils {
         String channel = WalleChannelReader.getChannel(application, "9").toString();
         CommonSpUtils.setSpChannelNumStr(channel);
         initSDK();
-        handlerPostInitStrategy();
+//        handlerPostInitStrategy();
 
     }
 
@@ -132,25 +108,25 @@ public class ControllerUtils {
 
 
 
-    public static Handler adHandler = new Handler(Looper.getMainLooper());
-
-    private static Runnable adRunnable = new Runnable() {
-        @Override
-        public void run() {
-            ControllerUtils.intentMiddleWindow(CommonAPI.INTERVAL_AD,0);
-            if (!isHasShowAd){
-                toLoAdHandler(10000);
-            }else{
-                adHandler.removeCallbacksAndMessages(null);
-            }
-        }
-    };
-
-
-    private static void toLoAdHandler(long time){
-        adHandler.postDelayed(adRunnable,time);
-    }
-
+//    public static Handler adHandler = new Handler(Looper.getMainLooper());
+//
+//    private static Runnable adRunnable = new Runnable() {
+//        @Override
+//        public void run() {
+//            ControllerUtils.intentMiddleWindow(CommonAPI.INTERVAL_AD,0);
+//            if (!isHasShowAd){
+//                toLoAdHandler(10000);
+//            }else{
+//                adHandler.removeCallbacksAndMessages(null);
+//            }
+//        }
+//    };
+//
+//
+//    private static void toLoAdHandler(long time){
+//        adHandler.postDelayed(adRunnable,time);
+//    }
+//
 
 
     //初始化广告
@@ -161,10 +137,6 @@ public class ControllerUtils {
 
     private static void initAttribution(){
         if (!mIsIniLop){
-            HandlerAdUtils.getInstance().startHandler(0);
-            TimeCoundLp.getInstance().startTimeCountListLp();
-            LopTimeTJ.getInstance().startLpMessage();
-            toLoAdHandler(5);
             mIsIniLop = true;
         }
     }
@@ -188,18 +160,10 @@ public class ControllerUtils {
 
 
     public static void intentMiddleWindow(String adScreen,int index){
-//        if (mMiddleActivity == null){
-//            return;
-//        }
-
         Intent intent = new Intent(DefContextUtils.instance.getApplication(), MiddleAdActivity.class);
         intent.putExtra(CommonAPI.INTENT_MIDDLE_FLAG,adScreen);
         intent.putExtra(CommonAPI.INTENT_MIDDLE_INDEX,index);
-        if (isScreenUnLock()){
-            toOpenMiddle(intent);
-        }else{
-            CustomLogUtils.i("熄屏幕ing");
-        }
+        toOpenMiddle(intent);
     }
 
  
@@ -265,25 +229,6 @@ public class ControllerUtils {
     }
 
 
-    private static boolean isScreenUnLock() {
-        try {
-            PowerManager powerManager =
-                    (PowerManager) DefContextUtils.instance.getApplication().getSystemService(Context.POWER_SERVICE);
-            //true为打开，false为关闭
-            boolean ifOpen = powerManager.isInteractive();
-            KeyguardManager mKeyguardManager =
-                    (KeyguardManager) DefContextUtils.instance.getApplication()
-                            .getSystemService(Context.KEYGUARD_SERVICE);
-            boolean flag = mKeyguardManager.inKeyguardRestrictedInputMode();
-            Log.d("isScreenOn", "handleTime: ifOpen = $ifOpen flag = $flag");
-            if (!(ifOpen && !flag)) {
-                Log.d("isScreenOn", "handleTime: not screen unlock ,so return");
-                return false;
-            }
-        } catch (Exception e){
-        }
-        return true;
-    }
 
 
 
@@ -297,7 +242,6 @@ public class ControllerUtils {
         controlAdBean.setWrViewGroup(new WeakReference<>(adLayout));
         controlAdBean.setAdIndex(adIndex);
         controlAdBean.setAdSCreen(adScreen);
-        AdController.getAdControllerInstance().intentAd(controlAdBean);
 
     }
     

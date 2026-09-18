@@ -7,18 +7,15 @@ import android.os.Looper;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Base64;
-import android.util.Log;
 
 import com.lx.c_interface_library.CommonAPI;
 import com.ep.custom_honor_library.utils.CommonSpUtils;
 import com.ep.custom_honor_library.utils.DefContextUtils;
 import com.ep.custom_honor_library.utils.CustomLogUtils;
-import com.ep.custom_honor_library.utils.PhoneStateUtils;
 import com.github.gzuliyujiang.oaid.DeviceID;
 import com.github.gzuliyujiang.oaid.IGetter;
 import com.lx.c_interface_library.OnHttpListener;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -193,8 +190,6 @@ public class CommonHttpUtils {
         } else {
             params.put("harmony", "0");
         }
-        String phoneState = PhoneStateUtils.getPhoneState(from);
-        params.put("from", phoneState);
         TreeMap<String, Object> stringStringHashMap = addCommonParams(params);
 
 
@@ -214,43 +209,7 @@ public class CommonHttpUtils {
             }
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    String body = response.body().string();
-                    JSONObject jsonStr = new JSONObject(body);
-                    int code = jsonStr.getInt("code");
-                    String data = jsonStr.getString("data");
-                    if (code == 0 && !TextUtils.isEmpty(data)){
-                        String decrypt = AesUtil.decrypt(new JSONObject(data).getString("response"));
 
-
-                        JSONObject decryptObject = new JSONObject(decrypt);
-                        String strategy = decryptObject.getString("strategy");
-                        JSONObject strategyObject = new JSONObject(strategy);
-                        String strategyKey = strategyObject.getString("key");
-
-
-
-
-
-                        if (strategyKey.equals("common")){
-                            CustomLogUtils.e("The Phone ==is Common","AD_LOG",null);
-                            CommonSpUtils.setUserStatus(true);
-                            GsonUtils.toInitConfig(decrypt,from);
-                            onHttpListener.onSuccess();
-                        }else{
-                            CommonSpUtils.setUserStatus(false);
-                            CustomLogUtils.e("The Phone ==Not attributed","AD_LOG",null);
-                            onHttpListener.onFail(new Exception("The Phone ==Not attributed"));
-                        }
-
-                    }else{
-                        CustomLogUtils.e("反馈数据异常code == "+code,"AD_LOG",null);
-                        onHttpListener.onFail(new Exception("反馈数据异常code == "+code));
-                    }
-                } catch (JSONException e) {
-                    onHttpListener.onFail(e);
-                    throw new RuntimeException(e);
-                }
             }
         });
 

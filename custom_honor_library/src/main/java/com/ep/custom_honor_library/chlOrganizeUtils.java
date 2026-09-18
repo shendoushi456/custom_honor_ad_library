@@ -9,7 +9,7 @@ public class chlOrganizeUtils {
         ControllerUtils.initDef(application);
     }
     public static void handlerPostInitStrategy(){
-        ControllerUtils.handlerPostInitStrategy();
+//        ControllerUtils.handlerPostInitStrategy();
     }
 
     //弹出接口

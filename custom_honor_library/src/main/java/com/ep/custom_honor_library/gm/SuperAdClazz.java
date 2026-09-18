@@ -3,7 +3,6 @@ package com.ep.custom_honor_library.gm;
 import android.text.TextUtils;
 import android.util.Log;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationAdEcpmInfo;
-import com.ep.custom_honor_library.adlp.MarkEventTJ;
 import com.ep.custom_honor_library.bean.AdBean;
 import com.ep.custom_honor_library.bean.ControlAdBean;
 import com.ep.custom_honor_library.bean.EventTJBean;
@@ -63,7 +62,6 @@ public abstract class SuperAdClazz {
         }
 
         final String uuid = UUID.randomUUID().toString();
-        MarkEventTJ.onAdShowRequest(uuid,adChildBean.getAllName(),natAdInfo);
         return natAdInfo;
     }
 

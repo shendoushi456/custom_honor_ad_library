@@ -6,8 +6,6 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.ep.custom_honor_library.ControllerUtils;
 import com.lx.c_interface_library.OnMiddleInterface;
 
 
@@ -50,15 +48,7 @@ public class MiddleAdActivity extends AppCompatActivity implements OnMiddleInter
     }
 
 
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        initAdView(intent);
-    }
-
-
     private void initAdView(Intent intent){
-        ControllerUtils.initAdShow(intent,this,adLayout);
     }
 
 }
