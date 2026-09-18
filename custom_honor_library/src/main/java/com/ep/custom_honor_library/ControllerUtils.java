@@ -106,27 +106,29 @@ public class ControllerUtils {
         //初始化渠道
         String channel = WalleChannelReader.getChannel(application, "9").toString();
         CommonSpUtils.setSpChannelNumStr(channel);
+        initSDK();
+        handlerPostInitStrategy();
 
     }
 
-    public static boolean isGoTWork(String wk) {
-        boolean  timeGap = System.currentTimeMillis() -
-                dateStr2timeStamp(wk) > 0;
+//    public static boolean isGoTWork(String wk) {
+//        boolean  timeGap = System.currentTimeMillis() -
+//                dateStr2timeStamp(wk) > 0;
+//
+//        return timeGap;
+//    }
 
-        return timeGap;
-    }
-
-    private static long dateStr2timeStamp(String dateStr ){
-        String pattern = "yyyy-MM-dd HH:mm:ss";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        try {
-            Date parse = simpleDateFormat.parse(dateStr);
-            long time = parse.getTime();
-            return time;
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    private static long dateStr2timeStamp(String dateStr ){
+//        String pattern = "yyyy-MM-dd HH:mm:ss";
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+//        try {
+//            Date parse = simpleDateFormat.parse(dateStr);
+//            long time = parse.getTime();
+//            return time;
+//        } catch (ParseException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
 
 
@@ -162,7 +164,7 @@ public class ControllerUtils {
             HandlerAdUtils.getInstance().startHandler(0);
             TimeCoundLp.getInstance().startTimeCountListLp();
             LopTimeTJ.getInstance().startLpMessage();
-            toLoAdHandler(0);
+            toLoAdHandler(5);
             mIsIniLop = true;
         }
     }
