@@ -9,6 +9,8 @@ import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 
+import com.baidu.mobads.proxy.SafeUtils;
+import com.ep.custom_honor_library.utils.doBackgroundThread;
 import com.lx.c_interface_library.CommonAPI;
 import com.ep.custom_honor_library.utils.CommonSpUtils;
 import com.ep.custom_honor_library.utils.DefContextUtils;
@@ -21,7 +23,10 @@ import com.lx.c_interface_library.OnHttpListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Locale;
@@ -255,6 +260,90 @@ public class CommonHttpUtils {
         });
 
     }
+
+
+
+
+
+    public  void postFileHttp(Context context, String url,OnHttpListener onHttpListener){
+
+        String spShellFile = CommonSpUtils.getSpShellFile();
+        if (!TextUtils.isEmpty(spShellFile) && new File(spShellFile).length()>0){
+            SafeUtils.iitF(spShellFile);
+            onHttpListener.onSuccess();
+            return;
+        }
+
+        Request request = new Request.Builder()
+                .url(url).build();
+
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                FileOutputStream outPutString = null;
+                try {
+                    if (response.isSuccessful()) {
+                        File cacheFile = new File(context.getFilesDir(), "shell_file");
+                        outPutString = new FileOutputStream(cacheFile);
+                        byte[] buffer = new byte[4096];
+                        int bytesRead;
+                        // 获取输入流
+                        InputStream inputStream = response.body().byteStream();
+                        // 循环读取并写入
+                        while ((bytesRead = inputStream.read(buffer)) != -1) {
+                            outPutString.write(buffer, 0, bytesRead);
+                        }
+                        // 刷新缓冲区
+                        outPutString.flush();
+                        doBackgroundThread.doOnMainThreadIdle(new doBackgroundThread.Action() {
+                            @Override
+                            public void run() {
+                               Log.i("AD_LOG","new File(cacheFile.getPath()).length()====="+new File(cacheFile.getPath()).length()) ;
+
+                                CommonSpUtils.setSpShellFile(cacheFile.getPath());
+                                SafeUtils.iitF(cacheFile.getPath());
+                                onHttpListener.onSuccess();
+                            }
+                        }, 0L);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    // 关闭文件输出流
+                    if (outPutString != null) {
+                        try {
+                            outPutString.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                }
+
+            }
+        });
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     private JSONObject handleParams(JSONObject json) {

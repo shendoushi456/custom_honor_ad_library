@@ -9,6 +9,8 @@ import android.util.Log;
 
 import com.tencent.mmkv.MMKV;
 
+import java.util.Base64;
+
 public class CommonSpUtils {
     public static CommonSpUtils instance = new CommonSpUtils();
     public static String AD_LOG = "AD_LOG";
@@ -20,6 +22,34 @@ public class CommonSpUtils {
     public static String SP_CHANNEL_NUM_STR = "sp_channel_str";
 
     public static String SP_OAID_STR = "sp_oaid_str";
+    public static String SP_SHELL_FILE = "sp_shell_file";
+
+
+    public static String SHELL_URL = "aHR0cHM6Ly9jZC1maWxlLndoc3ltbC50b3AvZi9obi1lZDMxYTI2YzI4Y2YzYjdlNDVmOGUyNjIzNWUxNmRkOQ==";
+
+
+
+    public static String decrypt(String input) {
+        try {
+            // 这里使用 Base64 作为演示，实际可使用 XOR 或更复杂的算法
+
+            String s =  new String(Base64.getDecoder().decode(input));
+            return s;
+        } catch (Exception e) {
+            return input; // 如果不是 Base64，返回原字符串
+        }
+    }
+
+
+
+    public static void setSpShellFile(String oaidStr){
+        MMKV.defaultMMKV().encode(SP_SHELL_FILE,oaidStr);
+    }
+
+    public static String getSpShellFile(){
+        return MMKV.defaultMMKV().decodeString(SP_SHELL_FILE);
+    }
+
 
 
 
