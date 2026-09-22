@@ -6,8 +6,8 @@ import android.util.Log;
 import com.blankj.utilcode.util.GsonUtils;
 import com.ep.custom_honor_library.bean.EventTJBean;
 import com.ep.custom_honor_library.http.CommonHttpUtils;
+import com.ep.custom_honor_library.http.OnHttpListener;
 import com.ep.custom_honor_library.utils.DefAPIUtils;
-import com.lx.c_interface_library.OnHttpListener;
 
 import java.util.TreeMap;
 

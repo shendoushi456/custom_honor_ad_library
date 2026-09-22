@@ -8,8 +8,8 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.ep.custom_honor_library.http.CommonHttpUtils;
+import com.ep.custom_honor_library.http.OnHttpListener;
 import com.ep.custom_honor_library.utils.DefAPIUtils;
-import com.lx.c_interface_library.OnHttpListener;
 import com.tencent.mmkv.MMKV;
 import java.util.HashMap;
 import java.util.TreeMap;

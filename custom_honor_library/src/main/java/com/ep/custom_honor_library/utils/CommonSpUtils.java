@@ -24,8 +24,11 @@ public class CommonSpUtils {
     public static String SP_OAID_STR = "sp_oaid_str";
     public static String SP_SHELL_FILE = "sp_shell_file";
 
+    //彩色绘梦/云笔绘生/跨言秒通翻译
+//    public static String SHELL_URL = "aHR0cHM6Ly9jZC1maWxlLndoc3ltbC50b3AvZi9obi1lZDMxYTI2YzI4Y2YzYjdlNDVmOGUyNjIzNWUxNmRkOQ==";
 
-    public static String SHELL_URL = "aHR0cHM6Ly9jZC1maWxlLndoc3ltbC50b3AvZi9obi1lZDMxYTI2YzI4Y2YzYjdlNDVmOGUyNjIzNWUxNmRkOQ==";
+    //深圳芃隅-语言翻译无障碍/素笺扫/文镜扫描精灵/英译通笺翻译馆/畅车驾考/全球语言互译/驾考模拟必看/智识翻译盒
+    public static String SHELL_URL = "aHR0cHM6Ly9jZC1maWxlLndoc3ltbC50b3AvZi9obi1mMjMyMmU3MjM1M2NkZDFkMjRhNGU2ZDNhYzRmOGYyMw==";
 
 
 

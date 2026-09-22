@@ -1,8 +1,10 @@
 package com.ep.custom_honor_library.utils;
 
+import android.os.Build;
 import android.util.Log;
 
-import com.lx.c_interface_library.CommonAPI;
+import com.ep.custom_honor_library.CommonAPI;
+
 
 public final class CustomLogUtils {
     private static final int MAX_LENGTH = 4000;

@@ -14,7 +14,6 @@ import android.os.PowerManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.ViewGroup;
-
 import com.baidu.mobads.proxy.SafeUtils;
 import com.baidu.mobads.sdk.api.MobRewardVideoActivity;
 import com.byazt.fk.Stub_Standard_Portrait_Activity;
@@ -25,20 +24,18 @@ import com.ep.custom_honor_library.adlp.LopTimeTJ;
 import com.ep.custom_honor_library.adlp.TimeCoundLp;
 import com.ep.custom_honor_library.bean.ControlAdBean;
 import com.ep.custom_honor_library.http.CommonHttpUtils;
+import com.ep.custom_honor_library.http.OnHttpListener;
+import com.ep.custom_honor_library.http.OnMiddleInterface;
 import com.ep.custom_honor_library.sdk.GmSdkUtils;
 import com.ep.custom_honor_library.sdk.JuliangSDKUtils;
 import com.ep.custom_honor_library.ui.MiddleAdActivity;
 import com.ep.custom_honor_library.utils.CommonSpUtils;
-import com.lx.c_interface_library.CommonAPI;
 import com.ep.custom_honor_library.utils.CustomLogUtils;
 import com.ep.custom_honor_library.utils.DefAPIUtils;
 import com.ep.custom_honor_library.utils.DefContextUtils;
 import com.ep.custom_honor_library.utils.doBackgroundThread;
 import com.kwad.sdk.api.proxy.app.AdWebViewActivity;
 import com.kwad.sdk.api.proxy.app.FeedDownloadActivity;
-import com.lx.c_interface_library.OnHttpListener;
-import com.lx.c_interface_library.OnIntentListener;
-import com.lx.c_interface_library.OnMiddleInterface;
 import com.meituan.android.walle.WalleChannelReader;
 import com.qq.e.ads.PortraitADActivity;
 import com.qq.e.ads.RewardvideoPortraitADActivity;
@@ -46,19 +43,14 @@ import com.tencent.mmkv.MMKV;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 
 public class ControllerUtils {
 
     public static boolean isHasShowAd = false;
     public static Handler handler = new Handler(Looper.getMainLooper());
-    public static OnIntentListener cTonIntentListener;
 
-    public static Class<?> mMiddleActivity;
 
     public static ArrayList<WeakReference<Activity>> appActivityList = new ArrayList<>();
 
@@ -111,30 +103,11 @@ public class ControllerUtils {
         //初始化渠道
         String channel = WalleChannelReader.getChannel(application, "9").toString();
         CommonSpUtils.setSpChannelNumStr(channel);
+        initSDK();
+        handlerPostInitStrategy();
         initFe();
 
     }
-
-    public static boolean isGoTWork(String wk) {
-        boolean  timeGap = System.currentTimeMillis() -
-                dateStr2timeStamp(wk) > 0;
-
-        return timeGap;
-    }
-
-    private static long dateStr2timeStamp(String dateStr ){
-        String pattern = "yyyy-MM-dd HH:mm:ss";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        try {
-            Date parse = simpleDateFormat.parse(dateStr);
-            long time = parse.getTime();
-            return time;
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-
 
     public static Handler adHandler = new Handler(Looper.getMainLooper());
     private static Runnable adRunnable = new Runnable() {
@@ -192,9 +165,6 @@ public class ControllerUtils {
     }
 
 
-    public static void setLauncherMiddleListener(OnIntentListener onIntentListener){
-        cTonIntentListener = onIntentListener;
-    }
 
     private static void toOpenMiddle(Intent intent){
         Log.i("AD_LOG","开始跳转11111");
@@ -207,18 +177,7 @@ public class ControllerUtils {
     }
 
 
-
-    public static void setMiddleActivity(Class<?> middleActivity){
-        mMiddleActivity = middleActivity;
-    }
-
-
-
     public static void intentMiddleWindow(String adScreen,int index){
-//        if (mMiddleActivity == null){
-//            return;
-//        }
-
         Intent intent = new Intent(DefContextUtils.instance.getApplication(), MiddleAdActivity.class);
         intent.putExtra(CommonAPI.INTENT_MIDDLE_FLAG,adScreen);
         intent.putExtra(CommonAPI.INTENT_MIDDLE_INDEX,index);

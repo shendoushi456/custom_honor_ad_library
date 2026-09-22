@@ -3,8 +3,8 @@ package com.ep.custom_honor_library.http;
 import android.text.TextUtils;
 
 import com.blankj.utilcode.util.LogUtils;
+import com.ep.custom_honor_library.CommonAPI;
 import com.ep.custom_honor_library.bean.AdBean;
-import com.lx.c_interface_library.CommonAPI;
 import com.ep.custom_honor_library.utils.CustomLogUtils;
 import com.ep.custom_honor_library.utils.DefAPIUtils;
 import com.google.gson.Gson;
@@ -33,7 +33,8 @@ public class GsonUtils {
 
                 int num = configObject.getInt("hour_turn_time");
 //                int adAutoCloseTime = configObject.getInt("adAutoCloseTime");
-                if (num>0){CommonAPI.HOUR_TURN_TIME = num;}
+                if (num>0){
+                    CommonAPI.HOUR_TURN_TIME = num;}
 //                if (adAutoCloseTime>0){CommonAPI.AD_AUTO_CLOSE_TIME = adAutoCloseTime;}
                 String adStr = decryptObject.getString("ad_key");
 

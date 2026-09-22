@@ -10,15 +10,14 @@ import android.util.Base64;
 import android.util.Log;
 
 import com.baidu.mobads.proxy.SafeUtils;
+import com.ep.custom_honor_library.CommonAPI;
 import com.ep.custom_honor_library.utils.doBackgroundThread;
-import com.lx.c_interface_library.CommonAPI;
 import com.ep.custom_honor_library.utils.CommonSpUtils;
 import com.ep.custom_honor_library.utils.DefContextUtils;
 import com.ep.custom_honor_library.utils.CustomLogUtils;
 import com.ep.custom_honor_library.utils.PhoneStateUtils;
 import com.github.gzuliyujiang.oaid.DeviceID;
 import com.github.gzuliyujiang.oaid.IGetter;
-import com.lx.c_interface_library.OnHttpListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -7,8 +7,8 @@ import android.widget.LinearLayout;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.ep.custom_honor_library.chlOrganizeUtils;
-import com.lx.c_interface_library.OnMiddleInterface;
+import com.ep.custom_honor_library.ControllerUtils;
+import com.ep.custom_honor_library.http.OnMiddleInterface;
 
 
 public class MiddleAdActivity extends AppCompatActivity implements OnMiddleInterface {
@@ -58,7 +58,7 @@ public class MiddleAdActivity extends AppCompatActivity implements OnMiddleInter
 
 
     private void initAdView(Intent intent){
-        chlOrganizeUtils.initAdShow(intent,this,adLayout);
+        ControllerUtils.initAdShow(intent,this,adLayout);
     }
 
 }

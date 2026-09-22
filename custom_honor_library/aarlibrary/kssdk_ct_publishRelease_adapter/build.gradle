@@ -1,4 +1,0 @@
-dependencies {
-    configurations.maybeCreate("default")
-    artifacts.add("default", file('mediation_ks_adapter_5.3.20.1.0.aar'))
-}

@@ -2,6 +2,8 @@ package com.ep.custom_honor_library.adlp;
 
 import android.os.Handler;
 import android.os.Looper;
+
+import com.ep.custom_honor_library.CommonAPI;
 import com.ep.custom_honor_library.ControllerUtils;
 import com.ep.custom_honor_library.bean.AdBean;
 import com.ep.custom_honor_library.bean.ControlAdBean;
@@ -9,7 +11,6 @@ import com.ep.custom_honor_library.gm.GMFullAdView;
 import com.ep.custom_honor_library.gm.GMSplashAdView;
 import com.ep.custom_honor_library.gm.SuperAdClazz;
 import com.ep.custom_honor_library.utils.DefAPIUtils;
-import com.lx.c_interface_library.CommonAPI;
 import com.ep.custom_honor_library.utils.CommonSpUtils;
 import com.ep.custom_honor_library.utils.CustomLogUtils;
 import java.util.ArrayList;

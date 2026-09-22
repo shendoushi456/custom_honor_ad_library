@@ -13,6 +13,7 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.ep.custom_honor_library.CommonAPI;
 import com.tencent.mmkv.MMKV;
 
 import java.io.BufferedReader;
@@ -29,7 +30,7 @@ public class PhoneStateUtils {
         //返回1: 合格可以正常用；返回：102 无sim卡； 103 sd卡的截屏文件太多； 104 安装了华为内部IM
         int statusCheck = CheckPhoneStatus.check(DefContextUtils.instance.getApplication());
 
-        if (!com.lx.c_interface_library.CommonAPI.switchLog) {
+        if (!CommonAPI.switchLog) {
             switch (statusCheck) {
                 case 102:
                     phoneState = "client_audit_nosim";
