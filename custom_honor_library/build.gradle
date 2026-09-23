@@ -10,15 +10,19 @@ android {
     defaultConfig {
         minSdk 24
 
+
+
+
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-        buildConfigField "String","HOST","\"https://api.nunpingli.cn/\""
-        buildConfigField "String","RELEASE_APPID",  "\"187c99384ac87cef\""
-        buildConfigField "String","RELEASE_SSK",  "\"bf1a5cb89d3c29c519da53cd9926d916\""
-        buildConfigField "String","APPID",  "\"5877659\""
-        buildConfigField "String","VERSIONNAME",  "\"2.0.3\""
-        buildConfigField "String","UM_ID",  "\"6aa8f932d5481f0b42f46da3\""
+        buildConfigField "String","HOST","\"https://api.zaosuancuo.cn/\""
+        buildConfigField "String","RELEASE_APPID",  "\"6a4c1c44130bff40\""
+        buildConfigField "String","RELEASE_SSK",  "\"38c125a741318171df79881784ebcaf2\""
+        buildConfigField "String","APPID",  "\"5870555\""
+//        buildConfigField "String","VERSIONNAME",  "\"2.0.3\""
+        buildConfigField "String","UM_ID",  "\"6ab3900874319160830f6a38\""
 //        buildConfigField "String","AD_LIVE_TIME",  "\"${rootProject.ext.appConfig["ad_LiveTime"]}\""
 
     }

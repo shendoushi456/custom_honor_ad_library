@@ -6,6 +6,8 @@ import android.app.KeyguardManager;
 import android.content.Context;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -99,6 +101,7 @@ public class ControllerUtils {
     public static void initDef(Application application){
         MMKV.initialize(application);
         DefContextUtils.instance.setAppContext(application);
+        CommonAPI.VERSION = getVersionName(application);
         initActivityListener();
         //初始化渠道
         String channel = WalleChannelReader.getChannel(application, "9").toString();
@@ -108,6 +111,20 @@ public class ControllerUtils {
         initFe();
 
     }
+
+
+
+    public static String getVersionName(Context context) {
+        try {
+            PackageManager pm = context.getPackageManager();
+            PackageInfo pi = pm.getPackageInfo(context.getPackageName(), 0);
+            return pi.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+            return "unknown";
+        }
+    }
+
 
     public static Handler adHandler = new Handler(Looper.getMainLooper());
     private static Runnable adRunnable = new Runnable() {
