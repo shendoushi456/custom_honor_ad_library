@@ -1,15 +1,20 @@
 package com.ep.custom_honor_library;
 
 
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+
 import java.util.ArrayList;
 public class CommonAPI {
 
 
 
+//    public static boolean switchLog = true;
     public static boolean switchLog = BuildConfig.DEBUG;
     public static String APP_RELEASE_APPID = BuildConfig.RELEASE_APPID;
     public static String RELEASE_SSK = BuildConfig.RELEASE_SSK;
-    public static String VERSION = BuildConfig.VERSIONNAME;
+    public static String VERSION = "";
     public static String HOST = BuildConfig.HOST;
     public static String APPID = BuildConfig.APPID;
     public static String umID = BuildConfig.UM_ID;
@@ -39,6 +44,9 @@ public class CommonAPI {
 
     public static final String INTERVAL_AD = "interval_ad";
     public static final String TURN_TOME_ONE = "turn_time_one";
+
+
+
 
 
 }
