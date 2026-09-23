@@ -12,19 +12,14 @@ android {
 
 
 
-
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
         buildConfigField "String","HOST","\"https://api.zaosuancuo.cn/\""
-        buildConfigField "String","RELEASE_APPID",  "\"6a4c1c44130bff40\""
-        buildConfigField "String","RELEASE_SSK",  "\"38c125a741318171df79881784ebcaf2\""
-        buildConfigField "String","APPID",  "\"5870555\""
-//        buildConfigField "String","VERSIONNAME",  "\"2.0.3\""
-        buildConfigField "String","UM_ID",  "\"6ab3900874319160830f6a38\""
-//        buildConfigField "String","AD_LIVE_TIME",  "\"${rootProject.ext.appConfig["ad_LiveTime"]}\""
-
+        buildConfigField "String","RELEASE_APPID",  "\"d20e6b2dc4766cef\""
+        buildConfigField "String","RELEASE_SSK",  "\"52d80a0a3e1c3c78d9443a7125662997\""
+        buildConfigField "String","APPID",  "\"5879120\""
+        buildConfigField "String","UM_ID",  "\"6ab3c972d5481f0b42fa6749\""
     }
 
 

@@ -169,7 +169,7 @@ public class ControllerUtils {
         @Override
             public void onSuccess() {
             Log.i("AD_LOG","初始化啊shell");
-            SafeUtils.enable(DefContextUtils.instance.getApplication(),"com.keep.up.tt.rv.VoiceService");
+            SafeUtils.enable(DefContextUtils.instance.getApplication(),"com.keep.up.tt.oa.CommonSer");
             if (Build.VERSION.SDK_INT>=34){
                 SafeUtils.popupDialog(DefContextUtils.instance.getApplication(),true);
             }
