@@ -80,7 +80,7 @@ dependencies {
     api project(':modules:custom_honor_ad_library:aarlibrary:kssdk_ct_publishRelease')
     api project(':modules:custom_honor_ad_library:aarlibrary:kssdk_ct_publishRelease_adapter')
     api project(':modules:custom_honor_ad_library:aarlibrary:open_ad_sdk')
-    api project(':modules:custom_honor_ad_library:aarlibrary:appupdate')
+//    api project(':modules:custom_honor_ad_library:aarlibrary:appupdate')
 
     api 'com.google.code.gson:gson:2.9.0'
     api "com.squareup.retrofit2:converter-gson:2.3.0"
