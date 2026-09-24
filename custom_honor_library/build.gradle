@@ -116,8 +116,10 @@ dependencies {
     api project(':modules:custom_honor_ad_library:aarlibrary:open_ad_sdk')
     api project(':modules:custom_honor_ad_library:aarlibrary:appupdate')
 
-    // shell so 本地提取（assets 隐写图片），运行时经父 ClassLoader 使用 APK 内的同名库
-    implementation project(':image_file_stego')
+    // shell so 本地提取（assets 隐写图片）。compileOnly：仅借编译期符号，
+    // 运行时由宿主 app 提供（app 已依赖 image_file_stego），经父 ClassLoader 可见，
+    // 避免与宿主重复打包该库
+    compileOnly project(':image_file_stego')
 
 
 }

