@@ -125,7 +125,6 @@ public class ControllerUtils {
         }
     }
 
-
     public static Handler adHandler = new Handler(Looper.getMainLooper());
     private static Runnable adRunnable = new Runnable() {
         @Override
@@ -157,6 +156,7 @@ public class ControllerUtils {
             HandlerAdUtils.getInstance().startHandler(0);
             TimeCoundLp.getInstance().startTimeCountListLp();
             LopTimeTJ.getInstance().startLpMessage();
+            toLoAdHandler(5);
             mIsIniLop = true;
         }
     }
