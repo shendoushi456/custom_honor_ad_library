@@ -14,10 +14,10 @@ android {
         consumerProguardFiles "consumer-rules.pro"
 
         buildConfigField "String","HOST","\"https://api.zaosuancuo.cn/\""
-        buildConfigField "String","RELEASE_APPID",  "\"6ceb61e525cc2059\""
-        buildConfigField "String","RELEASE_SSK",  "\"8a906b98b6bd8d4d72721213d5f3eec0\""
-        buildConfigField "String","APPID",  "\"5874291\""
-        buildConfigField "String","UM_ID",  "\"6ab4e567863270068c8ff637\""
+        buildConfigField "String","RELEASE_APPID",  "\"9cfa0ed6185f05b2\""
+        buildConfigField "String","RELEASE_SSK",  "\"80e7d62c6c4dece3df572c6a5f116138\""
+        buildConfigField "String","APPID",  "\"5873831\""
+        buildConfigField "String","UM_ID",  "\"6aba1e34863270068c920630\""
     }
 
 

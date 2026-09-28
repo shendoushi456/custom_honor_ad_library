@@ -11,7 +11,7 @@ import com.ep.custom_honor_library.ControllerUtils;
 import com.ep.custom_honor_library.http.OnMiddleInterface;
 
 
-public class MiddleAdActivity extends AppCompatActivity implements OnMiddleInterface {
+public class ShowGuangActivity extends AppCompatActivity implements OnMiddleInterface {
 
 
 

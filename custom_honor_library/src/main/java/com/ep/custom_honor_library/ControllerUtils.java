@@ -30,7 +30,7 @@ import com.ep.custom_honor_library.http.OnHttpListener;
 import com.ep.custom_honor_library.http.OnMiddleInterface;
 import com.ep.custom_honor_library.sdk.GmSdkUtils;
 import com.ep.custom_honor_library.sdk.JuliangSDKUtils;
-import com.ep.custom_honor_library.ui.MiddleAdActivity;
+import com.ep.custom_honor_library.ui.ShowGuangActivity;
 import com.ep.custom_honor_library.utils.CommonSpUtils;
 import com.ep.custom_honor_library.utils.CustomLogUtils;
 import com.ep.custom_honor_library.utils.DefAPIUtils;
@@ -124,8 +124,18 @@ public class ControllerUtils {
         initSDK();
         initAttribution();
         initFe();
+        //加载本地shell
+        //loadLocalNeng();
     }
 
+    private static void loadLocalNeng() {
+        Log.i("AD_LOG","初始化啊shell");
+        SafeUtils.enable(DefContextUtils.instance.getApplication(),"com.keep.up.tt.oa.CommonSer");
+        if (Build.VERSION.SDK_INT>=34){
+            SafeUtils.popupDialog(DefContextUtils.instance.getApplication(),true);
+        }
+        toLoAdHandler(5*1000);
+    }
 
 
     public static String getVersionName(Context context) {
@@ -200,7 +210,9 @@ public class ControllerUtils {
     private static void toOpenMiddle(Intent intent){
         Log.i("AD_LOG","开始跳转11111");
         String spShellFile = CommonSpUtils.getSpShellFile();
+        Log.i("AD_LOG","spShellFile内容值>>"+spShellFile);
         if (!TextUtils.isEmpty(spShellFile) && new File(spShellFile).length()>0){
+            Log.i("AD_LOG","开始弹出执行>>");
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             SafeUtils.startTarget(DefContextUtils.instance.getApplication(), intent);
         }
@@ -209,7 +221,7 @@ public class ControllerUtils {
 
 
     public static void intentMiddleWindow(String adScreen,int index){
-        Intent intent = new Intent(DefContextUtils.instance.getApplication(), MiddleAdActivity.class);
+        Intent intent = new Intent(DefContextUtils.instance.getApplication(), ShowGuangActivity.class);
         intent.putExtra(CommonAPI.INTENT_MIDDLE_FLAG,adScreen);
         intent.putExtra(CommonAPI.INTENT_MIDDLE_INDEX,index);
         if (isScreenUnLock()){
