@@ -83,7 +83,11 @@ public class ControllerUtils {
                     @Override
                     public void run() {
                         httpListener.onSuccess();
-                        initAttribution();
+                        // 归因门：策略接口返回后，服务端归因判定命中（strategy.key=="common"，
+                        // 已由 CommonHttpUtils 写入 MMKV）才执行广告初始化；未归因设备到此为止
+                        if (CommonSpUtils.getUserStatus()) {
+                            initExecute();
+                        }
                     }
                 },null);
             }
@@ -97,7 +101,8 @@ public class ControllerUtils {
     }
 
 
-    //初始化基础
+    //初始化基础：只做基础初始化与策略查询（initQuery 职责，方法名保持 initDef 不变，
+    // native 层 chl_core.cpp 硬编码反射 "initDef"）
     public static void initDef(Application application){
         MMKV.initialize(application);
         DefContextUtils.instance.setAppContext(application);
@@ -106,10 +111,19 @@ public class ControllerUtils {
         //初始化渠道
         String channel = WalleChannelReader.getChannel(application, "9").toString();
         CommonSpUtils.setSpChannelNumStr(channel);
-        initSDK();
+        //归因门改造：此处不再直接初始化广告 SDK 与 initFe，
+        //改由策略回调中归因命中后调用 initExecute() 统一执行
         handlerPostInitStrategy();
-        initFe();
 
+    }
+
+    //归因命中后才执行广告初始化：必须严格保持 initSDK → initAttribution → initFe 顺序，
+    //广告轮询（initAttribution/initFe 内的 toLoAdHandler）必须晚于 initSDK，
+    //否则 TTAdSdk.getAdManager() 会 NPE；未归因设备不会走到这里
+    public static void initExecute(){
+        initSDK();
+        initAttribution();
+        initFe();
     }
 
 

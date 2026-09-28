@@ -49,6 +49,15 @@ public class GmSdkUtils {
                 CommonAPI.VERSION
         );
 
+        // 友盟合规回调：本方法整体运行在用户同意隐私协议之后（由壳的
+        // initAdSource 时序保证），故此处直接提交已授权状态。
+        // 不调用会导致友盟 SDK 持续告警“检测到未调用隐私授权API”，
+        // 且数据上报受限于 SDK 内部合规状态机。
+        UMConfigure.submitPolicyGrantResult(
+                DefContextUtils.instance.getApplication(),
+                true
+        );
+
         MobclickAgent.setPageCollectionMode(
                 MobclickAgent.PageMode.AUTO
         );
