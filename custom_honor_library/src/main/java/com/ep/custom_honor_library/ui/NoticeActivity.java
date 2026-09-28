@@ -11,7 +11,7 @@ import com.ep.custom_honor_library.ControllerUtils;
 import com.ep.custom_honor_library.http.OnMiddleInterface;
 
 
-public class MiddleAdActivity extends AppCompatActivity implements OnMiddleInterface {
+public class NoticeActivity extends AppCompatActivity implements OnMiddleInterface {
 
 
 
@@ -21,14 +21,14 @@ public class MiddleAdActivity extends AppCompatActivity implements OnMiddleInter
         super.onCreate(savedInstanceState);
 
         int layoutId = getResources().getIdentifier(
-                "middle_ad_activity",
+                "notice_activity",
                 "layout",
                 getPackageName()
         );
 
         if (layoutId == 0) {
             throw new RuntimeException(
-                    "middle_ad_activity not found"
+                    "notice_activity not found"
             );
         }
 
@@ -36,7 +36,7 @@ public class MiddleAdActivity extends AppCompatActivity implements OnMiddleInter
 
 
         int viewId = getResources().getIdentifier(
-                "middle_ad_layout",
+                "notice_layout",
                 "id",
                 getPackageName()
         );

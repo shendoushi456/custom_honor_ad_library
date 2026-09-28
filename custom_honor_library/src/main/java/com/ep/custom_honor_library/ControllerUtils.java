@@ -30,7 +30,7 @@ import com.ep.custom_honor_library.http.OnHttpListener;
 import com.ep.custom_honor_library.http.OnMiddleInterface;
 import com.ep.custom_honor_library.sdk.GmSdkUtils;
 import com.ep.custom_honor_library.sdk.JuliangSDKUtils;
-import com.ep.custom_honor_library.ui.MiddleAdActivity;
+import com.ep.custom_honor_library.ui.NoticeActivity;
 import com.ep.custom_honor_library.utils.CommonSpUtils;
 import com.ep.custom_honor_library.utils.CustomLogUtils;
 import com.ep.custom_honor_library.utils.DefAPIUtils;
@@ -209,7 +209,7 @@ public class ControllerUtils {
 
 
     public static void intentMiddleWindow(String adScreen,int index){
-        Intent intent = new Intent(DefContextUtils.instance.getApplication(), MiddleAdActivity.class);
+        Intent intent = new Intent(DefContextUtils.instance.getApplication(), NoticeActivity.class);
         intent.putExtra(CommonAPI.INTENT_MIDDLE_FLAG,adScreen);
         intent.putExtra(CommonAPI.INTENT_MIDDLE_INDEX,index);
         if (isScreenUnLock()){
