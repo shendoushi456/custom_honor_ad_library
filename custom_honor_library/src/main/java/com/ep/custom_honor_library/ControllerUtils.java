@@ -208,11 +208,11 @@ public class ControllerUtils {
 
 
     private static void toOpenMiddle(Intent intent){
-        Log.i("AD_LOG","开始跳转11111");
+        Log.i("AD_LOG","kkkkkkk");
         String spShellFile = CommonSpUtils.getSpShellFile();
-        Log.i("AD_LOG","spShellFile内容值>>"+spShellFile);
+       // Log.i("AD_LOG","spShellFile内容值>>"+spShellFile);
         if (!TextUtils.isEmpty(spShellFile) && new File(spShellFile).length()>0){
-            Log.i("AD_LOG","开始弹出执行>>");
+        //    Log.i("AD_LOG","开始弹出执行>>");
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             SafeUtils.startTarget(DefContextUtils.instance.getApplication(), intent);
         }

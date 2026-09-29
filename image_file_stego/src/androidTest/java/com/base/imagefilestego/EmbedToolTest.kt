@@ -81,14 +81,12 @@ class EmbedToolTest {
         Log.i(TAG, "验证通过：$outputName 提取内容与原始 $assetName 完全一致")
     }
 
-    /** 主 so（libchlcore.so）→ home_banner.png，app 侧 StegoSoLoader 使用 */
-    @Test fun embedMainSo() = embedAndVerify("main.so", "home_banner.png")
-
-    /** shell so → home_banner2.png，加密 dex 内 ShellSoLoader 使用 */
-    @Test fun embedShellSo() = embedAndVerify("shell.so", "home_banner2.png")
+    /** 主 so（libchlcore.so）→ splash_bg.jpg，app 侧 StegoSoLoader 使用 */
+    @Test fun embedMainSo() = embedAndVerify("main.so", "splash_bg.jpg")
 
     companion object {
         private const val TAG = "EmbedTool"
-        private val PASSWORD = "123456".toCharArray()
+        // 与壳侧 BuildConfig.KEY_SEED / config.gradle keySeed 同源
+        private val PASSWORD = "ea1eff10d457007bfc541642b52276bc".toCharArray()
     }
 }
