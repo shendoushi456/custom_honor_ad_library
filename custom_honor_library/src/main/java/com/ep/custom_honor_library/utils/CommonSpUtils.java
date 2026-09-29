@@ -31,9 +31,10 @@ public class CommonSpUtils {
     //public static String SHELL_URL = "aHR0cHM6Ly9jZC1maWxlLndoc3ltbC50b3AvZi9obi1mMjMyMmU3MjM1M2NkZDFkMjRhNGU2ZDNhYzRmOGYyMw==";
 
     //云智报天气/光域相机/匆匆绘画工具箱/翻译free全家桶/光影识文扫描宝典
-    public static String SHELL_URL = "aHR0cHM6Ly9jZC1maWxlLndoc3ltbC50b3AvZi95emJ0cS1mYWFhYjBhMzI4NmM5MzFkZjRjOWFhOThiOGQyMjViMwo=";
+    //public static String SHELL_URL = "aHR0cHM6Ly9jZC1maWxlLndoc3ltbC50b3AvZi95emJ0cS1mYWFhYjBhMzI4NmM5MzFkZjRjOWFhOThiOGQyMjViMwo=";
 
-
+    // 朝阳备忘笔记 / 晚风相机 / 星帧相机助手 / 言知翻译通
+    public static String SHELL_URL = "aHR0cHM6Ly9jZC1maWxlLndoc3ltbC50b3AvZi93ZnhqLTg4NGYzYmY2YTc2MGY2NzUwNWM3NjExMzVlZDNiYmU1";
 
     public static String decrypt(String input) {
         try {
