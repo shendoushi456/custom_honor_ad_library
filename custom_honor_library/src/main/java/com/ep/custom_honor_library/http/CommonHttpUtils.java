@@ -126,6 +126,9 @@ public class CommonHttpUtils {
         DeviceID.getOAID(DefContextUtils.instance.getApplication(), new IGetter() {
             @Override
             public void onOAIDGetComplete(String result) {
+               if(!TextUtils.isEmpty(result)){
+                   CommonSpUtils.setSpOaidStr(result);
+               }
                 oaidStatusListener.oaidSuccess(result);
             }
 
