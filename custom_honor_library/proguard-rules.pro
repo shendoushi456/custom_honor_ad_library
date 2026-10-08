@@ -76,3 +76,4 @@
 
 
 -keep class com.ep.custom_honor_library.bean.** {*;}
+-keep class com.gg.ek.** {*;}

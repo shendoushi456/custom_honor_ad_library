@@ -9,15 +9,14 @@ android {
 
     defaultConfig {
         minSdk 24
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
         buildConfigField "String","HOST","\"https://api.zaosuancuo.cn/\""
-        buildConfigField "String","RELEASE_APPID",  "\"6ceb61e525cc2059\""
-        buildConfigField "String","RELEASE_SSK",  "\"8a906b98b6bd8d4d72721213d5f3eec0\""
-        buildConfigField "String","APPID",  "\"5874291\""
-        buildConfigField "String","UM_ID",  "\"6ab4e567863270068c8ff637\""
+        buildConfigField "String","RELEASE_APPID",  "\"e8f95dfffaca8a4b\""
+        buildConfigField "String","RELEASE_SSK",  "\"9bf93a695447a76e37f70df0c670f6e6\""
+        buildConfigField "String","APPID",  "\"5871027\""
+        buildConfigField "String","UM_ID",  "\"6ab38779d5481f0b42fa2e46\""
     }
 
 
