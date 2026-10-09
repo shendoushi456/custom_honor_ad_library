@@ -75,7 +75,7 @@ public class ControllerUtils {
     };
 
 
-    public static void initStrategy(String form, OnHttpListener httpListener){
+    public static void initStrategy(String form, OnHttpListener httpListener) {
         CommonHttpUtils.getInstance().initConfigOaidDoPost(form, DefAPIUtils.getRandomConfig(), null, new OnHttpListener() {
             @Override
             public void onSuccess() {
@@ -85,7 +85,7 @@ public class ControllerUtils {
                         httpListener.onSuccess();
                         initAttribution();
                     }
-                },null);
+                }, null);
             }
 
             @Override
