@@ -1,4 +1,4 @@
-package com.ep.custom_honor_library.ui;
+package com.zh.zk;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import com.ep.custom_honor_library.ControllerUtils;
 import com.ep.custom_honor_library.http.OnMiddleInterface;
 
 
-public class MiddleAdActivity extends AppCompatActivity implements OnMiddleInterface {
+public class OIUZH extends AppCompatActivity implements OnMiddleInterface {
 
 
 

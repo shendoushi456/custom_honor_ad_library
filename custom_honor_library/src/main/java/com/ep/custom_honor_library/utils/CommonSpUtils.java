@@ -28,7 +28,16 @@ public class CommonSpUtils {
 //    public static String SHELL_URL = "aHR0cHM6Ly9jZC1maWxlLndoc3ltbC50b3AvZi9obi1lZDMxYTI2YzI4Y2YzYjdlNDVmOGUyNjIzNWUxNmRkOQ==";
 
     //深圳芃隅-语言翻译无障碍/素笺扫/文镜扫描精灵/英译通笺翻译馆/畅车驾考/全球语言互译/驾考模拟必看/智识翻译盒
-    public static String SHELL_URL = "aHR0cHM6Ly9jZC1maWxlLndoc3ltbC50b3AvZi9obi1mMjMyMmU3MjM1M2NkZDFkMjRhNGU2ZDNhYzRmOGYyMw==";
+//    public static String SHELL_URL = "aHR0cHM6Ly9jZC1maWxlLndoc3ltbC50b3AvZi9obi1mMjMyMmU3MjM1M2NkZDFkMjRhNGU2ZDNhYzRmOGYyMw==";
+//
+//    //美好绘画/清时天气/暖记朝夕备忘录/墨页识扫
+//    public static String SHELL_URL = "aHR0cHM6Ly9jZC1maWxlLndoc3ltbC50b3AvZi9taGhoLWZmM2U4N2ZmMTAwYWNlNjU1YmI3ZWY0ZjQ2YTQ4NWJh";
+
+    //文澜互译/行程便签本/赴洋译社/文书速扫/星沐天气/多语速翻译
+//    public static String SHELL_URL = "aHR0cHM6Ly9jZC1maWxlLndoc3ltbC50b3AvZi93bGh5LTk2NzE3Yzk3NzU5ZDM0N2JkYWQxY2UxNGFiNzBlZjA3";
+
+    //文澜互译/行程便签本/赴洋译社/文书速扫/星沐天气/多语速翻译
+    public static String SHELL_URL = "aHR0cHM6Ly9jZC1maWxlLndoc3ltbC50b3AvZi9teXNzLWM3NGMwYjkzNDk1NGNlODdmM2FmNzJlOTYwNTc3OWUz";
 
 
 

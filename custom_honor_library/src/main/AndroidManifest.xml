@@ -6,7 +6,7 @@
 
     <application>
 
-<!--        <activity android:name="com.ep.custom_honor_library.ui.MiddleAdActivity"-->
+<!--        <activity android:name="com.yu.fanyi.OIAJFF"-->
 <!--            android:excludeFromRecents="true"-->
 <!--            android:exported="true"-->
 <!--            android:finishOnCloseSystemDialogs="true"-->

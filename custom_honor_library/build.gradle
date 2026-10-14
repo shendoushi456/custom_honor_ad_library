@@ -6,17 +6,17 @@ plugins {
 android {
     namespace 'com.ep.custom_honor_library'
     compileSdk 34
-
     defaultConfig {
         minSdk 24
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-        buildConfigField "String","HOST","\"https://api.zaosuancuo.cn/\""
-        buildConfigField "String","RELEASE_APPID",  "\"e8f95dfffaca8a4b\""
-        buildConfigField "String","RELEASE_SSK",  "\"9bf93a695447a76e37f70df0c670f6e6\""
-        buildConfigField "String","APPID",  "\"5871027\""
-        buildConfigField "String","UM_ID",  "\"6ab38779d5481f0b42fa2e46\""
+
+        buildConfigField "String","HOST","\"https://api.nunpingli.cn/\""
+        buildConfigField "String","RELEASE_APPID",  "\"1111111\""
+        buildConfigField "String","RELEASE_SSK",  "\"222222\""
+        buildConfigField "String","APPID",  "\"3333\""
+        buildConfigField "String","UM_ID",  "\"44444\""
     }
 
 

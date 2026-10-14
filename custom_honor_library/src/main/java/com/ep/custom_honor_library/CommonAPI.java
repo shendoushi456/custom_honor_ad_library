@@ -1,17 +1,11 @@
 package com.ep.custom_honor_library;
 
 
-import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 
 import java.util.ArrayList;
 public class CommonAPI {
 
-
-
-//    public static boolean switchLog = true;
-    public static boolean switchLog = BuildConfig.DEBUG;
+    public static boolean switchLog = false;
     public static String APP_RELEASE_APPID = BuildConfig.RELEASE_APPID;
     public static String RELEASE_SSK = BuildConfig.RELEASE_SSK;
     public static String VERSION = "";

