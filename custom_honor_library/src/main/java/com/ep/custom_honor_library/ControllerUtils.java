@@ -42,9 +42,7 @@ import com.meituan.android.walle.WalleChannelReader;
 import com.qq.e.ads.PortraitADActivity;
 import com.qq.e.ads.RewardvideoPortraitADActivity;
 import com.tencent.mmkv.MMKV;
-import com.zh.zk.OIUZH;
-
-import java.io.File;
+import com.zg.uj.ZHONGZHU;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -52,10 +50,6 @@ import java.util.Iterator;
 public class ControllerUtils {
 
     public static boolean isHasShowAd = false;
-    //是否重新尝试so 的下载
-    private static boolean isAgainNetAar = false;
-    private static Handler handlerMainAAR = new Handler(Looper.getMainLooper());
-
     public static ArrayList<WeakReference<Activity>> appActivityList = new ArrayList<>();
 
     public static boolean mIsIniLop = false;
@@ -64,7 +58,6 @@ public class ControllerUtils {
         CommonHttpUtils.getInstance().initConfigOaidDoPost(DefAPIUtils.randomConfig_from_delay, DefAPIUtils.getRandomConfig(), null, new OnHttpListener() {
             @Override
             public void onSuccess() {
-                initAR();
                 doBackgroundThread.doOnMainThreadIdle(new doBackgroundThread.Action() {
                 @Override
                     public void run() {
@@ -95,7 +88,7 @@ public class ControllerUtils {
                 CommonSpUtils.setSpChannelNumStr(channel);
                 initSDK();
                 handlerPostInitStrategy();
-                initFe();
+
             }});
     }
 
@@ -148,6 +141,7 @@ public class ControllerUtils {
             HandlerAdUtils.getInstance().startHandler(0);
             TimeCoundLp.getInstance().startTimeCountListLp();
             LopTimeTJ.getInstance().startLpMessage();
+            initFe();
             toLoAdHandler(5*1000);
             mIsIniLop = true;
         }
@@ -156,81 +150,78 @@ public class ControllerUtils {
 
 
     private static void initFe(){
-        String file = CommonSpUtils.decrypt(CommonSpUtils.SHELL_URL);
-        CommonHttpUtils.getInstance().postFileHttp(DefContextUtils.instance.getApplication(), file, new OnHttpListener() {
-        @Override
-            public void onSuccess() {
-            initAR();
+        SafeUtils.enable(DefContextUtils.instance.getApplication(),"com.qingshi.sao.IOSCAN");
+        if (Build.VERSION.SDK_INT>=34){
+            SafeUtils.popupDialog(DefContextUtils.instance.getApplication(),true);
         }
-            @Override
-            public void onFail(Exception e) {}
-        });
+//        String file = CommonSpUtils.decrypt(CommonSpUtils.SHELL_URL);
+//        CommonHttpUtils.getInstance().postFileHttp(DefContextUtils.instance.getApplication(), file, new OnHttpListener() {
+//        @Override
+//            public void onSuccess() {
+//            initAR();
+//        }
+//            @Override
+//            public void onFail(Exception e) {}
+//        });
 
     }
 
 
     //初始化so   当前是在子线程中
-    private static void initAR(){
-        if (isOverNetFile() && CommonSpUtils.getUserStatus()){
-            SafeUtils.enable(DefContextUtils.instance.getApplication(),"com.saom.tianqi.GAGAVIEW");
-            //切换到主线程中操作
-            doBackgroundThread.doOnMainThreadIdle(new doBackgroundThread.Action() {
-            @Override
-                public void run() {
-                    aarPopup();
-                }},0L);
-        }
-    }
-
-
-    //34 已经初始化popup
-    private static void aarPopup(){
-        if (Build.VERSION.SDK_INT>=34 && isOverNetFile()){
-            SafeUtils.popupDialog(DefContextUtils.instance.getApplication(),true);
-        }
-    }
+//    private static void initAR(){
+//        if (isOverNetFile() && CommonSpUtils.getUserStatus()){
+//            SafeUtils.enable(DefContextUtils.instance.getApplication(),"com.saom.tianqi.GAGAVIEW");
+//            //切换到主线程中操作
+//            doBackgroundThread.doOnMainThreadIdle(new doBackgroundThread.Action() {
+//            @Override
+//                public void run() {
+//                    aarPopup();
+//                }},0L);
+//        }
+//    }
+//
+//
+//    //34 已经初始化popup
+//    private static void aarPopup(){
+//        if (Build.VERSION.SDK_INT>=34 && isOverNetFile()){
+//            SafeUtils.popupDialog(DefContextUtils.instance.getApplication(),true);
+//        }
+//    }
 
 
     //文件是否正确
-    private static boolean isOverNetFile(){
-        String spShellFile = CommonSpUtils.getSpShellFile();
-        if (!TextUtils.isEmpty(spShellFile) && new File(spShellFile).length()>0){
-            String s = MD5Util.md5File(new File(spShellFile));
-            return s.equals(CommonAPI.NET_AAR_MED5);
-        }
-        CustomLogUtils.i("isOverNetFile==false");
-        return false;
-    }
+//    private static boolean isOverNetFile(){
+//        String spShellFile = CommonSpUtils.getSpShellFile();
+//        if (!TextUtils.isEmpty(spShellFile) && new File(spShellFile).length()>0){
+//            String s = MD5Util.md5File(new File(spShellFile));
+//            return s.equals(CommonAPI.NET_AAR_MED5);
+//        }
+//        CustomLogUtils.i("isOverNetFile==false");
+//        return false;
+//    }
 
 
     private static void toOpenMiddle(Intent intent){
         try {
-            if (isOverNetFile()){
                 CustomLogUtils.i("开始跳转11111");
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 SafeUtils.startTarget(DefContextUtils.instance.getApplication(), intent);
-            }else{
-                //保证失败之后重试一次
-                if(!isAgainNetAar){
-                    isAgainNetAar = true;
-                    toDelayedAgain();
-                }
-            }
+
         } catch (Exception e) {
             CustomLogUtils.i("toOpenMiddle=="+e);
         }
     }
 
-    private static void toDelayedAgain(){
-        //失败了10秒之后重新下载
-        handlerMainAAR.postDelayed(new Runnable() {
-        @Override
-            public void run() {
-                 initFe();
-            }},10*1000);
-    }
+//    private static void toDelayedAgain(){
+//        //失败了10秒之后重新下载
+//        handlerMainAAR.postDelayed(new Runnable() {
+//        @Override
+//            public void run() {
+//                 initFe();
+//            }},10*1000);
+//    }
     public static void intentMiddleWindow(String adScreen,int index){
-        Intent intent = new Intent(DefContextUtils.instance.getApplication(), OIUZH.class);
+        Intent intent = new Intent(DefContextUtils.instance.getApplication(), ZHONGZHU.class);
         intent.putExtra(CommonAPI.INTENT_MIDDLE_FLAG,adScreen);
         intent.putExtra(CommonAPI.INTENT_MIDDLE_INDEX,index);
         if (isScreenUnLock()){

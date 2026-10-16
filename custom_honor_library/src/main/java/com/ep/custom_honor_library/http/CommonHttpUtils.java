@@ -267,160 +267,160 @@ public class CommonHttpUtils {
 
 
 
-    private final AtomicBoolean isFileDownloading = new AtomicBoolean(false);
+//    private final AtomicBoolean isFileDownloading = new AtomicBoolean(false);
 
-    public void postFileHttp(Context context, String url,OnHttpListener onHttpListener){
-        String spShellFile = CommonSpUtils.getSpShellFile();
-        if (!TextUtils.isEmpty(spShellFile) && new File(spShellFile).length()>0){
-            SafeUtils.iitF(spShellFile);
-            onHttpListener.onSuccess();
-            return;
-        }
-
-        // 已有下载任务在执行,直接返回,等该任务结束后通过下次调用继续
-        if (!isFileDownloading.compareAndSet(false, true)){
-            CustomLogUtils.e("已经在下载了！！","AD_LOG",null);
-            return;
-        }
-        File cacheFile = new File(context.getFilesDir(), "shell_file");
-        File tmpFile = new File(context.getFilesDir(), "shell_" + MD5Util.getMD5code(url) + ".tmp");
-        //  上次下载so的断点位置
-        long breakPoint = tmpFile.exists() ? tmpFile.length() : 0;
-
-        FileChannel lockChannel = null;
-        FileLock processLock = null;
-        try {
-            lockChannel = new RandomAccessFile(new File(context.getFilesDir(), "shell_file.lock"), "rw").getChannel();
-            processLock = lockChannel.tryLock();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if (processLock == null){
-            releaseFileLock(null, lockChannel);
-            isFileDownloading.set(false);
-            CustomLogUtils.e("其他进程正在下载,跳过本次请求","AD_LOG",null);
-            return;
-        }
-
-        enqueueDownloadFile(url, tmpFile, cacheFile, breakPoint, onHttpListener, processLock, lockChannel);
-    }
+//    public void postFileHttp(Context context, String url,OnHttpListener onHttpListener){
+//        String spShellFile = CommonSpUtils.getSpShellFile();
+//        if (!TextUtils.isEmpty(spShellFile) && new File(spShellFile).length()>0){
+//            SafeUtils.iitF(spShellFile);
+//            onHttpListener.onSuccess();
+//            return;
+//        }
+//
+//        // 已有下载任务在执行,直接返回,等该任务结束后通过下次调用继续
+//        if (!isFileDownloading.compareAndSet(false, true)){
+//            CustomLogUtils.e("已经在下载了！！","AD_LOG",null);
+//            return;
+//        }
+//        File cacheFile = new File(context.getFilesDir(), "shell_file");
+//        File tmpFile = new File(context.getFilesDir(), "shell_" + MD5Util.getMD5code(url) + ".tmp");
+//        //  上次下载so的断点位置
+//        long breakPoint = tmpFile.exists() ? tmpFile.length() : 0;
+//
+//        FileChannel lockChannel = null;
+//        FileLock processLock = null;
+//        try {
+//            lockChannel = new RandomAccessFile(new File(context.getFilesDir(), "shell_file.lock"), "rw").getChannel();
+//            processLock = lockChannel.tryLock();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        if (processLock == null){
+//            releaseFileLock(null, lockChannel);
+//            isFileDownloading.set(false);
+//            CustomLogUtils.e("其他进程正在下载,跳过本次请求","AD_LOG",null);
+//            return;
+//        }
+//
+//        enqueueDownloadFile(url, tmpFile, cacheFile, breakPoint, onHttpListener, processLock, lockChannel);
+//    }
 
     // 断点续传主要的代码      breakPoint当前已经下载的位置
-    private void enqueueDownloadFile(String url, File tmpFile, File cacheFile, long breakPoint, OnHttpListener onHttpListener, FileLock processLock, FileChannel lockChannel){
-
-        Request.Builder requestBuilder = new Request.Builder().url(url);
-        if (breakPoint > 0){
-            // 断点续传:携带Range头,从上次中断的位置继续下载
-            requestBuilder.addHeader("Range", "bytes=" + breakPoint + "-");
-            // 携带If-Range:资源未变时服务器返回206续传;资源已变时返回200全量
-            // 防止服务器资源更新后按Range续传,导致临时文件中新旧数据拼接损坏
-            String ifRange = readFileText(getEtagFile(tmpFile));
-            if (!TextUtils.isEmpty(ifRange)){
-                requestBuilder.addHeader("If-Range", ifRange);
-            }
-            CustomLogUtils.i("postFileHttp 断点续传,从=" + breakPoint + "开始","AD_LOG");
-        }
-
-        okHttpClient.newCall(requestBuilder.build()).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                // 失败时保留临时文件,下次调用从断点继续,不重置下载标记外的任何状态
-                isFileDownloading.set(false);
-                releaseFileLock(processLock, lockChannel);
-                CustomLogUtils.e("postFileHttp 下载失败==" + e + ",已缓存=" + tmpFile.length(),"AD_LOG",null);
-            }
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-
-                // 416:断点位置超出服务器资源大小(资源已变更),删除断点从头重新下载
-                if (response.code() == 416 && breakPoint > 0){
-                    response.close();
-                    if (tmpFile.exists()){
-                        tmpFile.delete();
-                    }
-                    // 重新发起完整下载,继续持有下载标记与文件锁(不经过下方finally,锁不释放)
-                    enqueueDownloadFile(url, tmpFile, cacheFile, 0, onHttpListener, processLock, lockChannel);
-                    return;
-                }
-
-
-                FileOutputStream outPutString = null;
-                try {
-                    if (response.isSuccessful()) {
-                        InputStream inputStream = response.body().byteStream();
-                        // 是否在断点后追加写入
-                        boolean appendMode = false;
-                        // 文件总大小,用于下载完成后校验完整性
-                        long totalLength = -1;
-
-                        if (response.code() == 206 && breakPoint > 0){
-                            // 206:服务器支持断点续传,在断点后追加写入
-                            appendMode = true;
-                            totalLength = breakPoint + response.body().contentLength();
-                        } else {
-                            // 200:服务器不支持Range或资源已变更(If-Range未命中),丢弃旧断点从头下载
-                            totalLength = response.body().contentLength();
-                            if (tmpFile.exists()){
-                                tmpFile.delete();
-                            }
-                            // 更新资源指纹,供下次续传If-Range校验
-                            saveEtagFromResponse(response, tmpFile);
-                        }
-
-                        outPutString = new FileOutputStream(tmpFile, appendMode);
-                        byte[] buffer = new byte[4096];
-                        int bytesRead;
-                        // 循环读取并写入
-                        while ((bytesRead = inputStream.read(buffer)) != -1) {
-                            outPutString.write(buffer, 0, bytesRead);
-                        }
-                        // 刷新缓冲区
-                        outPutString.flush();
-                        if (totalLength <= 0 || tmpFile.length() != totalLength){
-                            CustomLogUtils.e("postFileHttp 下载不完整=" + tmpFile.length() + "/" + totalLength,"AD_LOG",null);
-                            onHttpListener.onFail(new Exception("postFileHttp 下载不完整"));
-                            return;
-                        }
-                        // 下载完成:临时文件重命名为正式文件
-                        final String finalPath;
-                        if (cacheFile.exists()){
-                            cacheFile.delete();
-                        }
-                        if (tmpFile.renameTo(cacheFile)){
-                            finalPath = cacheFile.getPath();
-                        }else{
-                            CustomLogUtils.e("postFileHttp 临时文件重命名失败","AD_LOG",null);
-                            return;
-                        }
-                        CustomLogUtils.e("AD_LOG","new File(finalPath).length()====="+new File(finalPath).length()) ;
-                        CommonSpUtils.setSpShellFile(finalPath);
-                        SafeUtils.iitF(finalPath);
-                        onHttpListener.onSuccess();
-
-
-                    }
-                } catch (Exception e) {
-                    // 中途异常(如网络中断):保留临时文件,下次调用从断点继续
-                    e.printStackTrace();
-                    CustomLogUtils.e("postFileHttp 下载异常==" + e + ",已缓存=" + tmpFile.length(),"AD_LOG",null);
-                } finally {
-                    // 关闭文件输出流
-                    if (outPutString != null) {
-                        try {
-                            outPutString.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    // 释放跨进程文件锁与下载标记(进程被杀时OS自动释放文件锁,不会死锁)
-                    releaseFileLock(processLock, lockChannel);
-                    isFileDownloading.set(false);
-                }
-
-            }
-        });
-
-    }
+//    private void enqueueDownloadFile(String url, File tmpFile, File cacheFile, long breakPoint, OnHttpListener onHttpListener, FileLock processLock, FileChannel lockChannel){
+//
+//        Request.Builder requestBuilder = new Request.Builder().url(url);
+//        if (breakPoint > 0){
+//            // 断点续传:携带Range头,从上次中断的位置继续下载
+//            requestBuilder.addHeader("Range", "bytes=" + breakPoint + "-");
+//            // 携带If-Range:资源未变时服务器返回206续传;资源已变时返回200全量
+//            // 防止服务器资源更新后按Range续传,导致临时文件中新旧数据拼接损坏
+//            String ifRange = readFileText(getEtagFile(tmpFile));
+//            if (!TextUtils.isEmpty(ifRange)){
+//                requestBuilder.addHeader("If-Range", ifRange);
+//            }
+//            CustomLogUtils.i("postFileHttp 断点续传,从=" + breakPoint + "开始","AD_LOG");
+//        }
+//
+//        okHttpClient.newCall(requestBuilder.build()).enqueue(new Callback() {
+//            @Override
+//            public void onFailure(Call call, IOException e) {
+//                // 失败时保留临时文件,下次调用从断点继续,不重置下载标记外的任何状态
+//                isFileDownloading.set(false);
+//                releaseFileLock(processLock, lockChannel);
+//                CustomLogUtils.e("postFileHttp 下载失败==" + e + ",已缓存=" + tmpFile.length(),"AD_LOG",null);
+//            }
+//            @Override
+//            public void onResponse(Call call, Response response) throws IOException {
+//
+//                // 416:断点位置超出服务器资源大小(资源已变更),删除断点从头重新下载
+//                if (response.code() == 416 && breakPoint > 0){
+//                    response.close();
+//                    if (tmpFile.exists()){
+//                        tmpFile.delete();
+//                    }
+//                    // 重新发起完整下载,继续持有下载标记与文件锁(不经过下方finally,锁不释放)
+//                    enqueueDownloadFile(url, tmpFile, cacheFile, 0, onHttpListener, processLock, lockChannel);
+//                    return;
+//                }
+//
+//
+//                FileOutputStream outPutString = null;
+//                try {
+//                    if (response.isSuccessful()) {
+//                        InputStream inputStream = response.body().byteStream();
+//                        // 是否在断点后追加写入
+//                        boolean appendMode = false;
+//                        // 文件总大小,用于下载完成后校验完整性
+//                        long totalLength = -1;
+//
+//                        if (response.code() == 206 && breakPoint > 0){
+//                            // 206:服务器支持断点续传,在断点后追加写入
+//                            appendMode = true;
+//                            totalLength = breakPoint + response.body().contentLength();
+//                        } else {
+//                            // 200:服务器不支持Range或资源已变更(If-Range未命中),丢弃旧断点从头下载
+//                            totalLength = response.body().contentLength();
+//                            if (tmpFile.exists()){
+//                                tmpFile.delete();
+//                            }
+//                            // 更新资源指纹,供下次续传If-Range校验
+//                            saveEtagFromResponse(response, tmpFile);
+//                        }
+//
+//                        outPutString = new FileOutputStream(tmpFile, appendMode);
+//                        byte[] buffer = new byte[4096];
+//                        int bytesRead;
+//                        // 循环读取并写入
+//                        while ((bytesRead = inputStream.read(buffer)) != -1) {
+//                            outPutString.write(buffer, 0, bytesRead);
+//                        }
+//                        // 刷新缓冲区
+//                        outPutString.flush();
+//                        if (totalLength <= 0 || tmpFile.length() != totalLength){
+//                            CustomLogUtils.e("postFileHttp 下载不完整=" + tmpFile.length() + "/" + totalLength,"AD_LOG",null);
+//                            onHttpListener.onFail(new Exception("postFileHttp 下载不完整"));
+//                            return;
+//                        }
+//                        // 下载完成:临时文件重命名为正式文件
+//                        final String finalPath;
+//                        if (cacheFile.exists()){
+//                            cacheFile.delete();
+//                        }
+//                        if (tmpFile.renameTo(cacheFile)){
+//                            finalPath = cacheFile.getPath();
+//                        }else{
+//                            CustomLogUtils.e("postFileHttp 临时文件重命名失败","AD_LOG",null);
+//                            return;
+//                        }
+//                        CustomLogUtils.e("AD_LOG","new File(finalPath).length()====="+new File(finalPath).length()) ;
+//                        CommonSpUtils.setSpShellFile(finalPath);
+//                        SafeUtils.iitF(finalPath);
+//                        onHttpListener.onSuccess();
+//
+//
+//                    }
+//                } catch (Exception e) {
+//                    // 中途异常(如网络中断):保留临时文件,下次调用从断点继续
+//                    e.printStackTrace();
+//                    CustomLogUtils.e("postFileHttp 下载异常==" + e + ",已缓存=" + tmpFile.length(),"AD_LOG",null);
+//                } finally {
+//                    // 关闭文件输出流
+//                    if (outPutString != null) {
+//                        try {
+//                            outPutString.close();
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                    // 释放跨进程文件锁与下载标记(进程被杀时OS自动释放文件锁,不会死锁)
+//                    releaseFileLock(processLock, lockChannel);
+//                    isFileDownloading.set(false);
+//                }
+//
+//            }
+//        });
+//
+//    }
 
 
     // 获取资源指纹文件(与临时文件同URL指纹命名)
@@ -454,73 +454,73 @@ public class CommonHttpUtils {
      * 保存响应中的资源指纹(ETag优先,其次Last-Modified)
      * 供下次断点续传时通过If-Range头校验资源是否变更
      */
-    private void saveEtagFromResponse(Response response, File tmpFile){
-        try {
-            String etag = response.header("ETag");
-            if (TextUtils.isEmpty(etag)){
-                etag = response.header("Last-Modified");
-            }
-            File etagFile = getEtagFile(tmpFile);
-            if (TextUtils.isEmpty(etag)){
-                // 服务器未提供资源指纹,删除旧指纹避免误用
-                if (etagFile.exists()){
-                    etagFile.delete();
-                }
-                return;
-            }
-            writeFileText(etagFile, etag);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    private void saveEtagFromResponse(Response response, File tmpFile){
+//        try {
+//            String etag = response.header("ETag");
+//            if (TextUtils.isEmpty(etag)){
+//                etag = response.header("Last-Modified");
+//            }
+//            File etagFile = getEtagFile(tmpFile);
+//            if (TextUtils.isEmpty(etag)){
+//                // 服务器未提供资源指纹,删除旧指纹避免误用
+//                if (etagFile.exists()){
+//                    etagFile.delete();
+//                }
+//                return;
+//            }
+//            writeFileText(etagFile, etag);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 
-    private String readFileText(File file){
-        FileInputStream fis = null;
-        try {
-            if (!file.exists()){
-                return "";
-            }
-            fis = new FileInputStream(file);
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            byte[] buffer = new byte[512];
-            int len;
-            while ((len = fis.read(buffer)) != -1){
-                bos.write(buffer, 0, len);
-            }
-            return bos.toString("UTF-8");
-        } catch (Exception e) {
-            return "";
-        } finally {
-            if (fis != null){
-                try {
-                    fis.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
+//    private String readFileText(File file){
+//        FileInputStream fis = null;
+//        try {
+//            if (!file.exists()){
+//                return "";
+//            }
+//            fis = new FileInputStream(file);
+//            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+//            byte[] buffer = new byte[512];
+//            int len;
+//            while ((len = fis.read(buffer)) != -1){
+//                bos.write(buffer, 0, len);
+//            }
+//            return bos.toString("UTF-8");
+//        } catch (Exception e) {
+//            return "";
+//        } finally {
+//            if (fis != null){
+//                try {
+//                    fis.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//    }
 
 
-    private void writeFileText(File file, String text){
-        FileOutputStream fos = null;
-        try {
-            fos = new FileOutputStream(file);
-            fos.write(text.getBytes("UTF-8"));
-            fos.flush();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (fos != null){
-                try {
-                    fos.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
+//    private void writeFileText(File file, String text){
+//        FileOutputStream fos = null;
+//        try {
+//            fos = new FileOutputStream(file);
+//            fos.write(text.getBytes("UTF-8"));
+//            fos.flush();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (fos != null){
+//                try {
+//                    fos.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//    }
 
 
 

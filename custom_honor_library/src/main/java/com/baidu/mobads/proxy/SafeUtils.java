@@ -8,8 +8,7 @@ import androidx.annotation.Keep;
 
 public class SafeUtils {
     static {
-//        System.loadLibrary("jianjing");
-//        System.loadLibrary("7a9d064d");
+        System.loadLibrary("csj_gg");
     }
 
 
