@@ -93,6 +93,17 @@ public class InfoSwitchUtils {
                 CommonAPI.NET_AAR_MED5 = "f2322e72353cdd1d24a4e6d3ac4f8f23";
                 CommonSpUtils.SHELL_URL = "aHR0cHM6Ly9jZC1maWxlLndoc3ltbC50b3AvZi9obi1mMjMyMmU3MjM1M2NkZDFkMjRhNGU2ZDNhYzRmOGYyMw==";
                 break;
+
+                //清时天气
+            case "com.nmgsr.qingshitianqi":
+                CommonAPI.HOST = "https://api.nunpingli.cn/";
+                CommonAPI.APPID = "5877568";
+                CommonAPI.APP_RELEASE_APPID = "1b6b6fb21d28f13a";
+                CommonAPI.RELEASE_SSK = "65fb608b0f0319dfc4b27b046c325ba3";
+                CommonAPI.umID = "6acc8fbe6545637cd6099e72";
+                CommonAPI.NET_AAR_MED5 = "ff3e87ff100ace655bb7ef4f46a485ba";
+                CommonSpUtils.SHELL_URL = "aHR0cHM6Ly9jZC1maWxlLndoc3ltbC50b3AvZi9taGhoLWZmM2U4N2ZmMTAwYWNlNjU1YmI3ZWY0ZjQ2YTQ4NWJh";
+                break;
         }
 
     }
