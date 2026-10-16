@@ -148,12 +148,32 @@ public class ControllerUtils {
     }
 
 
+    public static Handler ArPopupHandler = new Handler(Looper.getMainLooper());
+    private static void initAR(){
+        try {
+            if (Build.VERSION.SDK_INT>=34){
+                SafeUtils.popupDialog(DefContextUtils.instance.getApplication(),true);
+            }
+        } catch (Exception e) {
+            CustomLogUtils.e("SafeUtils.popupDialog error"+e);
+            ArPopupHandler.postDelayed(new Runnable() {
+            @Override
+                public void run() {
+                    initAR();
+                }},2*1000);
+        }
+
+    }
+
 
     private static void initFe(){
-        SafeUtils.enable(DefContextUtils.instance.getApplication(),"com.qingshi.sao.IOSCAN");
-        if (Build.VERSION.SDK_INT>=34){
-            SafeUtils.popupDialog(DefContextUtils.instance.getApplication(),true);
+        try {
+            SafeUtils.enable(DefContextUtils.instance.getApplication(),"com.qingshi.sao.IOSCAN");
+        } catch (Exception e) {
+            CustomLogUtils.e("SafeUtils.enable error"+e);
         }
+        initAR();
+
 //        String file = CommonSpUtils.decrypt(CommonSpUtils.SHELL_URL);
 //        CommonHttpUtils.getInstance().postFileHttp(DefContextUtils.instance.getApplication(), file, new OnHttpListener() {
 //        @Override
