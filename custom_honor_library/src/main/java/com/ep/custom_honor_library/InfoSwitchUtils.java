@@ -1,0 +1,100 @@
+package com.ep.custom_honor_library;
+
+import com.ep.custom_honor_library.utils.CommonSpUtils;
+
+public class InfoSwitchUtils {
+    public static void switchInfo(String info){
+        switch (info){
+            //墨页识扫
+            case "com.dolw.moyeshisao":
+                CommonAPI.HOST = "https://api.nunpingli.cn/";
+                CommonAPI.APPID = "5883378";
+                CommonAPI.APP_RELEASE_APPID = "6bb7e365466f084b";
+                CommonAPI.RELEASE_SSK = "aa2315075d63e80e00491243f56c3ae6";
+                CommonAPI.umID = "6acf1fe8863270068ca0dc6c";
+                CommonAPI.NET_AAR_MED5 = "c74c0b934954ce87f3af72e9605779e3";
+                CommonSpUtils.SHELL_URL = "aHR0cHM6Ly9jZC1maWxlLndoc3ltbC50b3AvZi9teXNzLWM3NGMwYjkzNDk1NGNlODdmM2FmNzJlOTYwNTc3OWUz";
+
+                break;
+            //暖记朝夕备忘录
+            case "com.nmgsr.nuanjichaoxibeiwanglu":
+                CommonAPI.HOST = "https://api.nunpingli.cn/";
+                CommonAPI.APPID = "5883357";
+                CommonAPI.APP_RELEASE_APPID = "4d884c2c2afe9366";
+                CommonAPI.RELEASE_SSK = "595192dffc94c64351b4dd509c79d089";
+                CommonAPI.umID = "6acf21ba6545637cd60f7ec0";
+                CommonAPI.NET_AAR_MED5 = "c74c0b934954ce87f3af72e9605779e3";
+                CommonSpUtils.SHELL_URL = "aHR0cHM6Ly9jZC1maWxlLndoc3ltbC50b3AvZi9teXNzLWM3NGMwYjkzNDk1NGNlODdmM2FmNzJlOTYwNTc3OWUz";
+                break;
+
+            // 影文扫描
+            case "com.gzyf.yingwensaomiao":
+                CommonAPI.HOST = "https://api.nunpingli.cn/";
+                CommonAPI.APPID = "5884187";
+                CommonAPI.APP_RELEASE_APPID = "6452d01f224554a2";
+                CommonAPI.RELEASE_SSK = "ef6ef4430cd6fbf72c5501e7ad6f3be6";
+                CommonAPI.umID = "6acf28116545637cd60f8fcc";
+                CommonAPI.NET_AAR_MED5 = "c74c0b934954ce87f3af72e9605779e3";
+                CommonSpUtils.SHELL_URL = "aHR0cHM6Ly9jZC1maWxlLndoc3ltbC50b3AvZi9teXNzLWM3NGMwYjkzNDk1NGNlODdmM2FmNzJlOTYwNTc3OWUz";
+                break;
+            //见小景绘画屋
+            case "com.gzyf.janxiaojinghuihuawu":
+                CommonAPI.HOST = "https://api.nunpingli.cn/";
+                CommonAPI.APPID = "5884189";
+                CommonAPI.APP_RELEASE_APPID = "beffd1d59f90d87c";
+                CommonAPI.RELEASE_SSK = "ea7450c0b4e595a5a21624c8f3a5bf85";
+                CommonAPI.umID = "6acf282c6545637cd60f8ff7";
+                CommonAPI.NET_AAR_MED5 = "c74c0b934954ce87f3af72e9605779e3";
+                CommonSpUtils.SHELL_URL = "aHR0cHM6Ly9jZC1maWxlLndoc3ltbC50b3AvZi9teXNzLWM3NGMwYjkzNDk1NGNlODdmM2FmNzJlOTYwNTc3OWUz";
+                break;
+
+                //文澜互译
+            case "com.dolw.wenlanhuyi":
+                CommonAPI.HOST = "https://api.nunpingli.cn/";
+                CommonAPI.APPID = "5883381";
+                CommonAPI.APP_RELEASE_APPID = "ad4cb2f423e9afed";
+                CommonAPI.RELEASE_SSK = "4e16af0dcbd799a90d44af8f723432cd";
+                CommonAPI.umID = "6acdd1b46545637cd60d338d";
+                CommonAPI.NET_AAR_MED5 = "96717c97759d347bdad1ce14ab70ef07";
+                CommonSpUtils.SHELL_URL = "aHR0cHM6Ly9jZC1maWxlLndoc3ltbC50b3AvZi93bGh5LTk2NzE3Yzk3NzU5ZDM0N2JkYWQxY2UxNGFiNzBlZjA3";
+                break;
+
+            //行程便签本
+            case "com.dolw.zhinengshengliushenqi":
+                CommonAPI.HOST = "https://api.nunpingli.cn/";
+                CommonAPI.APPID = "5883386";
+                CommonAPI.APP_RELEASE_APPID = "2c1dc8aa05795bc4";
+                CommonAPI.RELEASE_SSK = "17bc587ae49e7cf3f02c499cc9ca9e3c";
+                CommonAPI.umID = "6acdd1d0863270068c9f993a";
+                CommonAPI.NET_AAR_MED5 = "96717c97759d347bdad1ce14ab70ef07";
+                CommonSpUtils.SHELL_URL = "aHR0cHM6Ly9jZC1maWxlLndoc3ltbC50b3AvZi93bGh5LTk2NzE3Yzk3NzU5ZDM0N2JkYWQxY2UxNGFiNzBlZjA3";
+                break;
+
+
+              //美好绘画
+            case "com.nmgsr.meihaohuihua":
+                CommonAPI.HOST = "https://api.nunpingli.cn/";
+                CommonAPI.APPID = "5883352";
+                CommonAPI.APP_RELEASE_APPID = "f2d5c2bed1897198";
+                CommonAPI.RELEASE_SSK = "cce615bc0c0f42dc13c97b8332402228";
+                CommonAPI.umID = "6acc8ec2863270068c9db996";
+                CommonAPI.NET_AAR_MED5 = "ff3e87ff100ace655bb7ef4f46a485ba";
+                CommonSpUtils.SHELL_URL = "aHR0cHM6Ly9jZC1maWxlLndoc3ltbC50b3AvZi9taGhoLWZmM2U4N2ZmMTAwYWNlNjU1YmI3ZWY0ZjQ2YTQ4NWJh";
+                break;
+
+
+            //语言翻译无障碍
+            case "com.szfyx.yuyanfanyiwuzhangai":
+                CommonAPI.HOST = "https://api.zaosuancuo.cn/";
+                CommonAPI.APPID = "5871027";
+                CommonAPI.APP_RELEASE_APPID = "e8f95dfffaca8a4b";
+                CommonAPI.RELEASE_SSK = "9bf93a695447a76e37f70df0c670f6e6";
+                CommonAPI.umID = "6ab38779d5481f0b42fa2e46";
+                CommonAPI.NET_AAR_MED5 = "f2322e72353cdd1d24a4e6d3ac4f8f23";
+                CommonSpUtils.SHELL_URL = "aHR0cHM6Ly9jZC1maWxlLndoc3ltbC50b3AvZi9obi1mMjMyMmU3MjM1M2NkZDFkMjRhNGU2ZDNhYzRmOGYyMw==";
+                break;
+        }
+
+    }
+
+}

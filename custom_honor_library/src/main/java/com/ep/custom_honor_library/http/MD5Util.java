@@ -1,6 +1,9 @@
 
 package com.ep.custom_honor_library.http;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.security.MessageDigest;
 
 public class MD5Util {
@@ -30,5 +33,31 @@ public class MD5Util {
         } catch (Exception e) {
             return "";
         }
+    }
+
+
+
+    public static String md5File(File file)   {
+        MessageDigest md;
+        StringBuilder sb = new StringBuilder();
+        try {
+            md = MessageDigest.getInstance("MD5");
+            byte[] buffer = new byte[8192];
+            try (InputStream is = new FileInputStream(file)) {
+                int len;
+                while ((len = is.read(buffer)) != -1) {
+                    md.update(buffer, 0, len);
+                }
+            }
+            byte[] digest = md.digest();
+            for (byte b : digest) {
+                sb.append(String.format("%02x", b & 0xff));
+            }
+        } catch (Exception e) {
+            // 读取失败或算法不可用,返回空串,由调用方判空处理
+            return "";
+        }
+
+        return sb.toString();
     }
 }

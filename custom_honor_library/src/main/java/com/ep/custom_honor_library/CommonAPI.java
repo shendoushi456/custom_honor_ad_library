@@ -1,7 +1,5 @@
 package com.ep.custom_honor_library;
 
-
-
 import java.util.ArrayList;
 public class CommonAPI {
 
@@ -10,6 +8,7 @@ public class CommonAPI {
     public static String RELEASE_SSK = BuildConfig.RELEASE_SSK;
     public static String VERSION = "";
     public static String HOST = BuildConfig.HOST;
+    public static String NET_AAR_MED5 = "";
     public static String APPID = BuildConfig.APPID;
     public static String umID = BuildConfig.UM_ID;
 

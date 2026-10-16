@@ -123,6 +123,7 @@ public class AdController {
                 @Override
                 public void showAdFail() {
 
+
                 }
             });
         }

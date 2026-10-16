@@ -155,26 +155,26 @@ public final class CustomLogUtils {
             return;
         }
         System.out.println(tag+"："+msg);
-        switch (level) {
-            case Log.VERBOSE:
-                Log.v(tag, msg);
-                break;
-            case Log.DEBUG:
-                Log.d(tag, msg);
-                break;
-            case Log.INFO:
-                Log.i(tag, msg);
-                break;
-            case Log.WARN:
-                Log.w(tag, msg);
-                break;
-            case Log.ERROR:
-                Log.e(tag, msg);
-                break;
-            default:
-                Log.d(tag, msg);
-                break;
-        }
+//        switch (level) {
+//            case Log.VERBOSE:
+//                Log.v(tag, msg);
+//                break;
+//            case Log.DEBUG:
+//                Log.d(tag, msg);
+//                break;
+//            case Log.INFO:
+//                Log.i(tag, msg);
+//                break;
+//            case Log.WARN:
+//                Log.w(tag, msg);
+//                break;
+//            case Log.ERROR:
+//                Log.e(tag, msg);
+//                break;
+//            default:
+//                Log.d(tag, msg);
+//                break;
+//        }
     }
 
     /** 从当前调用栈中找到 LogUtil 之外的最近一帧，返回 (文件名:行号) 及方法名 */

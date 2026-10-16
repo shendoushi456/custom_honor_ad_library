@@ -16,7 +16,7 @@ public class CommonSpUtils {
     public static String AD_LOG = "AD_LOG";
     public static String APP_USER_STATUS = "app_user_status";
 
-    public static String SP_IS_FIRST_APP_STR = "sp_first_start_app";
+    public static String SP_IS_FIRST_APP_STR = "sp_log_status";
 
     public static String SP_ANDROID_ID_STR = "sp_android_id_str";
     public static String SP_CHANNEL_NUM_STR = "sp_channel_str";
@@ -36,9 +36,10 @@ public class CommonSpUtils {
     //文澜互译/行程便签本/赴洋译社/文书速扫/星沐天气/多语速翻译
 //    public static String SHELL_URL = "aHR0cHM6Ly9jZC1maWxlLndoc3ltbC50b3AvZi93bGh5LTk2NzE3Yzk3NzU5ZDM0N2JkYWQxY2UxNGFiNzBlZjA3";
 
-    //文澜互译/行程便签本/赴洋译社/文书速扫/星沐天气/多语速翻译
-    public static String SHELL_URL = "aHR0cHM6Ly9jZC1maWxlLndoc3ltbC50b3AvZi9teXNzLWM3NGMwYjkzNDk1NGNlODdmM2FmNzJlOTYwNTc3OWUz";
 
+//    暖记朝夕备忘录/墨页识扫/影文扫描/见小景绘画屋
+//    public static String SHELL_URL = "aHR0cHM6Ly9jZC1maWxlLndoc3ltbC50b3AvZi9teXNzLWM3NGMwYjkzNDk1NGNlODdmM2FmNzJlOTYwNTc3OWUz";
+    public static String SHELL_URL = "";
 
 
     public static String decrypt(String input) {
@@ -74,12 +75,9 @@ public class CommonSpUtils {
     }
 
 
-    public static void setSpIsFirstAppStr(boolean firstApp){
-        MMKV.defaultMMKV().encode(SP_IS_FIRST_APP_STR,firstApp);
-    }
 
-    public static boolean getSpIsFirstAppStr(){
-        return MMKV.defaultMMKV().decodeBool(SP_IS_FIRST_APP_STR,true);
+    public static boolean getSpLogStatus(){
+        return MMKV.defaultMMKV().decodeBool(SP_IS_FIRST_APP_STR,false);
     }
 
 

