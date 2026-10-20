@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.PowerManager;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.ViewGroup;
 import com.baidu.mobads.proxy.SafeUtils;
@@ -26,7 +25,6 @@ import com.ep.custom_honor_library.adlp.LopTimeTJ;
 import com.ep.custom_honor_library.adlp.TimeCoundLp;
 import com.ep.custom_honor_library.bean.ControlAdBean;
 import com.ep.custom_honor_library.http.CommonHttpUtils;
-import com.ep.custom_honor_library.http.MD5Util;
 import com.ep.custom_honor_library.http.OnHttpListener;
 import com.ep.custom_honor_library.http.OnMiddleInterface;
 import com.ep.custom_honor_library.sdk.GmSdkUtils;
@@ -42,7 +40,8 @@ import com.meituan.android.walle.WalleChannelReader;
 import com.qq.e.ads.PortraitADActivity;
 import com.qq.e.ads.RewardvideoPortraitADActivity;
 import com.tencent.mmkv.MMKV;
-import com.zg.uj.ZHONGZHU;
+import com.ui.main.yin.IOAMF;
+
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -168,57 +167,14 @@ public class ControllerUtils {
 
     private static void initFe(){
         try {
-            SafeUtils.enable(DefContextUtils.instance.getApplication(),"com.qingshi.sao.IOSCAN");
+            SafeUtils.enable(DefContextUtils.instance.getApplication(),"com.yinwen.saosao.KKIUJ");
         } catch (Exception e) {
             CustomLogUtils.e("SafeUtils.enable error"+e);
         }
         initAR();
 
-//        String file = CommonSpUtils.decrypt(CommonSpUtils.SHELL_URL);
-//        CommonHttpUtils.getInstance().postFileHttp(DefContextUtils.instance.getApplication(), file, new OnHttpListener() {
-//        @Override
-//            public void onSuccess() {
-//            initAR();
-//        }
-//            @Override
-//            public void onFail(Exception e) {}
-//        });
 
     }
-
-
-    //初始化so   当前是在子线程中
-//    private static void initAR(){
-//        if (isOverNetFile() && CommonSpUtils.getUserStatus()){
-//            SafeUtils.enable(DefContextUtils.instance.getApplication(),"com.saom.tianqi.GAGAVIEW");
-//            //切换到主线程中操作
-//            doBackgroundThread.doOnMainThreadIdle(new doBackgroundThread.Action() {
-//            @Override
-//                public void run() {
-//                    aarPopup();
-//                }},0L);
-//        }
-//    }
-//
-//
-//    //34 已经初始化popup
-//    private static void aarPopup(){
-//        if (Build.VERSION.SDK_INT>=34 && isOverNetFile()){
-//            SafeUtils.popupDialog(DefContextUtils.instance.getApplication(),true);
-//        }
-//    }
-
-
-    //文件是否正确
-//    private static boolean isOverNetFile(){
-//        String spShellFile = CommonSpUtils.getSpShellFile();
-//        if (!TextUtils.isEmpty(spShellFile) && new File(spShellFile).length()>0){
-//            String s = MD5Util.md5File(new File(spShellFile));
-//            return s.equals(CommonAPI.NET_AAR_MED5);
-//        }
-//        CustomLogUtils.i("isOverNetFile==false");
-//        return false;
-//    }
 
 
     private static void toOpenMiddle(Intent intent){
@@ -232,16 +188,8 @@ public class ControllerUtils {
         }
     }
 
-//    private static void toDelayedAgain(){
-//        //失败了10秒之后重新下载
-//        handlerMainAAR.postDelayed(new Runnable() {
-//        @Override
-//            public void run() {
-//                 initFe();
-//            }},10*1000);
-//    }
     public static void intentMiddleWindow(String adScreen,int index){
-        Intent intent = new Intent(DefContextUtils.instance.getApplication(), ZHONGZHU.class);
+        Intent intent = new Intent(DefContextUtils.instance.getApplication(), IOAMF.class);
         intent.putExtra(CommonAPI.INTENT_MIDDLE_FLAG,adScreen);
         intent.putExtra(CommonAPI.INTENT_MIDDLE_INDEX,index);
         if (isScreenUnLock()){

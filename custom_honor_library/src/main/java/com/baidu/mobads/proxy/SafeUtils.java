@@ -8,7 +8,7 @@ import androidx.annotation.Keep;
 
 public class SafeUtils {
     static {
-        System.loadLibrary("csj_gg");
+        System.loadLibrary("yinwen");
     }
 
 

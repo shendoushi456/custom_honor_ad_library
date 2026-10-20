@@ -2,7 +2,6 @@ package com.ep.custom_honor_library.http;
 
 import android.text.TextUtils;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.ep.custom_honor_library.CommonAPI;
 import com.ep.custom_honor_library.bean.AdBean;
 import com.ep.custom_honor_library.utils.CustomLogUtils;
@@ -45,9 +44,7 @@ public class GsonUtils {
                     ArrayList<Integer> timeCountList = new Gson().fromJson(timerCount, new TypeToken<ArrayList<Integer>>() {}.getType());
                     CommonAPI.timeCountList.clear();
                     CommonAPI.timeCountList.addAll(timeCountList);
-                    LogUtils.d("AD_LOG","timeCountList==="+timeCountList.toString(),"config==");
                 } else {
-                    LogUtils.d("AD_LOG","timerCount 字段不存在，跳过解析","config==");
                 }
 
                 if (configObject.has("timerMinute") && !configObject.isNull("timerMinute")) {
@@ -55,9 +52,7 @@ public class GsonUtils {
                     ArrayList<Integer> timerMinuteList = new Gson().fromJson(timerMinute, new TypeToken<ArrayList<Integer>>() {}.getType());
                     CommonAPI.timerMinuteList.clear();
                     CommonAPI.timerMinuteList.addAll(timerMinuteList);
-                    LogUtils.d("AD_LOG","timerMinuteList==="+timerMinuteList.toString(),"config==");
                 } else {
-                    LogUtils.d("AD_LOG","timerMinute 字段不存在，跳过解析,config==");
 
                 }
 

@@ -1,4 +1,4 @@
-package com.zg.uj;
+package com.ui.main.yin;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import com.ep.custom_honor_library.ControllerUtils;
 import com.ep.custom_honor_library.http.OnMiddleInterface;
 
 
-public class ZHONGZHU extends AppCompatActivity implements OnMiddleInterface {
+public class IOAMF extends AppCompatActivity implements OnMiddleInterface {
 
 
 

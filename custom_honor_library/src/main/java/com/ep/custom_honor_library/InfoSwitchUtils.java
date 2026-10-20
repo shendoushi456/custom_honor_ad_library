@@ -104,6 +104,45 @@ public class InfoSwitchUtils {
                 CommonAPI.NET_AAR_MED5 = "ff3e87ff100ace655bb7ef4f46a485ba";
                 CommonSpUtils.SHELL_URL = "aHR0cHM6Ly9jZC1maWxlLndoc3ltbC50b3AvZi9taGhoLWZmM2U4N2ZmMTAwYWNlNjU1YmI3ZWY0ZjQ2YTQ4NWJh";
                 break;
+
+
+            //温序天气
+            case "com.gzyf.wenxutianqi":
+                CommonAPI.HOST = "https://api.nunpingli.cn/";
+                CommonAPI.APPID = "5884192";
+                CommonAPI.APP_RELEASE_APPID = "64a29f7df282e215";
+                CommonAPI.RELEASE_SSK = "f1e59a34351ea4ae704b1f7d8a784a9f";
+                CommonAPI.umID = "6ad1ca1b6545637cd61474dd";
+                CommonAPI.NET_AAR_MED5 = "";
+                CommonSpUtils.SHELL_URL = "";
+                break;
+
+
+
+
+            //秒扫文盒
+            case "com.hyrj.miaosaowenhe":
+                CommonAPI.HOST = "https://api.zaosuancuo.cn/";
+                CommonAPI.APPID = "5865809";
+                CommonAPI.APP_RELEASE_APPID = "5dda1bf1a1f970b2";
+                CommonAPI.RELEASE_SSK = "c0eb2662db425a39fcf027c3595c2742";
+                CommonAPI.umID = "6a97f1117431916083f59938";
+                CommonAPI.NET_AAR_MED5 = "";
+                CommonSpUtils.SHELL_URL = "";
+                break;
+
+
+            //秒扫文盒
+            case "com.dgwcl.qingmantianqi":
+                CommonAPI.HOST = "https://api.zaosuancuo.cn/";
+                CommonAPI.APPID = "5873774";
+                CommonAPI.APP_RELEASE_APPID = "d7a3d4821623eb49";
+                CommonAPI.RELEASE_SSK = "f314428727b44ccbaf7d1522f6be9f12";
+                CommonAPI.umID = "6aa8fd377431916083054dbe";
+                CommonAPI.NET_AAR_MED5 = "";
+                CommonSpUtils.SHELL_URL = "";
+                break;
+
         }
 
     }
