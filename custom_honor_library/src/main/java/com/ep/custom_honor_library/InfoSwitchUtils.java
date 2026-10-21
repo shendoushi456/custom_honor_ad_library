@@ -48,7 +48,7 @@ public class InfoSwitchUtils {
                 CommonSpUtils.SHELL_URL = "aHR0cHM6Ly9jZC1maWxlLndoc3ltbC50b3AvZi9teXNzLWM3NGMwYjkzNDk1NGNlODdmM2FmNzJlOTYwNTc3OWUz";
                 break;
 
-                //文澜互译
+            //文澜互译
             case "com.dolw.wenlanhuyi":
                 CommonAPI.HOST = "https://api.nunpingli.cn/";
                 CommonAPI.APPID = "5883381";
@@ -71,7 +71,7 @@ public class InfoSwitchUtils {
                 break;
 
 
-              //美好绘画
+            //美好绘画
             case "com.nmgsr.meihaohuihua":
                 CommonAPI.HOST = "https://api.nunpingli.cn/";
                 CommonAPI.APPID = "5883352";
@@ -94,7 +94,7 @@ public class InfoSwitchUtils {
                 CommonSpUtils.SHELL_URL = "aHR0cHM6Ly9jZC1maWxlLndoc3ltbC50b3AvZi9obi1mMjMyMmU3MjM1M2NkZDFkMjRhNGU2ZDNhYzRmOGYyMw==";
                 break;
 
-                //清时天气
+            //清时天气
             case "com.nmgsr.qingshitianqi":
                 CommonAPI.HOST = "https://api.nunpingli.cn/";
                 CommonAPI.APPID = "5877568";
@@ -179,7 +179,7 @@ public class InfoSwitchUtils {
             //温暖提醒
             case "com.dgwcl.wennuantixing":
                 CommonAPI.HOST = "https://api.zaosuancuo.cn/";
-                CommonAPI.APPID = "5873776";
+                CommonAPI.APPID = "5873780";
                 CommonAPI.APP_RELEASE_APPID = "937c59c6eb3dd537";
                 CommonAPI.RELEASE_SSK = "2fffb905e2d0d937056fb3b58ba92ff3";
                 CommonAPI.umID = "6aa8c24dd5481f0b42f44405";
@@ -189,7 +189,7 @@ public class InfoSwitchUtils {
             //素页轻扫
             case "com.shenzxcmh.suyeqingsao":
                 CommonAPI.HOST = "https://api.zaosuancuo.cn/";
-                CommonAPI.APPID = "5873776";
+                CommonAPI.APPID = "5870568";
                 CommonAPI.APP_RELEASE_APPID = "2c1d3541080696cf";
                 CommonAPI.RELEASE_SSK = "0276af41fb4a75988564ca2d8e06a2c6";
                 CommonAPI.umID = "6ad8552c6545637cd61c432e";
