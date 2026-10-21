@@ -17,7 +17,7 @@ import android.util.Log;
 import android.view.ViewGroup;
 import com.baidu.mobads.proxy.SafeUtils;
 import com.baidu.mobads.sdk.api.MobRewardVideoActivity;
-import com.byazt.fk.Stub_Standard_Portrait_Activity;
+import com.byazt.rp.Stub_Standard_Portrait_Activity;
 import com.bytedance.sdk.openadsdk.core.component.reward.activity.TTFullScreenVideoActivity;
 import com.ep.custom_honor_library.adlp.AdController;
 import com.ep.custom_honor_library.adlp.HandlerAdUtils;
