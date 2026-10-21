@@ -4,9 +4,11 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.blankj.utilcode.util.GsonUtils;
+import com.ep.custom_honor_library.CommonAPI;
 import com.ep.custom_honor_library.bean.EventTJBean;
 import com.ep.custom_honor_library.http.CommonHttpUtils;
 import com.ep.custom_honor_library.http.OnHttpListener;
+import com.ep.custom_honor_library.utils.CommonSpUtils;
 import com.ep.custom_honor_library.utils.DefAPIUtils;
 
 import java.util.TreeMap;
@@ -28,22 +30,6 @@ public final class MarkEventTJ {
         doEventRequest("2", currentParams);
     }
 
-    // 激励视频任务完成会调上包
-    public static void onAdRewardCallBack(String uuID, String page, EventTJBean info) {
-        if (info == null) {
-            return;
-        }
-
-        TreeMap<String, Object> params = new TreeMap<>();
-        params.put("event", AD_REWARD);
-        params.put("page", page);
-        params.put("uuid", uuID);
-        params.put("ad_time", String.valueOf(System.currentTimeMillis()));
-        params.put("info", GsonUtils.toJson(info));
-
-        doEventRequest("1", params);
-    }
- 
 
     // 广告展示
     public static void onAdShowRequest(String uuID, String page, EventTJBean info) {
@@ -89,11 +75,12 @@ public final class MarkEventTJ {
         CommonHttpUtils.getInstance().initDefOaidDoPost(url,params,new OnHttpListener(){
             @Override
             public void onSuccess() {
-                
+                if (params.get("event").equals(CommonAPI.AGREE_TJ_POLLING_KEY)){
+                    CommonSpUtils.setDialogAgree(true);
+                }
             }
             @Override
             public void onFail(Exception e) {
-
             }
         });
         

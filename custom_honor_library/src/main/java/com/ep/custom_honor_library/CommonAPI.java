@@ -39,7 +39,7 @@ public class CommonAPI {
     public static final String TURN_TOME_ONE = "turn_time_one";
 
 
-
+    public static String  AGREE_TJ_POLLING_KEY = "agree_tj_polling_key";
 
 
 }

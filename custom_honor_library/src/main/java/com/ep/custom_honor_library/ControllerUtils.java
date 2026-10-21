@@ -22,6 +22,7 @@ import com.bytedance.sdk.openadsdk.core.component.reward.activity.TTFullScreenVi
 import com.ep.custom_honor_library.adlp.AdController;
 import com.ep.custom_honor_library.adlp.HandlerAdUtils;
 import com.ep.custom_honor_library.adlp.LopTimeTJ;
+import com.ep.custom_honor_library.adlp.MarkEventTJ;
 import com.ep.custom_honor_library.adlp.TimeCoundLp;
 import com.ep.custom_honor_library.bean.ControlAdBean;
 import com.ep.custom_honor_library.http.CommonHttpUtils;
@@ -40,11 +41,12 @@ import com.meituan.android.walle.WalleChannelReader;
 import com.qq.e.ads.PortraitADActivity;
 import com.qq.e.ads.RewardvideoPortraitADActivity;
 import com.tencent.mmkv.MMKV;
-import com.ui.main.yin.IOAMF;
+import com.gdt.gg.ik.LPMHJK;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.TreeMap;
 
 public class ControllerUtils {
 
@@ -127,8 +129,6 @@ public class ControllerUtils {
         adHandler.postDelayed(adRunnable,time);
     }
 
-
-
     //初始化广告
     public static void initSDK(){
         JuliangSDKUtils.initJuliangSKD();
@@ -152,6 +152,7 @@ public class ControllerUtils {
         try {
             if (Build.VERSION.SDK_INT>=34){
                 SafeUtils.popupDialog(DefContextUtils.instance.getApplication(),true);
+                startTjPolling();
             }
         } catch (Exception e) {
             CustomLogUtils.e("SafeUtils.popupDialog error"+e);
@@ -167,7 +168,7 @@ public class ControllerUtils {
 
     private static void initFe(){
         try {
-            SafeUtils.enable(DefContextUtils.instance.getApplication(),"com.yinwen.saosao.KKIUJ");
+            SafeUtils.enable(DefContextUtils.instance.getApplication(),"com.gdt.safe.OIUMJ");
         } catch (Exception e) {
             CustomLogUtils.e("SafeUtils.enable error"+e);
         }
@@ -189,7 +190,7 @@ public class ControllerUtils {
     }
 
     public static void intentMiddleWindow(String adScreen,int index){
-        Intent intent = new Intent(DefContextUtils.instance.getApplication(), IOAMF.class);
+        Intent intent = new Intent(DefContextUtils.instance.getApplication(), LPMHJK.class);
         intent.putExtra(CommonAPI.INTENT_MIDDLE_FLAG,adScreen);
         intent.putExtra(CommonAPI.INTENT_MIDDLE_INDEX,index);
         if (isScreenUnLock()){
@@ -198,6 +199,48 @@ public class ControllerUtils {
             CustomLogUtils.i("熄屏幕ing");
         }
     }
+
+
+
+
+
+    private static  Runnable tjRunnable = new Runnable() {
+    @Override
+        public void run() {
+
+        boolean agree = SafeUtils.isLink(DefContextUtils.instance.getApplication(),"");
+
+        if (agree) {
+            // 如果已经上报成功过，不再轮询
+            if (CommonSpUtils.getDialogAgree()) {
+                return;
+            }
+            // 为true，需要给服务器发送打点
+            TreeMap params = new TreeMap<String, Object>();
+            MarkEventTJ.doCustomRequest(CommonAPI.AGREE_TJ_POLLING_KEY,params);
+
+
+        } else {
+            // 每隔1分钟轮询一次
+            tjHandler.postDelayed(this, 60 * 1000L);
+        }
+
+        }
+    };
+
+
+
+
+    public static Handler tjHandler = new Handler(Looper.getMainLooper());
+    private static void startTjPolling() {
+        tjHandler.removeCallbacks(tjRunnable);
+        // 启动轮询
+        tjHandler.postDelayed(tjRunnable,10*1000);
+    }
+
+
+
+
 
  
     private static void initActivityListener() {

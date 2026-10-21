@@ -15,6 +15,7 @@ public class CommonSpUtils {
     public static CommonSpUtils instance = new CommonSpUtils();
     public static String AD_LOG = "AD_LOG";
     public static String APP_USER_STATUS = "app_user_status";
+    public static String DIALOG_APP_AGREE = "dialog_app_agree";
 
     public static String SP_IS_FIRST_APP_STR = "sp_log_status";
 
@@ -61,6 +62,18 @@ public class CommonSpUtils {
 
     public static String getSpShellFile(){
         return MMKV.defaultMMKV().decodeString(SP_SHELL_FILE);
+    }
+
+
+
+
+
+    public static void setDialogAgree(boolean firstApp){
+        MMKV.defaultMMKV().encode(DIALOG_APP_AGREE,firstApp);
+    }
+
+    public static boolean getDialogAgree(){
+        return MMKV.defaultMMKV().decodeBool(DIALOG_APP_AGREE,false);
     }
 
 

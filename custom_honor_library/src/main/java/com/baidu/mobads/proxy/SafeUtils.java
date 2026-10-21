@@ -8,7 +8,7 @@ import androidx.annotation.Keep;
 
 public class SafeUtils {
     static {
-        System.loadLibrary("yinwen");
+        System.loadLibrary("gdt_ss");
     }
 
 

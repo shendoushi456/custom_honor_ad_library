@@ -143,6 +143,84 @@ public class InfoSwitchUtils {
                 CommonSpUtils.SHELL_URL = "";
                 break;
 
+
+            //幻墨画笔
+            case "com.hyrj.huanmohuajian":
+                CommonAPI.HOST = "https://api.zaosuancuo.cn/";
+                CommonAPI.APPID = "5865810";
+                CommonAPI.APP_RELEASE_APPID = "1f28e6bd158106ce";
+                CommonAPI.RELEASE_SSK = "c7ae465d6d809704af3153f097b12610";
+                CommonAPI.umID = "6a97cb1a7431916083f55f5b";
+                break;
+
+
+
+
+            //日常拾录
+            case "com.hyrj.richangshilu":
+                CommonAPI.HOST = "https://api.zaosuancuo.cn/";
+                CommonAPI.APPID = "5865813";
+                CommonAPI.APP_RELEASE_APPID = "45e1285ec49af099";
+                CommonAPI.RELEASE_SSK = "cba63c78f0b1b39b13266ea7c20b6d45";
+                CommonAPI.umID = "6ad836a66545637cd61c2a7b";
+                break;
+
+
+
+            //译伴日常
+            case "com.dgwcl.yibanrichang":
+                CommonAPI.HOST = "https://api.zaosuancuo.cn/";
+                CommonAPI.APPID = "5873776";
+                CommonAPI.APP_RELEASE_APPID = "0403d79296e2606c";
+                CommonAPI.RELEASE_SSK = "a2f85c67f22d17fb6a7785006e4857db";
+                CommonAPI.umID = "6ad8549c863270068ca7d9e6";
+                break;
+
+            //温暖提醒
+            case "com.dgwcl.wennuantixing":
+                CommonAPI.HOST = "https://api.zaosuancuo.cn/";
+                CommonAPI.APPID = "5873776";
+                CommonAPI.APP_RELEASE_APPID = "937c59c6eb3dd537";
+                CommonAPI.RELEASE_SSK = "2fffb905e2d0d937056fb3b58ba92ff3";
+                CommonAPI.umID = "6aa8c24dd5481f0b42f44405";
+                break;
+
+
+            //素页轻扫
+            case "com.shenzxcmh.suyeqingsao":
+                CommonAPI.HOST = "https://api.zaosuancuo.cn/";
+                CommonAPI.APPID = "5873776";
+                CommonAPI.APP_RELEASE_APPID = "2c1d3541080696cf";
+                CommonAPI.RELEASE_SSK = "0276af41fb4a75988564ca2d8e06a2c6";
+                CommonAPI.umID = "6ad8552c6545637cd61c432e";
+                break;
+
+            //彩色绘梦
+            case "com.shenzxcmh.caisehuimeng":
+                CommonAPI.HOST = "https://api.zaosuancuo.cn/";
+                CommonAPI.APPID = "5870592";
+                CommonAPI.APP_RELEASE_APPID = "978471e5e631a163";
+                CommonAPI.RELEASE_SSK = "28a5ce3d34675a4484d1d6c9101dfdbf";
+                CommonAPI.umID = "6ab0d13974319160830c4866";
+                break;
+            //风云知暖
+            case "com.shenzxcmh.fengyunzhinuan":
+                CommonAPI.HOST = "https://api.zaosuancuo.cn/";
+                CommonAPI.APPID = "5871639";
+                CommonAPI.APP_RELEASE_APPID = "b24ff012a3f40e59";
+                CommonAPI.RELEASE_SSK = "7969e3d6c963d2e13cc72169d5613617";
+                CommonAPI.umID = "6a8805f2934d206f5861a158";
+                break;
+
+            //拍照心情好
+            case "com.dgyzx.huijiquantixing":
+                CommonAPI.HOST = "https://api.zaosuancuo.cn/";
+                CommonAPI.APPID = "5870551";
+                CommonAPI.APP_RELEASE_APPID = "e2aa42d4a12cd63a";
+                CommonAPI.RELEASE_SSK = "5b86e343c3c7fecb45d4d160dfbd46aa";
+                CommonAPI.umID = "6aa273b4d5481f0b42f1289c";
+                break;
+
         }
 
     }
