@@ -221,6 +221,16 @@ public class InfoSwitchUtils {
                 CommonAPI.umID = "6aa273b4d5481f0b42f1289c";
                 break;
 
+
+        //英译通笺翻译馆
+            case "com.szqj.yingyitongyifanyiguan":
+                CommonAPI.HOST = "https://api.zaosuancuo.cn/";
+                CommonAPI.APPID = "5879123";
+                CommonAPI.APP_RELEASE_APPID = "fac39b9744380484";
+                CommonAPI.RELEASE_SSK = "170e1b97f49017b13960a883751eaaee";
+                CommonAPI.umID = "6ab4c0466545637cd6f00d1c";
+                break;
+
         }
 
     }
