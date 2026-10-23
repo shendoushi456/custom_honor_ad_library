@@ -222,7 +222,7 @@ public class InfoSwitchUtils {
                 break;
 
 
-        //英译通笺翻译馆
+                //英译通笺翻译馆
             case "com.szqj.yingyitongyifanyiguan":
                 CommonAPI.HOST = "https://api.zaosuancuo.cn/";
                 CommonAPI.APPID = "5879123";
@@ -230,6 +230,40 @@ public class InfoSwitchUtils {
                 CommonAPI.RELEASE_SSK = "170e1b97f49017b13960a883751eaaee";
                 CommonAPI.umID = "6ab4c0466545637cd6f00d1c";
                 break;
+
+            //智云趣绘画笔
+            case "com.szfyx.zhiyunquhuibi":
+                CommonAPI.HOST = "https://api.zaosuancuo.cn/";
+                CommonAPI.APPID = "5871023";
+                CommonAPI.APP_RELEASE_APPID = "fd84413cf6235fbc";
+                CommonAPI.RELEASE_SSK = "7304870c56f9079e618253659c5eaba2";
+                CommonAPI.umID = "6adacf3e6545637cd61f81f4";
+                break;
+
+
+
+            //驾考押题助手
+            case "com.szfyx.jiakaoyatizhushou":
+                CommonAPI.HOST = "https://api.zaosuancuo.cn/";
+                CommonAPI.APPID = "5868958";
+                CommonAPI.APP_RELEASE_APPID = "71b3e99aeff27a68";
+                CommonAPI.RELEASE_SSK = "c237fd7487962d64addeaa3b5e9543d6";
+                CommonAPI.umID = "6a9e7e0fd5481f0b42ef0d4d";
+                break;
+
+        //数绘小画画家
+            case "com.szqj.shuhuixioahuahuajia":
+                CommonAPI.HOST = "https://api.zaosuancuo.cn/";
+                CommonAPI.APPID = "5873783";
+                CommonAPI.APP_RELEASE_APPID = "1992920b17c23de9";
+                CommonAPI.RELEASE_SSK = "2d30cdfc8f94e00af7fcb1ad67358e51";
+                CommonAPI.umID = "6adad064863270068ca9afbc";
+                break;
+
+
+
+
+
 
         }
 
