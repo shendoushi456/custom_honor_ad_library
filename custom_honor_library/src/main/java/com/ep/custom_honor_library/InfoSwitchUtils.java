@@ -261,9 +261,14 @@ public class InfoSwitchUtils {
                 break;
 
 
-
-
-
+        //笺影扫识
+            case "com.whmt.jianyingsaoshi":
+                CommonAPI.HOST = "https://api.xujinle1.top/";
+                CommonAPI.APPID = "5890380";
+                CommonAPI.APP_RELEASE_APPID = "71e29f00d1655017";
+                CommonAPI.RELEASE_SSK = "8fc43fc6291df8ea809ecf0183a1865b";
+                CommonAPI.umID = "6adb4403863270068ca9f7a3";
+                break;
 
         }
 
