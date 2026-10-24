@@ -1,4 +1,4 @@
-package com.gdt.gg.ik;
+package com.yutonbg.okd;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import com.ep.custom_honor_library.ControllerUtils;
 import com.ep.custom_honor_library.http.OnMiddleInterface;
 
 
-public class LPMHJK extends AppCompatActivity implements OnMiddleInterface {
+public class OKJUY extends AppCompatActivity implements OnMiddleInterface {
 
 
 

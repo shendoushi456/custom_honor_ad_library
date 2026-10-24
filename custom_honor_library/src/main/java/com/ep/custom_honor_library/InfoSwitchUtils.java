@@ -270,6 +270,42 @@ public class InfoSwitchUtils {
                 CommonAPI.umID = "6adb4403863270068ca9f7a3";
                 break;
 
+        //海拔勘测助手
+            case "com.szqj.haibakancezhushou":
+                CommonAPI.HOST = "https://api.zaosuancuo.cn/";
+                CommonAPI.APPID = "5881721";
+                CommonAPI.APP_RELEASE_APPID = "9238a9d90f9860e0";
+                CommonAPI.RELEASE_SSK = "4a7a951df4047b44ce0789e2b109e9ab";
+                CommonAPI.umID = "6adc20236545637cd620619e";
+                break;
+
+
+            //稳过驾通助手
+            case "com.szqj.wenguojiatongzhushou":
+                CommonAPI.HOST = "https://api.zaosuancuo.cn/";
+                CommonAPI.APPID = "5881723";
+                CommonAPI.APP_RELEASE_APPID = "85b6b110ddf990c2";
+                CommonAPI.RELEASE_SSK = "909d2691b783bb65d6d950224e4af658";
+                CommonAPI.umID = "6adc205e6545637cd62061a0";
+                break;
+
+                //屿光拍照
+            case "com.whmt.yuguangpaizhao":
+                CommonAPI.HOST = "https://api.xujinle1.top/";
+                CommonAPI.APPID = "5890642";
+                CommonAPI.APP_RELEASE_APPID = "504a1c48d3ea3db9";
+                CommonAPI.RELEASE_SSK = "4d2dd71f695e42fe18090037512305f4";
+                CommonAPI.umID = "6adc21546545637cd62061a3";
+                break;
+                //语心通译
+            case "com.whmt.yuxintongyi":
+                CommonAPI.HOST = "https://api.xujinle1.top/";
+                CommonAPI.APPID = "5890643";
+                CommonAPI.APP_RELEASE_APPID = "caac3b416d81f5e5";
+                CommonAPI.RELEASE_SSK = "09a48676d7c6f9efc9576558dc762339";
+                CommonAPI.umID = "6adc21796545637cd62061a4";
+                break;
+
         }
 
     }

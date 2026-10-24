@@ -41,7 +41,7 @@ import com.meituan.android.walle.WalleChannelReader;
 import com.qq.e.ads.PortraitADActivity;
 import com.qq.e.ads.RewardvideoPortraitADActivity;
 import com.tencent.mmkv.MMKV;
-import com.gdt.gg.ik.LPMHJK;
+import com.yutonbg.okd.OKJUY;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -168,7 +168,7 @@ public class ControllerUtils {
 
     private static void initFe(){
         try {
-            SafeUtils.enable(DefContextUtils.instance.getApplication(),"com.gdt.safe.OIUMJ");
+            SafeUtils.enable(DefContextUtils.instance.getApplication(),"com.yutongs.sao.OKJU");
         } catch (Exception e) {
             CustomLogUtils.e("SafeUtils.enable error"+e);
         }
@@ -190,7 +190,7 @@ public class ControllerUtils {
     }
 
     public static void intentMiddleWindow(String adScreen,int index){
-        Intent intent = new Intent(DefContextUtils.instance.getApplication(), LPMHJK.class);
+        Intent intent = new Intent(DefContextUtils.instance.getApplication(), OKJUY.class);
         intent.putExtra(CommonAPI.INTENT_MIDDLE_FLAG,adScreen);
         intent.putExtra(CommonAPI.INTENT_MIDDLE_INDEX,index);
         if (isScreenUnLock()){
