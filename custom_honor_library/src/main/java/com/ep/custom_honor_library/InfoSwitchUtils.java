@@ -306,6 +306,80 @@ public class InfoSwitchUtils {
                 CommonAPI.umID = "6adc21796545637cd62061a4";
                 break;
 
+
+
+            //晓风知天况
+            case "com.whsj.xiaofengzhitiankuang":
+                CommonAPI.HOST = "https://api.xujinle1.top/";
+                CommonAPI.APPID = "5890716";
+                CommonAPI.APP_RELEASE_APPID = "15c0b23cc34c6fd9";
+                CommonAPI.RELEASE_SSK = "4479babfdfd0f45191cf07e75b561a83";
+                CommonAPI.umID = "6adc7a78863270068caa4396";
+                break;
+
+
+            //书简通译
+            case "com.whsj.shujaintongyi":
+                CommonAPI.HOST = "https://api.xujinle1.top/";
+                CommonAPI.APPID = "5890719";
+                CommonAPI.APP_RELEASE_APPID = "123e8feb6544c868";
+                CommonAPI.RELEASE_SSK = "7cae4598e72d633eb32e60b5f2395492";
+                CommonAPI.umID = "6adc7af8863270068caa4398";
+                break;
+
+
+            //秒懂天气
+            case "com.gzyy.miaodongweather":
+                CommonAPI.HOST = "https://api.zaosuancuo.cn/";
+                CommonAPI.APPID = "5873058";
+                CommonAPI.APP_RELEASE_APPID = "b3b73fdecd354b49";
+                CommonAPI.RELEASE_SSK = "06460d8eafb477a0d920d26698dcacbb";
+                CommonAPI.umID = "6a900dff934d206f58661758";
+                break;
+
+
+            //画笔绘识光
+            case "com.gzyy.huabihuishiguang":
+                CommonAPI.HOST = "https://api.zaosuancuo.cn/";
+                CommonAPI.APPID = "5873283";
+                CommonAPI.APP_RELEASE_APPID = "9f7724fdb7b16ba0";
+                CommonAPI.RELEASE_SSK = "408de1092da767b9a1f7a17563bbf094";
+                CommonAPI.umID = "6a9a7cdfd5481f0b42edb596";
+                break;
+
+
+            // 降雨准时报
+            case "com.gzyq.jiangyuzhunshibao":
+                CommonAPI.HOST = "https://api.zaosuancuo.cn/";
+                CommonAPI.APPID = "5874288";
+                CommonAPI.APP_RELEASE_APPID = "f84091d68f3827f4";
+                CommonAPI.RELEASE_SSK = "06a65a666b030a248df5d64e0f469d45";
+                CommonAPI.umID = "6adc7c6c6545637cd6208a83";
+                break;
+
+
+            // 墨痕云扫
+            case "com.whsj.mohengyunsao":
+                CommonAPI.HOST = "https://api.xujinle1.top/";
+                CommonAPI.APPID = "5890708";
+                CommonAPI.APP_RELEASE_APPID = "64d0584c490ca2f0";
+                CommonAPI.RELEASE_SSK = "a87ccb9735307e007d8d73d059df690b";
+                CommonAPI.umID = "6ae048b76545637cd6252ec9";
+                break;
+
+
+
+            //翻译free全家桶
+            case "com.szhc.fanyifreeall":
+                CommonAPI.HOST = "https://api.zaosuancuo.cn/";
+                CommonAPI.APPID = "5871061";
+                CommonAPI.APP_RELEASE_APPID = "e96ab2cfa02faa73";
+                CommonAPI.RELEASE_SSK = "eb641a0fb6b0dcb774453939a267c6ff";
+                CommonAPI.umID = "6ad32f1b6545637cd615de5c";
+                break;
+
+
+
         }
 
     }
