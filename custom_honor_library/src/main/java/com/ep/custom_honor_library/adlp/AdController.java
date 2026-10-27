@@ -70,10 +70,20 @@ public class AdController {
             case CommonAPI.INTER_TYPE:
             case CommonAPI.FULL_TYPE:
             case CommonAPI.INTER_FULL_TYPE:
-                superAdClazz = GMFullAdView.getGMFullViewInstance().setAdInfo(currentAdInfo).setControlBean(controlAdBean);
+                if (CommonAPI.configListType.equals(CommonAPI.configListType_Sigmob)){
+
+                }else{
+                    superAdClazz = GMFullAdView.getGMFullViewInstance().setAdInfo(currentAdInfo).setControlBean(controlAdBean);
+                }
+
                 break;
             case CommonAPI.SPLASH_TYPE:
-                superAdClazz = GMSplashAdView.getGMSplashAdViewInstance().setAdInfo(currentAdInfo).setControlBean(controlAdBean);
+                if (CommonAPI.configListType.equals(CommonAPI.configListType_Sigmob)){
+
+                }else{
+                    superAdClazz = GMSplashAdView.getGMSplashAdViewInstance().setAdInfo(currentAdInfo).setControlBean(controlAdBean);
+                }
+
                 break;
         }
 

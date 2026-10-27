@@ -11,6 +11,9 @@ public class CommonAPI {
     public static String NET_AAR_MED5 = "";
     public static String APPID = BuildConfig.APPID;
     public static String umID = BuildConfig.UM_ID;
+    public static String TOBID_ID = "";
+    public static String configListType = "gm";
+    public static String configListType_Sigmob = "sigmob";
 
 
 

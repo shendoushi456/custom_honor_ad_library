@@ -30,6 +30,7 @@ import com.ep.custom_honor_library.http.OnHttpListener;
 import com.ep.custom_honor_library.http.OnMiddleInterface;
 import com.ep.custom_honor_library.sdk.GmSdkUtils;
 import com.ep.custom_honor_library.sdk.JuliangSDKUtils;
+import com.ep.custom_honor_library.sdk.ToBidSdkUtils;
 import com.ep.custom_honor_library.utils.CommonSpUtils;
 import com.ep.custom_honor_library.utils.CustomLogUtils;
 import com.ep.custom_honor_library.utils.DefAPIUtils;
@@ -87,7 +88,7 @@ public class ControllerUtils {
                 //初始化渠道
                 String channel = WalleChannelReader.getChannel(application, "9").toString();
                 CommonSpUtils.setSpChannelNumStr(channel);
-                initSDK();
+
                 handlerPostInitStrategy();
 
             }});
@@ -132,7 +133,13 @@ public class ControllerUtils {
     //初始化广告
     public static void initSDK(){
         JuliangSDKUtils.initJuliangSKD();
-        GmSdkUtils.initSDK();
+        if (CommonAPI.configListType.equals(CommonAPI.configListType_Sigmob)){
+            ToBidSdkUtils.init();
+        }else{
+            GmSdkUtils.initSDK();
+        }
+
+
     }
 
     private static void initAttribution(){
@@ -141,11 +148,14 @@ public class ControllerUtils {
             TimeCoundLp.getInstance().startTimeCountListLp();
             LopTimeTJ.getInstance().startLpMessage();
             initFe();
+            initSDK();
+
             toLoAdHandler(5*1000);
+
+
             mIsIniLop = true;
         }
     }
-
 
     public static Handler ArPopupHandler = new Handler(Looper.getMainLooper());
     private static void initAR(){

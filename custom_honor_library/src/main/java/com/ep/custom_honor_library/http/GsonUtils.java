@@ -29,6 +29,10 @@ public class GsonUtils {
                 decryptObject = new JSONObject(json);
                 String config = decryptObject.getString("config");
                 JSONObject configObject = new JSONObject(config);
+                String configListType = configObject.getString("configListType");
+                if (!TextUtils.isEmpty(configListType)){
+                    CommonAPI.configListType =  configListType;
+                }
 
                 int num = configObject.getInt("hour_turn_time");
 //                int adAutoCloseTime = configObject.getInt("adAutoCloseTime");
