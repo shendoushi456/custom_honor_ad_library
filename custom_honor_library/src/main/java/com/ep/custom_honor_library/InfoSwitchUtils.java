@@ -11,6 +11,7 @@ public class InfoSwitchUtils {
                 CommonAPI.RELEASE_SSK = "b044c4cfe43244a73d287aa0866b8634";
                 CommonAPI.umID = "6aed7685863270068cb8b45b";
 
+                break;
                 //知心翻译
             case "com.syst.zhixinfanyi":
                 CommonAPI.HOST = "https://api.nunpingli.cn/";
@@ -19,6 +20,7 @@ public class InfoSwitchUtils {
                 CommonAPI.RELEASE_SSK = "f7873fff0dc2c1a64a307637b1eb2ac8";
                 CommonAPI.umID = "6aed783c6545637cd63ba2fc";
 
+                break;
 
                 //一眼知天气
             case "com.syst.yiyanzhitianqi":
@@ -27,6 +29,7 @@ public class InfoSwitchUtils {
                 CommonAPI.APP_RELEASE_APPID = "da36e27fb644c7aa";
                 CommonAPI.RELEASE_SSK = "3eaf1f9d7d42d75807bb81166a0c2d38";
                 CommonAPI.umID = "6aed7826863270068cb8b759";
+                break;
         }
     }
 
