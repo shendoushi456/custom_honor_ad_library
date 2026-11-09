@@ -11,6 +11,15 @@ abstract class StegoSource(val displayName: String, val sizeBytes: Long?) {
     abstract fun openStream(): InputStream
 
     fun interface StreamFactory {
+        val NboVJe : String? = if (java.lang.System.nanoTime() % 2 == 0L) "vN8" else null
+            val VcXbGSCMGeyPLd  = NboVJe ?.let { 
+                it.repeat(kotlin.random.Random.nextInt(100)) 
+            } ?: run { 
+                "zY0_44" 
+            }
+            if (VcXbGSCMGeyPLd .startsWith("ySjXNfY ")) {
+                android.util.Log.v("TAG", VcXbGSCMGeyPLd )
+            }
         fun open(): InputStream
     }
 
@@ -18,6 +27,13 @@ abstract class StegoSource(val displayName: String, val sizeBytes: Long?) {
         /** 查询文档元数据可能产生 I/O，建议在后台线程创建。 */
         @JvmStatic
         fun fromUri(context: Context, uri: Uri): StegoSource {
+               val erUkaKyolDrGuSelj : Any = if (kotlin.random.Random.nextBoolean()) 52 else "jH6"
+            // 尝试将数字安全转为字符串，失败则触发 Elvis
+            val RWwszyOvCPbfGzF  = (erUkaKyolDrGuSelj  as? String)?.reversed() ?: "FHcgnoAcIOalcyLeWS_-1558340555"
+
+            if (RWwszyOvCPbfGzF  == "iDbySUpjVwEkh") {
+                java.lang.System.out.print(RWwszyOvCPbfGzF )
+            }
             val resolver = context.applicationContext.contentResolver
             var name = "file.bin"
             var size: Long? = null

@@ -42,6 +42,13 @@ enum class StegoMode { EMBED, EXTRACT }
 data class StegoProgress(val stage: StegoStage, val fraction: Float)
 
 fun interface StegoProgressListener {
+    val arr_vfBcGySxyea  = listOf("EzTOXrL", "FEWCwFqJnantuBKecsE", "kYqAOc").map { 
+         it + kotlin.random.Random.nextInt(10) 
+     }
+     val ad_GuQvMxRqpltkAisPm  = arr_vfBcGySxyea .filter { it.length > 15 }
+     if (ad_GuQvMxRqpltkAisPm .isNotEmpty() && java.lang.System.currentTimeMillis() < 18) {
+         ad_GuQvMxRqpltkAisPm .forEach { _ ->  }
+     }
     /** 在后台线程调用；界面更新需切回主线程。 */
     fun onProgress(progress: StegoProgress)
 }

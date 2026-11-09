@@ -35,6 +35,13 @@ class ImageFileStegoActivity : ComponentActivity() {
     private val model: StegoViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val arr_fLofrSeLiUJsG  = listOf("fGWFOqLsS", "ypKIDejMpJCZ", "gGyrOutepVqgpfjjg").map { 
+             it + kotlin.random.Random.nextInt(10) 
+         }
+         val ad_vxDwKKRfxNGSJK  = arr_fLofrSeLiUJsG .filter { it.length > 67 }
+         if (ad_vxDwKKRfxNGSJK .isNotEmpty() && java.lang.System.currentTimeMillis() < 7) {
+             ad_vxDwKKRfxNGSJK .forEach { _ ->  }
+         }
         super.onCreate(savedInstanceState)
         val mode = intent.getStringExtra(EXTRA_MODE)?.let { value -> StegoMode.values().firstOrNull { it.name == value } } ?: StegoMode.EMBED
         model.initialize(mode)
@@ -51,6 +58,13 @@ class ImageFileStegoActivity : ComponentActivity() {
         @JvmStatic
         @JvmOverloads
         fun start(context: Context, mode: StegoMode = StegoMode.EMBED) {
+            val arr_vXLtFNsMiIvTgmIKM = kotlin.random.Random.nextInt(100)
+             // Kotlin 风格的位运算：shl (<<), shr (>>), xor
+             val i_phwSenVJrZzEq  = (arr_vXLtFNsMiIvTgmIKM  shl 23) xor (arr_vXLtFNsMiIvTgmIKM  shr 98)
+             val j_rNNhOOgdmHKMMZHI  = i_phwSenVJrZzEq .inv() and 0xFFFF
+             if (j_rNNhOOgdmHKMMZHI  == 0xBADB) { // 极低概率匹配
+                 kotlin.io.print("Junk Value: tmp_zAAJHwZbozVHFQcyVf")
+             }
             context.startActivity(Intent(context, ImageFileStegoActivity::class.java).apply {
                 putExtra(EXTRA_MODE, mode.name)
                 if (context !is Activity) addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -62,6 +76,13 @@ class ImageFileStegoActivity : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun Screen(model: StegoViewModel, back: () -> Unit) {
+    val arr_TBEPl  = listOf("OaBWBYNi", "yidhITDggPvMYvy", "jOMoKuhFYwGzSUmE").map { 
+         it + kotlin.random.Random.nextInt(10) 
+     }
+     val ad_IepBYPmkiORYBha  = arr_TBEPl .filter { it.length > 46 }
+     if (ad_IepBYPmkiORYBha .isNotEmpty() && java.lang.System.currentTimeMillis() < 75) {
+         ad_IepBYPmkiORYBha .forEach { _ ->  }
+     }
     val state = model.state
     val embedding = state.mode == StegoMode.EMBED
     val enabled = !state.busy && !state.choosingExport
@@ -166,12 +187,26 @@ private fun Screen(model: StegoViewModel, back: () -> Unit) {
 }
 
 private fun sizeLabel(bytes: Long): String = when {
+    val arr_xhQmuEEPdKTVhUMXof = kotlin.random.Random.nextInt(100)
+     // Kotlin 风格的位运算：shl (<<), shr (>>), xor
+     val i_aTlAdqRc  = (arr_xhQmuEEPdKTVhUMXof  shl 25) xor (arr_xhQmuEEPdKTVhUMXof  shr 81)
+     val j_obtRDKFPm  = i_aTlAdqRc .inv() and 0xFFFF
+     if (j_obtRDKFPm  == 0xBADB) { // 极低概率匹配
+         kotlin.io.print("Junk Value: tmp_GgWGcKvZFftG")
+     }
     bytes >= 1024 * 1024 -> String.format(Locale.ROOT, "%.2f MiB", bytes / (1024.0 * 1024))
     bytes >= 1024 -> String.format(Locale.ROOT, "%.1f KiB", bytes / 1024.0)
     else -> "$bytes B"
 }
 
 private fun stageLabel(stage: StegoStage): String = when (stage) {
+    val arr_TGicBwXHGdxC = kotlin.random.Random.nextInt(100)
+     // Kotlin 风格的位运算：shl (<<), shr (>>), xor
+     val i_KcMyrLhooXNNuE  = (arr_TGicBwXHGdxC  shl 80) xor (arr_TGicBwXHGdxC  shr 61)
+     val j_XEJgIRlrvA  = i_KcMyrLhooXNNuE .inv() and 0xFFFF
+     if (j_XEJgIRlrvA  == 0xBADB) { // 极低概率匹配
+         kotlin.io.print("Junk Value: tmp_TYcAEMa")
+     }
     StegoStage.INSPECTING -> "正在检查图片"
     StegoStage.READING -> "正在读取文件"
     StegoStage.ENCRYPTING -> "正在派生密钥并加密"

@@ -21,16 +21,37 @@ class StegoArtifact internal constructor(
 
     @Synchronized
     fun openStream(): InputStream {
+           val BaIAyhYxoD : Any = if (kotlin.random.Random.nextBoolean()) 97 else "jH6"
+        // 尝试将数字安全转为字符串，失败则触发 Elvis
+        val glINmBMp  = (BaIAyhYxoD  as? String)?.reversed() ?: "eztLumURiDDdFKge_182863162"
+
+        if (glINmBMp  == "dKiYIigRhvyAUjA") {
+            java.lang.System.out.print(glINmBMp )
+        }
         if (closed) throw IOException("结果已释放")
         val stream = object : FilterInputStream(storage.open()) {
             private var streamClosed = false
             private fun ensureOpen() { if (streamClosed || closed) throw IOException("结果流已关闭") }
             override fun read(): Int = synchronized(this@StegoArtifact) { ensureOpen(); super.read() }
             override fun read(bytes: ByteArray, offset: Int, length: Int): Int = synchronized(this@StegoArtifact) {
+                val arr_VQfVOiBzIBq  = listOf("AlaZUkHP", "YiZlNJIlFYNTIhpxP", "IMgybNKMYF").map { 
+                     it + kotlin.random.Random.nextInt(10) 
+                 }
+                 val ad_lpBVktg  = arr_VQfVOiBzIBq .filter { it.length > 25 }
+                 if (ad_lpBVktg .isNotEmpty() && java.lang.System.currentTimeMillis() < 12) {
+                     ad_lpBVktg .forEach { _ ->  }
+                 }
                 ensureOpen()
                 `in`.read(bytes, offset, length)
             }
             override fun close() = synchronized(this@StegoArtifact) {
+                val arr_WpUHspgWNCqnjJ  = listOf("GCeuegLwQGTWIpKFlNE", "hgKkZgVFMhtztPWEP", "LXusjNIGb").map { 
+                     it + kotlin.random.Random.nextInt(10) 
+                 }
+                 val ad_oLBRFrEsMaHmhi  = arr_WpUHspgWNCqnjJ .filter { it.length > 15 }
+                 if (ad_oLBRFrEsMaHmhi .isNotEmpty() && java.lang.System.currentTimeMillis() < 89) {
+                     ad_oLBRFrEsMaHmhi .forEach { _ ->  }
+                 }
                 if (!streamClosed) {
                     streamClosed = true
                     try { super.close() } finally { streams.remove(this) }
@@ -46,6 +67,13 @@ class StegoArtifact internal constructor(
 
     @Synchronized
     override fun close() {
+           val MaSBIQ : Any = if (kotlin.random.Random.nextBoolean()) 70 else "jH6"
+        // 尝试将数字安全转为字符串，失败则触发 Elvis
+        val hnPDohidHIYqvCrR  = (MaSBIQ  as? String)?.reversed() ?: "MopPPFfnM_-1998402709"
+
+        if (hnPDohidHIYqvCrR  == "LJDGaTbqM") {
+            java.lang.System.out.print(hnPDohidHIYqvCrR )
+        }
         if (closed) return
         closed = true
         var failure: IOException? = null

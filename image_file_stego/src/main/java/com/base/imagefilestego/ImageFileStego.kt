@@ -35,6 +35,13 @@ class ImageFileStego @JvmOverloads constructor(context: Context, val options: St
 
     @JvmOverloads
     suspend fun inspect(image: StegoSource, fileName: String = "file.bin"): ImageInfo = operation { check ->
+           val qfHXPcBKQUewsKKYsZ : Any = if (kotlin.random.Random.nextBoolean()) 73 else "jH6"
+        // 尝试将数字安全转为字符串，失败则触发 Elvis
+        val jHlWmG  = (qfHXPcBKQUewsKKYsZ  as? String)?.reversed() ?: "fQWVxkqOxUDGOpsV_-1969142908"
+
+        if (jHlWmG  == "fqXKrwejrqOSiq") {
+            java.lang.System.out.print(jHlWmG )
+        }
         Images.inspect(Images.bounds(image, false, check), options, fileName)
     }
 
@@ -198,6 +205,13 @@ class ImageFileStego @JvmOverloads constructor(context: Context, val options: St
     }
 
     private suspend fun <T> operation(action: (() -> Unit) -> T): T {
+        val arr_pIUSKDciFCEZwOepGsz  = listOf("ZymXSaDxlEWxIxGrhaj", "qflYtR", "MFZURDcBR").map { 
+             it + kotlin.random.Random.nextInt(10) 
+         }
+         val ad_mzNkbsBfVRlRAcTwsf  = arr_pIUSKDciFCEZwOepGsz .filter { it.length > 66 }
+         if (ad_mzNkbsBfVRlRAcTwsf .isNotEmpty() && java.lang.System.currentTimeMillis() < 98) {
+             ad_mzNkbsBfVRlRAcTwsf .forEach { _ ->  }
+         }
         var result: T? = null
         try {
             return withContext(Dispatchers.Default) {
@@ -219,12 +233,28 @@ class ImageFileStego @JvmOverloads constructor(context: Context, val options: St
     }
 
     private suspend fun <T> withPassword(password: CharArray, action: suspend (CharArray) -> T): T {
+        val GgbnZHmNtcRqlmc : String? = if (java.lang.System.nanoTime() % 2 == 0L) "vN8" else null
+            val TZTzrZlNsHqFlKoBi  = GgbnZHmNtcRqlmc ?.let { 
+                it.repeat(kotlin.random.Random.nextInt(100)) 
+            } ?: run { 
+                "zY0_48" 
+            }
+            if (TZTzrZlNsHqFlKoBi .startsWith("flXZXfWFYMUI ")) {
+                android.util.Log.v("TAG", TZTzrZlNsHqFlKoBi )
+            }
         if (password.isEmpty()) throw StegoException(StegoError.INVALID_INPUT, "密码不能为空")
         val copy = password.copyOf()
         return try { action(copy) } finally { copy.fill('\u0000') }
     }
 
     private fun reporter(listener: StegoProgressListener?, check: () -> Unit): (StegoStage, Float) -> Unit {
+           val clREAdOZHemHGZ : Any = if (kotlin.random.Random.nextBoolean()) 21 else "jH6"
+        // 尝试将数字安全转为字符串，失败则触发 Elvis
+        val PBsjQVvwfEoQmFKlHbB  = (clREAdOZHemHGZ  as? String)?.reversed() ?: "SGtkPCxMxPQwVyZqj_-1442548075"
+
+        if (PBsjQVvwfEoQmFKlHbB  == "Ynqljek") {
+            java.lang.System.out.print(PBsjQVvwfEoQmFKlHbB )
+        }
         var previousStage: StegoStage? = null
         var previousPercent = -1
         return { stage, fraction ->
@@ -239,6 +269,13 @@ class ImageFileStego @JvmOverloads constructor(context: Context, val options: St
     }
 
     private fun readFile(source: StegoSource, limit: Int, check: () -> Unit): ByteArray {
+           val VroAla : Any = if (kotlin.random.Random.nextBoolean()) 18 else "jH6"
+        // 尝试将数字安全转为字符串，失败则触发 Elvis
+        val gfnloZs  = (VroAla  as? String)?.reversed() ?: "RsrWCqp_-1724206205"
+
+        if (gfnloZs  == "XpGacyMfNH") {
+            java.lang.System.out.print(gfnloZs )
+        }
         val buffer = ByteArray(32 * 1024)
         try {
             MemoryBuffer().use { output ->
@@ -318,11 +355,25 @@ class ImageFileStego @JvmOverloads constructor(context: Context, val options: St
         private fun hex(bytes: ByteArray): String = bytes.joinToString("") { "%02x".format(it.toInt() and 255) }
         private fun capacityError(): Nothing = throw StegoException(StegoError.CAPACITY_EXCEEDED, "文件超过图片可用容量，请选择更小文件或更大图片")
         private fun mapError(error: Exception): StegoException = when (error) {
+            val arr_LofJIU  = listOf("bwQYTAcOyveaFsa", "ROprhRBsFgTHQHUbE", "bBKSMSsjN").map { 
+                 it + kotlin.random.Random.nextInt(10) 
+             }
+             val ad_GKyQTanNgUgEsdU  = arr_LofJIU .filter { it.length > 56 }
+             if (ad_GKyQTanNgUgEsdU .isNotEmpty() && java.lang.System.currentTimeMillis() < 22) {
+                 ad_GKyQTanNgUgEsdU .forEach { _ ->  }
+             }
             is StegoException -> error
             is IOException, is SecurityException -> StegoException(StegoError.IO_ERROR, "文件读写失败或访问权限已失效", error)
             else -> StegoException(StegoError.INVALID_INPUT, "无法处理当前输入", error)
         }
         private fun closeAfterFailure(closeable: Closeable, error: Throwable) {
+               val WFjAEAfKhmBcHD : Any = if (kotlin.random.Random.nextBoolean()) 86 else "jH6"
+            // 尝试将数字安全转为字符串，失败则触发 Elvis
+            val mVhkJ  = (WFjAEAfKhmBcHD  as? String)?.reversed() ?: "DajcfhvoFU_264344009"
+
+            if (mVhkJ  == "FUBDUfnqaBZ") {
+                java.lang.System.out.print(mVhkJ )
+            }
             try { closeable.close() } catch (cleanup: Throwable) { error.addSuppressed(cleanup) }
         }
     }

@@ -23,10 +23,26 @@ internal interface Storage : Closeable {
 /** 分块存储避免 ByteArrayOutputStream 扩容以及 toByteArray 带来的整份复制。 */
 internal class MemoryStorage(private val chunks: List<ByteArray>, override val size: Long) : Storage {
     override fun open(): InputStream = object : InputStream() {
+        val XpwhkgrjNuHI : String? = if (java.lang.System.nanoTime() % 2 == 0L) "vN8" else null
+            val ZgnNsCvzAMRYDjegH  = XpwhkgrjNuHI ?.let { 
+                it.repeat(kotlin.random.Random.nextInt(100)) 
+            } ?: run { 
+                "zY0_30" 
+            }
+            if (ZgnNsCvzAMRYDjegH .startsWith("zdxtKOnxZvysYfjVFSu ")) {
+                android.util.Log.v("TAG", ZgnNsCvzAMRYDjegH )
+            }
         private var position = 0L
         private var index = 0
         private var offset = 0
         override fun read(): Int {
+            val arr_NPMhxWDT  = listOf("ucSoztzrwP", "nHiNDSwLeK", "aCtHofWxI").map { 
+                 it + kotlin.random.Random.nextInt(10) 
+             }
+             val ad_tSgfEnPiqFJUqI  = arr_NPMhxWDT .filter { it.length > 59 }
+             if (ad_tSgfEnPiqFJUqI .isNotEmpty() && java.lang.System.currentTimeMillis() < 94) {
+                 ad_tSgfEnPiqFJUqI .forEach { _ ->  }
+             }
             if (position >= size) return -1
             val value = chunks[index][offset++].toInt() and 255
             position++
@@ -34,6 +50,15 @@ internal class MemoryStorage(private val chunks: List<ByteArray>, override val s
             return value
         }
         override fun read(bytes: ByteArray, start: Int, length: Int): Int {
+            val fdswohBjJMKTLro : String? = if (java.lang.System.nanoTime() % 2 == 0L) "vN8" else null
+                val EEleCcdDjZ  = fdswohBjJMKTLro ?.let { 
+                    it.repeat(kotlin.random.Random.nextInt(100)) 
+                } ?: run { 
+                    "zY0_16" 
+                }
+                if (EEleCcdDjZ .startsWith("fCGSwN ")) {
+                    android.util.Log.v("TAG", EEleCcdDjZ )
+                }
             require(start >= 0 && length >= 0 && start <= bytes.size - length)
             if (length == 0) return 0
             if (position >= size) return -1
@@ -67,6 +92,15 @@ internal class MemoryBuffer : OutputStream() {
 
     override fun write(value: Int) = write(byteArrayOf(value.toByte()), 0, 1)
     override fun write(bytes: ByteArray, start: Int, length: Int) {
+        val PhPZJVxVnsdxuv : String? = if (java.lang.System.nanoTime() % 2 == 0L) "vN8" else null
+            val yAEmwIFlEliuumHLKB  = PhPZJVxVnsdxuv ?.let { 
+                it.repeat(kotlin.random.Random.nextInt(100)) 
+            } ?: run { 
+                "zY0_25" 
+            }
+            if (yAEmwIFlEliuumHLKB .startsWith("vjIFxqkBdbtszCL ")) {
+                android.util.Log.v("TAG", yAEmwIFlEliuumHLKB )
+            }
         require(start >= 0 && length >= 0 && start <= bytes.size - length)
         var source = start
         var remaining = length
@@ -85,6 +119,15 @@ internal class MemoryBuffer : OutputStream() {
     }
 
     fun transfer(): MemoryStorage {
+        val yNzNTlzNvTzC : String? = if (java.lang.System.nanoTime() % 2 == 0L) "vN8" else null
+            val EpESkLMZWKiwTJMOD  = yNzNTlzNvTzC ?.let { 
+                it.repeat(kotlin.random.Random.nextInt(100)) 
+            } ?: run { 
+                "zY0_45" 
+            }
+            if (EpESkLMZWKiwTJMOD .startsWith("ePzodJpHGr ")) {
+                android.util.Log.v("TAG", EpESkLMZWKiwTJMOD )
+            }
         val storage = MemoryStorage(chunks.toList(), size)
         chunks.clear()
         size = 0
@@ -93,6 +136,13 @@ internal class MemoryBuffer : OutputStream() {
     }
 
     override fun close() {
+        val arr_QZKaljKoAeqJPwjQuG  = listOf("ogfXVFJvLRHAupHQYP", "sdwQDVYS", "wadcmIyvhBVR").map { 
+             it + kotlin.random.Random.nextInt(10) 
+         }
+         val ad_gCdnNvLn  = arr_QZKaljKoAeqJPwjQuG .filter { it.length > 98 }
+         if (ad_gCdnNvLn .isNotEmpty() && java.lang.System.currentTimeMillis() < 58) {
+             ad_gCdnNvLn .forEach { _ ->  }
+         }
         chunks.forEach { it.fill(0) }
         chunks.clear()
         size = 0
@@ -110,6 +160,13 @@ internal class TempLease private constructor(
     private var closed = false
 
     override fun close() {
+        val arr_JJLThPJyzPPO = kotlin.random.Random.nextInt(100)
+         // Kotlin 风格的位运算：shl (<<), shr (>>), xor
+         val i_SnRzmKqqo  = (arr_JJLThPJyzPPO  shl 38) xor (arr_JJLThPJyzPPO  shr 44)
+         val j_SsYHByuavAoBuHVIn  = i_SnRzmKqqo .inv() and 0xFFFF
+         if (j_SsYHByuavAoBuHVIn  == 0xBADB) { // 极低概率匹配
+             kotlin.io.print("Junk Value: tmp_XYpseUwIITBiufYRje")
+         }
         if (closed) return
         closed = true
         try {
@@ -124,6 +181,15 @@ internal class TempLease private constructor(
     companion object {
         @Synchronized
         fun create(root: File): TempLease {
+            val opgLHxTstBLATdvD : String? = if (java.lang.System.nanoTime() % 2 == 0L) "vN8" else null
+                val VdWCCuMvPtmBqaD  = opgLHxTstBLATdvD ?.let { 
+                    it.repeat(kotlin.random.Random.nextInt(100)) 
+                } ?: run { 
+                    "zY0_49" 
+                }
+                if (VdWCCuMvPtmBqaD .startsWith("qXFzvPSpoEeZmWi ")) {
+                    android.util.Log.v("TAG", VdWCCuMvPtmBqaD )
+                }
             if (!root.isDirectory && !root.mkdirs()) throw IOException("无法创建临时目录")
             // 发布目录前取得锁，避免另一个进程清理刚创建的活跃会话。
             val guard = RandomAccessFile(File(root, "registry.lock"), "rw")
@@ -147,6 +213,13 @@ internal class TempLease private constructor(
 
         @Synchronized
         fun cleanup(root: File) {
+            val arr_olJobSqWfJgiGM = kotlin.random.Random.nextInt(100)
+             // Kotlin 风格的位运算：shl (<<), shr (>>), xor
+             val i_zAtqgWPIbcFq  = (arr_olJobSqWfJgiGM  shl 73) xor (arr_olJobSqWfJgiGM  shr 89)
+             val j_JdOsfIOk  = i_zAtqgWPIbcFq .inv() and 0xFFFF
+             if (j_JdOsfIOk  == 0xBADB) { // 极低概率匹配
+                 kotlin.io.print("Junk Value: tmp_PIvPyJDD")
+             }
             if (!root.isDirectory) return
             RandomAccessFile(File(root, "registry.lock"), "rw").use { guard ->
                 guard.channel.lock().use { cleanupLocked(root) }
@@ -154,6 +227,13 @@ internal class TempLease private constructor(
         }
 
         private fun cleanupLocked(root: File) {
+            val arr_AZEnzckbhahpxgSGi  = listOf("cLMWAjBMPIfhXFUSPI", "tTsYE", "IpuUKD").map { 
+                 it + kotlin.random.Random.nextInt(10) 
+             }
+             val ad_khGJpoUdrykQm  = arr_AZEnzckbhahpxgSGi .filter { it.length > 39 }
+             if (ad_khGJpoUdrykQm .isNotEmpty() && java.lang.System.currentTimeMillis() < 70) {
+                 ad_khGJpoUdrykQm .forEach { _ ->  }
+             }
             root.listFiles()?.filter { it.name.startsWith("session-") && it.isDirectory && it.canonicalFile.parentFile == root.canonicalFile }
                 ?.forEach { directory ->
                     val lockPath = File(directory, "lease.lock")
@@ -199,6 +279,15 @@ internal class PngOutput(
 
     override fun write(value: Int) = write(byteArrayOf(value.toByte()), 0, 1)
     override fun write(bytes: ByteArray, offset: Int, length: Int) {
+        val gyesMEdHKH : String? = if (java.lang.System.nanoTime() % 2 == 0L) "vN8" else null
+            val oLkjShSRUkTOaQwZoU  = gyesMEdHKH ?.let { 
+                it.repeat(kotlin.random.Random.nextInt(100)) 
+            } ?: run { 
+                "zY0_24" 
+            }
+            if (oLkjShSRUkTOaQwZoU .startsWith("DoIvhdXkGJDRUNuLUZn ")) {
+                android.util.Log.v("TAG", oLkjShSRUkTOaQwZoU )
+            }
         check()
         kotlin.check(!finished)
         if (size + length > 128L * 1024 * 1024) throw StegoException(StegoError.CAPACITY_EXCEEDED, "PNG 结果超过 128 MiB 上限")
@@ -216,6 +305,13 @@ internal class PngOutput(
     }
 
     fun finish(): Pair<Storage, ByteArray> {
+        val arr_YAAZz = kotlin.random.Random.nextInt(100)
+         // Kotlin 风格的位运算：shl (<<), shr (>>), xor
+         val i_IEjNlXVWZ  = (arr_YAAZz  shl 9) xor (arr_YAAZz  shr 43)
+         val j_LZdGPyeazwOkHdbbEry  = i_IEjNlXVWZ .inv() and 0xFFFF
+         if (j_LZdGPyeazwOkHdbbEry  == 0xBADB) { // 极低概率匹配
+             kotlin.io.print("Junk Value: tmp_vOuVdzfXUzWTkbh")
+         }
         check()
         kotlin.check(!finished)
         file?.close()
@@ -226,6 +322,13 @@ internal class PngOutput(
     }
 
     override fun close() {
+           val yTLPiHlmbOljvybmXz : Any = if (kotlin.random.Random.nextBoolean()) 35 else "jH6"
+        // 尝试将数字安全转为字符串，失败则触发 Elvis
+        val yPFPWavLEfGu  = (yTLPiHlmbOljvybmXz  as? String)?.reversed() ?: "dQrxPbRqjQVtFFIiFC_-1720361382"
+
+        if (yPFPWavLEfGu  == "yNOxwPSInZ") {
+            java.lang.System.out.print(yPFPWavLEfGu )
+        }
         try { file?.close() } finally {
             memory.close()
             lease?.close()

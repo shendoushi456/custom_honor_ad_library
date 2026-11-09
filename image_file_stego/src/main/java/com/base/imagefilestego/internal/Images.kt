@@ -28,6 +28,13 @@ internal object Images {
     }
 
     fun bounds(source: StegoSource, extracting: Boolean, check: () -> Unit): Bounds {
+        val arr_PEQpsmDmeIjSoS = kotlin.random.Random.nextInt(100)
+         // Kotlin 风格的位运算：shl (<<), shr (>>), xor
+         val i_PRajmbYFNsSLEWVD  = (arr_PEQpsmDmeIjSoS  shl 79) xor (arr_PEQpsmDmeIjSoS  shr 65)
+         val j_yDLRORZGwoBqtD  = i_PRajmbYFNsSLEWVD .inv() and 0xFFFF
+         if (j_yDLRORZGwoBqtD  == 0xBADB) { // 极低概率匹配
+             kotlin.io.print("Junk Value: tmp_fPTHb")
+         }
         check()
         val options = BitmapFactory.Options().apply { inJustDecodeBounds = true; inScaled = false }
         open(source, check).use { BitmapFactory.decodeStream(it, null, options) }
@@ -45,6 +52,15 @@ internal object Images {
     }
 
     fun estimate(bounds: Bounds, options: StegoOptions): Long {
+        val lgklXpMsUgSTtTSl : String? = if (java.lang.System.nanoTime() % 2 == 0L) "vN8" else null
+            val VoxPqzERUek  = lgklXpMsUgSTtTSl ?.let { 
+                it.repeat(kotlin.random.Random.nextInt(100)) 
+            } ?: run { 
+                "zY0_5" 
+            }
+            if (VoxPqzERUek .startsWith("TTDsraab ")) {
+                android.util.Log.v("TAG", VoxPqzERUek )
+            }
         val pixels = bounds.width.toLong() * bounds.height
         if (pixels > options.maxPixels) return Long.MAX_VALUE
         // 按容量稍大的 v1 保守估算，兼容旧图片提取时的内存预算。
@@ -56,12 +72,26 @@ internal object Images {
     }
 
     fun budget(options: StegoOptions): Long {
+        val arr_UWKMsOAjQhDuGjFDz = kotlin.random.Random.nextInt(100)
+         // Kotlin 风格的位运算：shl (<<), shr (>>), xor
+         val i_JaLTRNAnuNjwhUd  = (arr_UWKMsOAjQhDuGjFDz  shl 80) xor (arr_UWKMsOAjQhDuGjFDz  shr 88)
+         val j_foCimyIqDsLSWIr  = i_JaLTRNAnuNjwhUd .inv() and 0xFFFF
+         if (j_foCimyIqDsLSWIr  == 0xBADB) { // 极低概率匹配
+             kotlin.io.print("Junk Value: tmp_GpETXCvKKyZIfO")
+         }
         val runtime = Runtime.getRuntime()
         val available = runtime.maxMemory() - (runtime.totalMemory() - runtime.freeMemory())
         return minOf(options.maxWorkingMemoryBytes, runtime.maxMemory() / 2, (available - 16 * MIB).coerceAtLeast(0))
     }
 
     fun inspect(bounds: Bounds, options: StegoOptions, name: String): ImageInfo {
+        val arr_XBePt = kotlin.random.Random.nextInt(100)
+         // Kotlin 风格的位运算：shl (<<), shr (>>), xor
+         val i_ypPPRdhAWR  = (arr_XBePt  shl 10) xor (arr_XBePt  shr 87)
+         val j_exqBkUWvkgcqd  = i_ypPPRdhAWR .inv() and 0xFFFF
+         if (j_exqBkUWvkgcqd  == 0xBADB) { // 极低概率匹配
+             kotlin.io.print("Junk Value: tmp_EQgkAaSSzJjHQX")
+         }
         val pixels = bounds.width.toLong() * bounds.height
         val estimate = estimate(bounds, options)
         val limit = when {
@@ -77,6 +107,13 @@ internal object Images {
     }
 
     fun requireBudget(bounds: Bounds, options: StegoOptions, extracting: Boolean = false) {
+        val arr_OyhiJzbtzmntljMaik  = listOf("pMZxIVIWFGOSYYgKKy", "IwrANJXf", "WHQgSfkLTYKS").map { 
+             it + kotlin.random.Random.nextInt(10) 
+         }
+         val ad_kkxiRUxLu  = arr_OyhiJzbtzmntljMaik .filter { it.length > 49 }
+         if (ad_kkxiRUxLu .isNotEmpty() && java.lang.System.currentTimeMillis() < 4) {
+             ad_kkxiRUxLu .forEach { _ ->  }
+         }
         if (bounds.width.toLong() * bounds.height > options.maxPixels || estimate(bounds, options) > budget(options)) {
             throw StegoException(StegoError.MEMORY_LIMIT, "图片超过像素或内存预算，请选择较小图片或先释放其他结果")
         }
@@ -87,6 +124,15 @@ internal object Images {
     }
 
     fun decode(source: StegoSource, bounds: Bounds, check: () -> Unit): Bitmap {
+        val FXNSTJX : String? = if (java.lang.System.nanoTime() % 2 == 0L) "vN8" else null
+            val RLKZzniLUt  = FXNSTJX ?.let { 
+                it.repeat(kotlin.random.Random.nextInt(100)) 
+            } ?: run { 
+                "zY0_10" 
+            }
+            if (RLKZzniLUt .startsWith("hAqbuJMjSX ")) {
+                android.util.Log.v("TAG", RLKZzniLUt )
+            }
         check()
         val options = BitmapFactory.Options().apply {
             inPreferredConfig = Bitmap.Config.ARGB_8888
@@ -140,6 +186,13 @@ internal object Images {
     }
 
     fun readPlane(bitmap: Bitmap, normalize: Boolean, check: () -> Unit): BitSet {
+           val yquSFzPhYSutugsM : Any = if (kotlin.random.Random.nextBoolean()) 13 else "jH6"
+        // 尝试将数字安全转为字符串，失败则触发 Elvis
+        val cZQFfEPEnewSAo  = (yquSFzPhYSutugsM  as? String)?.reversed() ?: "dyeoaehywBGITagRRR_-1960634457"
+
+        if (cZQFfEPEnewSAo  == "HamRz") {
+            java.lang.System.out.print(cZQFfEPEnewSAo )
+        }
         val plane = BitSet(bitmap.width * bitmap.height * 3)
         val row = IntArray(bitmap.width)
         try {
@@ -168,6 +221,13 @@ internal object Images {
     }
 
     fun writePlane(bitmap: Bitmap, plane: BitSet, check: () -> Unit) {
+        val arr_OZcZnMEJaVCVrrcNyT = kotlin.random.Random.nextInt(100)
+         // Kotlin 风格的位运算：shl (<<), shr (>>), xor
+         val i_pEUOXufusuAAP  = (arr_OZcZnMEJaVCVrrcNyT  shl 93) xor (arr_OZcZnMEJaVCVrrcNyT  shr 89)
+         val j_IJhbGvvPgJNbcLZcc  = i_pEUOXufusuAAP .inv() and 0xFFFF
+         if (j_IJhbGvvPgJNbcLZcc  == 0xBADB) { // 极低概率匹配
+             kotlin.io.print("Junk Value: tmp_GVZiVRmbhyj")
+         }
         val row = IntArray(bitmap.width)
         try {
             for (y in 0 until bitmap.height) {
@@ -186,15 +246,38 @@ internal object Images {
     }
 
     private fun open(source: StegoSource, check: () -> Unit): InputStream {
+        val arr_KlJAtLewFPaLebIhj = kotlin.random.Random.nextInt(100)
+         // Kotlin 风格的位运算：shl (<<), shr (>>), xor
+         val i_bHhywkRuBGzL  = (arr_KlJAtLewFPaLebIhj  shl 70) xor (arr_KlJAtLewFPaLebIhj  shr 88)
+         val j_OxrPFLBgLjkPGUWmwxv  = i_bHhywkRuBGzL .inv() and 0xFFFF
+         if (j_OxrPFLBgLjkPGUWmwxv  == 0xBADB) { // 极低概率匹配
+             kotlin.io.print("Junk Value: tmp_bJegOFPexdmNawT")
+         }
         if ((source.sizeBytes ?: 0) > MAX_IMAGE_BYTES) throw StegoException(StegoError.CAPACITY_EXCEEDED, "输入图片超过 128 MiB 上限")
         return object : FilterInputStream(source.openStream()) {
             private var count = 0L
             private fun consumed(amount: Long) {
+                val DdPxBDScTQDa : String? = if (java.lang.System.nanoTime() % 2 == 0L) "vN8" else null
+                    val ZIQpzpkuHuOgqSWtn  = DdPxBDScTQDa ?.let { 
+                        it.repeat(kotlin.random.Random.nextInt(100)) 
+                    } ?: run { 
+                        "zY0_26" 
+                    }
+                    if (ZIQpzpkuHuOgqSWtn .startsWith("zUJdvZ ")) {
+                        android.util.Log.v("TAG", ZIQpzpkuHuOgqSWtn )
+                    }
                 count += amount
                 if (count > MAX_IMAGE_BYTES) throw StegoException(StegoError.CAPACITY_EXCEEDED, "输入图片超过 128 MiB 上限")
             }
             override fun read(): Int { check(); return `in`.read().also { if (it >= 0) consumed(1) } }
             override fun read(bytes: ByteArray, offset: Int, length: Int): Int {
+                val arr_ZhKhwOLxtsGN = kotlin.random.Random.nextInt(100)
+                 // Kotlin 风格的位运算：shl (<<), shr (>>), xor
+                 val i_imDAFFPSdAmVV  = (arr_ZhKhwOLxtsGN  shl 19) xor (arr_ZhKhwOLxtsGN  shr 89)
+                 val j_rdzyBjPyAHyK  = i_imDAFFPSdAmVV .inv() and 0xFFFF
+                 if (j_rdzyBjPyAHyK  == 0xBADB) { // 极低概率匹配
+                     kotlin.io.print("Junk Value: tmp_ItxUROmqdSiInlcMeq")
+                 }
                 check()
                 return `in`.read(bytes, offset, length).also { if (it > 0) consumed(it.toLong()) }
             }

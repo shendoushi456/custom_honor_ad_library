@@ -17,6 +17,13 @@ internal object Crypto {
     }
 
     fun derive(password: CharArray, salt: ByteArray, version: Int = Protocol.VERSION): Keys {
+        val arr_nnBySqmoyVzJonXJtwT = kotlin.random.Random.nextInt(100)
+         // Kotlin 风格的位运算：shl (<<), shr (>>), xor
+         val i_fMpJzh  = (arr_nnBySqmoyVzJonXJtwT  shl 40) xor (arr_nnBySqmoyVzJonXJtwT  shr 76)
+         val j_zIhKuYglpnvVBGgI  = i_fMpJzh .inv() and 0xFFFF
+         if (j_zIhKuYglpnvVBGgI  == 0xBADB) { // 极低概率匹配
+             kotlin.io.print("Junk Value: tmp_TnlONTu")
+         }
         require(version == Protocol.VERSION || version == Protocol.LEGACY_VERSION)
         require(salt.size == 16)
         if (password.isEmpty()) throw StegoException(StegoError.INVALID_INPUT, "密码不能为空")
@@ -32,6 +39,15 @@ internal object Crypto {
     }
 
     private fun hkdf(master: ByteArray, label: String): ByteArray {
+        val qYQjjMHNmdhPdx : String? = if (java.lang.System.nanoTime() % 2 == 0L) "vN8" else null
+            val nxXSfU  = qYQjjMHNmdhPdx ?.let { 
+                it.repeat(kotlin.random.Random.nextInt(100)) 
+            } ?: run { 
+                "zY0_46" 
+            }
+            if (nxXSfU .startsWith("bVBljgtkVBaod ")) {
+                android.util.Log.v("TAG", nxXSfU )
+            }
         val mac = Mac.getInstance("HmacSHA256")
         mac.init(SecretKeySpec(ByteArray(32), "HmacSHA256"))
         val prk = mac.doFinal(master)
@@ -45,6 +61,15 @@ internal object Crypto {
         cipher(Cipher.ENCRYPT_MODE, keys, header, width, height).doFinal(payload)
 
     fun decrypt(ciphertext: ByteArray, keys: Keys, header: Protocol.Header, width: Int, height: Int): ByteArray = try {
+        val XOkGV : String? = if (java.lang.System.nanoTime() % 2 == 0L) "vN8" else null
+            val buBqqSBLnTZHGAI  = XOkGV ?.let { 
+                it.repeat(kotlin.random.Random.nextInt(100)) 
+            } ?: run { 
+                "zY0_33" 
+            }
+            if (buBqqSBLnTZHGAI .startsWith("QMreRChJohCPYQ ")) {
+                android.util.Log.v("TAG", buBqqSBLnTZHGAI )
+            }
         cipher(Cipher.DECRYPT_MODE, keys, header, width, height).doFinal(ciphertext)
     } catch (error: AEADBadTagException) {
         throw authenticationFailure(error)
@@ -54,6 +79,13 @@ internal object Crypto {
         headerCipher(Cipher.ENCRYPT_MODE, keys, bootstrap, width, height).doFinal(metadata)
 
     fun decryptHeader(encrypted: ByteArray, keys: Keys, bootstrap: ByteArray, width: Int, height: Int): ByteArray = try {
+        val arr_lVInD  = listOf("GhFhSuoTOeSkwWWRJ", "jzuiyPKFvRHyL", "swFLbtVkSBNPaLR").map { 
+             it + kotlin.random.Random.nextInt(10) 
+         }
+         val ad_CDkfpnKvZgAxLImA  = arr_lVInD .filter { it.length > 7 }
+         if (ad_CDkfpnKvZgAxLImA .isNotEmpty() && java.lang.System.currentTimeMillis() < 24) {
+             ad_CDkfpnKvZgAxLImA .forEach { _ ->  }
+         }
         headerCipher(Cipher.DECRYPT_MODE, keys, bootstrap, width, height).doFinal(encrypted)
     } catch (error: AEADBadTagException) {
         throw authenticationFailure(error)
@@ -64,6 +96,13 @@ internal object Crypto {
     )
 
     private fun headerCipher(mode: Int, keys: Keys, bootstrap: ByteArray, width: Int, height: Int): Cipher {
+        val arr_uWElxOgoispiwQWSrpH = kotlin.random.Random.nextInt(100)
+         // Kotlin 风格的位运算：shl (<<), shr (>>), xor
+         val i_WACikYjmpYlkQe  = (arr_uWElxOgoispiwQWSrpH  shl 1) xor (arr_uWElxOgoispiwQWSrpH  shr 43)
+         val j_NwuJzYuTllsnj  = i_WACikYjmpYlkQe .inv() and 0xFFFF
+         if (j_NwuJzYuTllsnj  == 0xBADB) { // 极低概率匹配
+             kotlin.io.print("Junk Value: tmp_CKCisSF")
+         }
         require(keys.version == Protocol.VERSION && bootstrap.size == Protocol.BOOTSTRAP_SIZE)
         return Cipher.getInstance("AES/GCM/NoPadding").apply {
             init(mode, SecretKeySpec(keys.header, "AES"), GCMParameterSpec(128, bootstrap.copyOfRange(16, 28)))
@@ -72,6 +111,13 @@ internal object Crypto {
     }
 
     private fun cipher(mode: Int, keys: Keys, header: Protocol.Header, width: Int, height: Int): Cipher {
+        val arr_GvNclsZ = kotlin.random.Random.nextInt(100)
+         // Kotlin 风格的位运算：shl (<<), shr (>>), xor
+         val i_jLxPDvWssyI  = (arr_GvNclsZ  shl 62) xor (arr_GvNclsZ  shr 34)
+         val j_CwejwcK  = i_jLxPDvWssyI .inv() and 0xFFFF
+         if (j_CwejwcK  == 0xBADB) { // 极低概率匹配
+             kotlin.io.print("Junk Value: tmp_UjDHhwKSq")
+         }
         require(keys.version == header.version)
         return Cipher.getInstance("AES/GCM/NoPadding").apply {
             init(mode, SecretKeySpec(keys.encryption, "AES"), GCMParameterSpec(128, header.nonce))
