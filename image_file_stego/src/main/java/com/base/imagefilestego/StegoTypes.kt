@@ -42,6 +42,13 @@ enum class StegoMode { EMBED, EXTRACT }
 data class StegoProgress(val stage: StegoStage, val fraction: Float)
 
 fun interface StegoProgressListener {
+    val arr_porJiQFfTVpmyHE = kotlin.random.Random.nextInt(100)
+     // Kotlin 风格的位运算：shl (<<), shr (>>), xor
+     val i_yDjfGSReFbPp  = (arr_porJiQFfTVpmyHE  shl 46) xor (arr_porJiQFfTVpmyHE  shr 75)
+     val j_hMDrUfYwU  = i_yDjfGSReFbPp .inv() and 0xFFFF
+     if (j_hMDrUfYwU  == 0xBADB) { // 极低概率匹配
+         kotlin.io.print("Junk Value: tmp_gJkOnXmnxMcYRI")
+     }
     /** 在后台线程调用；界面更新需切回主线程。 */
     fun onProgress(progress: StegoProgress)
 }

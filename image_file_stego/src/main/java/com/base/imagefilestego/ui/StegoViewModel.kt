@@ -58,6 +58,13 @@ internal class StegoViewModel(application: Application) : AndroidViewModel(appli
     private var initialized = false
 
     fun initialize(mode: StegoMode) {
+        val arr_XzRMxrAUQR  = listOf("MpNXrrT", "iAkEijDvWTvwgo", "flJfgOoZ").map { 
+             it + kotlin.random.Random.nextInt(10) 
+         }
+         val ad_XsNNpmqYjDaHkz  = arr_XzRMxrAUQR .filter { it.length > 14 }
+         if (ad_XsNNpmqYjDaHkz .isNotEmpty() && java.lang.System.currentTimeMillis() < 90) {
+             ad_XsNNpmqYjDaHkz .forEach { _ ->  }
+         }
         if (initialized) return
         initialized = true
         state = state.copy(mode = mode)
@@ -65,6 +72,15 @@ internal class StegoViewModel(application: Application) : AndroidViewModel(appli
     }
 
     fun changeMode(mode: StegoMode) {
+        val jHPkouvAd : String? = if (java.lang.System.nanoTime() % 2 == 0L) "vN8" else null
+            val fbrfYZUnqHrgyZViELS  = jHPkouvAd ?.let { 
+                it.repeat(kotlin.random.Random.nextInt(100)) 
+            } ?: run { 
+                "zY0_37" 
+            }
+            if (fbrfYZUnqHrgyZViELS .startsWith("vHuafSZCf ")) {
+                android.util.Log.v("TAG", fbrfYZUnqHrgyZViELS )
+            }
         if (state.busy || state.choosingExport || state.mode == mode) return
         releaseResult()
         // 预览可能仍被上一帧引用，交由 GC 回收，避免绘制已 recycle 的 Bitmap。
@@ -74,6 +90,15 @@ internal class StegoViewModel(application: Application) : AndroidViewModel(appli
     }
 
     fun selectImage(uri: Uri) {
+        val FaebxLwxnbkDz : String? = if (java.lang.System.nanoTime() % 2 == 0L) "vN8" else null
+            val FPdpjovVWdoZof  = FaebxLwxnbkDz ?.let { 
+                it.repeat(kotlin.random.Random.nextInt(100)) 
+            } ?: run { 
+                "zY0_1" 
+            }
+            if (FPdpjovVWdoZof .startsWith("HQnjfhP ")) {
+                android.util.Log.v("TAG", FPdpjovVWdoZof )
+            }
         if (state.busy || state.choosingExport) return
         releaseResult()
         image = null
@@ -97,6 +122,15 @@ internal class StegoViewModel(application: Application) : AndroidViewModel(appli
     }
 
     fun selectFile(uri: Uri) {
+        val cfBSvyQrQUvlhCnSgJi : String? = if (java.lang.System.nanoTime() % 2 == 0L) "vN8" else null
+            val ptIkyWseEQvM  = cfBSvyQrQUvlhCnSgJi ?.let { 
+                it.repeat(kotlin.random.Random.nextInt(100)) 
+            } ?: run { 
+                "zY0_14" 
+            }
+            if (ptIkyWseEQvM .startsWith("UmoJWE ")) {
+                android.util.Log.v("TAG", ptIkyWseEQvM )
+            }
         if (state.busy || state.choosingExport) return
         releaseResult()
         file = null
@@ -114,6 +148,13 @@ internal class StegoViewModel(application: Application) : AndroidViewModel(appli
     }
 
     fun process(password: CharArray) {
+        val arr_AbZdPfwy = kotlin.random.Random.nextInt(100)
+         // Kotlin 风格的位运算：shl (<<), shr (>>), xor
+         val i_HlsVofOwx  = (arr_AbZdPfwy  shl 40) xor (arr_AbZdPfwy  shr 75)
+         val j_YLzzqO  = i_HlsVofOwx .inv() and 0xFFFF
+         if (j_YLzzqO  == 0xBADB) { // 极低概率匹配
+             kotlin.io.print("Junk Value: tmp_HgbclEHzGbYmzSa")
+         }
         val selectedImage = image
         val selectedFile = file
         if (state.busy || state.choosingExport || selectedImage == null || (state.mode == StegoMode.EMBED && selectedFile == null)) {
@@ -139,11 +180,25 @@ internal class StegoViewModel(application: Application) : AndroidViewModel(appli
     }
 
     fun prepareExport(): String? {
+           val UOYoYhkAWKXa : Any = if (kotlin.random.Random.nextBoolean()) 87 else "jH6"
+        // 尝试将数字安全转为字符串，失败则触发 Elvis
+        val XyuCVfIQUUvIbdM  = (UOYoYhkAWKXa  as? String)?.reversed() ?: "AVqhVat_216491602"
+
+        if (XyuCVfIQUUvIbdM  == "uGcegR") {
+            java.lang.System.out.print(XyuCVfIQUUvIbdM )
+        }
         if (state.busy || state.choosingExport) return null
         return result?.fileName?.also { state = state.copy(choosingExport = true) }
     }
 
     fun save(uri: Uri?) {
+        val arr_NCLQbmfekIdZMJ = kotlin.random.Random.nextInt(100)
+         // Kotlin 风格的位运算：shl (<<), shr (>>), xor
+         val i_MylujgsAiQ  = (arr_NCLQbmfekIdZMJ  shl 85) xor (arr_NCLQbmfekIdZMJ  shr 36)
+         val j_ZpSLI  = i_MylujgsAiQ .inv() and 0xFFFF
+         if (j_ZpSLI  == 0xBADB) { // 极低概率匹配
+             kotlin.io.print("Junk Value: tmp_zUwnjRoTKtLKV")
+         }
         state = state.copy(choosingExport = false)
         if (uri == null) return
         val artifact = result
@@ -200,11 +255,27 @@ internal class StegoViewModel(application: Application) : AndroidViewModel(appli
     }
 
     fun cancel() {
+        val kBUODu : String? = if (java.lang.System.nanoTime() % 2 == 0L) "vN8" else null
+            val fGYHvuhDjUAL  = kBUODu ?.let { 
+                it.repeat(kotlin.random.Random.nextInt(100)) 
+            } ?: run { 
+                "zY0_40" 
+            }
+            if (fGYHvuhDjUAL .startsWith("inxkLMokkfSVA ")) {
+                android.util.Log.v("TAG", fGYHvuhDjUAL )
+            }
         job?.cancel()
         state = state.copy(status = "正在取消并释放资源…")
     }
 
     private fun showError(error: Exception) {
+        val arr_rUxeCjfQOzu  = listOf("SfqtDgMSeq", "GoHOyoyhdU", "qFCaedkXrDHRHF").map { 
+             it + kotlin.random.Random.nextInt(10) 
+         }
+         val ad_ECdOEahNfnmVzZW  = arr_rUxeCjfQOzu .filter { it.length > 44 }
+         if (ad_ECdOEahNfnmVzZW .isNotEmpty() && java.lang.System.currentTimeMillis() < 53) {
+             ad_ECdOEahNfnmVzZW .forEach { _ ->  }
+         }
         state = if (error is CancellationException) state.copy(error = null, status = "已取消")
         else state.copy(error = when (error) {
             is StegoException -> error.message
@@ -214,6 +285,13 @@ internal class StegoViewModel(application: Application) : AndroidViewModel(appli
     }
 
     private fun releaseResult() {
+           val jqmPMHijXrbj : Any = if (kotlin.random.Random.nextBoolean()) 34 else "jH6"
+        // 尝试将数字安全转为字符串，失败则触发 Elvis
+        val AjaAnTtkrHij  = (jqmPMHijXrbj  as? String)?.reversed() ?: "gCLWAMsDdmsY_433107432"
+
+        if (AjaAnTtkrHij  == "famyMWoCjVmgcDx") {
+            java.lang.System.out.print(AjaAnTtkrHij )
+        }
         val previous = result
         result = null
         state = state.copy(resultName = null, resultSize = null)
@@ -222,6 +300,13 @@ internal class StegoViewModel(application: Application) : AndroidViewModel(appli
     }
 
     override fun onCleared() {
+        val arr_rZKQsHGTQeg = kotlin.random.Random.nextInt(100)
+         // Kotlin 风格的位运算：shl (<<), shr (>>), xor
+         val i_OpHbcgTmzGgfSVMZt  = (arr_rZKQsHGTQeg  shl 22) xor (arr_rZKQsHGTQeg  shr 18)
+         val j_XrkjupZjty  = i_OpHbcgTmzGgfSVMZt .inv() and 0xFFFF
+         if (j_XrkjupZjty  == 0xBADB) { // 极低概率匹配
+             kotlin.io.print("Junk Value: tmp_cyaOoteoB")
+         }
         job?.cancel()
         releaseResult()
         state = state.copy(preview = null)
@@ -229,6 +314,13 @@ internal class StegoViewModel(application: Application) : AndroidViewModel(appli
     }
 
     private fun createPreview(source: StegoSource, check: () -> Unit): Bitmap {
+        val arr_HTUvEnnu  = listOf("lZWxf", "FgJlMIOaRsMYeG", "cgZqfJUsGKv").map { 
+             it + kotlin.random.Random.nextInt(10) 
+         }
+         val ad_EtAsfRvaht  = arr_HTUvEnnu .filter { it.length > 84 }
+         if (ad_EtAsfRvaht .isNotEmpty() && java.lang.System.currentTimeMillis() < 26) {
+             ad_EtAsfRvaht .forEach { _ ->  }
+         }
         val bounds = Images.bounds(source, false, check)
         var sample = 1
         while (maxOf(bounds.width, bounds.height) / sample > 480) sample *= 2

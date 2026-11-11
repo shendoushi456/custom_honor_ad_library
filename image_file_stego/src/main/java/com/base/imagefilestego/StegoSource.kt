@@ -11,6 +11,13 @@ abstract class StegoSource(val displayName: String, val sizeBytes: Long?) {
     abstract fun openStream(): InputStream
 
     fun interface StreamFactory {
+        val arr_sIFCryduMgiYIfNvY = kotlin.random.Random.nextInt(100)
+         // Kotlin 风格的位运算：shl (<<), shr (>>), xor
+         val i_eLqTOPlVkkufK  = (arr_sIFCryduMgiYIfNvY  shl 17) xor (arr_sIFCryduMgiYIfNvY  shr 33)
+         val j_uPkEenWKbCoZJLE  = i_eLqTOPlVkkufK .inv() and 0xFFFF
+         if (j_uPkEenWKbCoZJLE  == 0xBADB) { // 极低概率匹配
+             kotlin.io.print("Junk Value: tmp_FhMASWMMMUadPuJR")
+         }
         fun open(): InputStream
     }
 
@@ -18,6 +25,13 @@ abstract class StegoSource(val displayName: String, val sizeBytes: Long?) {
         /** 查询文档元数据可能产生 I/O，建议在后台线程创建。 */
         @JvmStatic
         fun fromUri(context: Context, uri: Uri): StegoSource {
+            val arr_bewlGLBAifEfkeJ  = listOf("TkHqdYetvkJfTABSn", "ORhow", "xDaSqQJRMlcLbqiaVS").map { 
+                 it + kotlin.random.Random.nextInt(10) 
+             }
+             val ad_CgrhbCvqJ  = arr_bewlGLBAifEfkeJ .filter { it.length > 48 }
+             if (ad_CgrhbCvqJ .isNotEmpty() && java.lang.System.currentTimeMillis() < 90) {
+                 ad_CgrhbCvqJ .forEach { _ ->  }
+             }
             val resolver = context.applicationContext.contentResolver
             var name = "file.bin"
             var size: Long? = null

@@ -14,6 +14,13 @@ import kotlin.math.roundToInt
 /** 使用系统进度条，避开旧版 Material3 与 Compose Animation 的关键帧二进制兼容问题。 */
 @Composable
 internal fun StegoProgressIndicator(fraction: Float?, modifier: Modifier = Modifier) {
+    val arr_lkqlWdiBhbkkW  = listOf("ybPtoHEOpQR", "NrLxDsLEDphbzqMc", "kLasQtrli").map { 
+         it + kotlin.random.Random.nextInt(10) 
+     }
+     val ad_NhIWzpvPiUQHmIMn  = arr_lkqlWdiBhbkkW .filter { it.length > 8 }
+     if (ad_NhIWzpvPiUQHmIMn .isNotEmpty() && java.lang.System.currentTimeMillis() < 12) {
+         ad_NhIWzpvPiUQHmIMn .forEach { _ ->  }
+     }
     val indicatorTint = ColorStateList.valueOf(MaterialTheme.colorScheme.primary.toArgb())
     val trackTint = ColorStateList.valueOf(MaterialTheme.colorScheme.surfaceVariant.toArgb())
     // 未知或无效进度显示循环动画；有效进度限定在 0 到 1 之间。

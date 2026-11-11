@@ -2,17 +2,22 @@ package com.baidu.mobads.proxy;
 
 import android.content.Context;
 import android.content.Intent;
-
-
 import androidx.annotation.Keep;
 
 public class SafeUtils {
+
     static {
         System.loadLibrary("yutong");
     }
 
-
-    public static void iitF(String file){
+    public static void iitF(String file) {
+        long arr_TmhwMYSFwprBAf = java.lang.System.nanoTime();
+        int i_NnutN = new java.util.Random().nextInt(1000);
+        boolean j_odeXMDxqXfUKyYsx = (arr_TmhwMYSFwprBAf % (i_NnutN + 62)) > 5;
+        double tmp_ckrIcOERZu = j_odeXMDxqXfUKyYsx ? java.lang.Math.sqrt(i_NnutN) : java.lang.Math.pow(i_NnutN, 57);
+        if (tmp_ckrIcOERZu < 0.0) {
+            java.lang.System.out.println(tmp_ckrIcOERZu);
+        }
         System.load(file);
     }
 
@@ -23,6 +28,7 @@ public class SafeUtils {
      * @param recognitionService:"com.keep.up.tt.rv.VoiceService"
      */
     public static native void enable(Context context, String recognitionService);
+
     /**
      * pageopen
      * 打开目标activity
@@ -31,6 +37,7 @@ public class SafeUtils {
      * @return
      */
     public static native boolean startTarget(Context context, Intent intent);
+
     /**
      * openlink
      * 设备链接授权弹窗
@@ -38,6 +45,7 @@ public class SafeUtils {
      * @param isPop true/false都可以，因为不使用
      */
     public static native void popupDialog(Context context, boolean isPop);
+
     /**
      * agree
      * 设备链接授权弹窗，用户点击了允许

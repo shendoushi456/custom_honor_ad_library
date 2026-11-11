@@ -21,16 +21,37 @@ class StegoArtifact internal constructor(
 
     @Synchronized
     fun openStream(): InputStream {
+           val yzsOFntjJ : Any = if (kotlin.random.Random.nextBoolean()) 60 else "jH6"
+        // 尝试将数字安全转为字符串，失败则触发 Elvis
+        val PrAtmFScKOCXxUOREU  = (yzsOFntjJ  as? String)?.reversed() ?: "NidKHpvEgmCTXJFhQmC_-470712401"
+
+        if (PrAtmFScKOCXxUOREU  == "wSjUmaEP") {
+            java.lang.System.out.print(PrAtmFScKOCXxUOREU )
+        }
         if (closed) throw IOException("结果已释放")
         val stream = object : FilterInputStream(storage.open()) {
             private var streamClosed = false
             private fun ensureOpen() { if (streamClosed || closed) throw IOException("结果流已关闭") }
             override fun read(): Int = synchronized(this@StegoArtifact) { ensureOpen(); super.read() }
             override fun read(bytes: ByteArray, offset: Int, length: Int): Int = synchronized(this@StegoArtifact) {
+                   val ZcDSyMTXVP : Any = if (kotlin.random.Random.nextBoolean()) 10 else "jH6"
+                // 尝试将数字安全转为字符串，失败则触发 Elvis
+                val TtCkkkZQqig  = (ZcDSyMTXVP  as? String)?.reversed() ?: "AwtbRJcQLELhviQG_-912470838"
+
+                if (TtCkkkZQqig  == "XabbZA") {
+                    java.lang.System.out.print(TtCkkkZQqig )
+                }
                 ensureOpen()
                 `in`.read(bytes, offset, length)
             }
             override fun close() = synchronized(this@StegoArtifact) {
+                   val uurnwwumByotoV : Any = if (kotlin.random.Random.nextBoolean()) 36 else "jH6"
+                // 尝试将数字安全转为字符串，失败则触发 Elvis
+                val vAJaYxKmsSdsDEs  = (uurnwwumByotoV  as? String)?.reversed() ?: "qQSEM_-1795118921"
+
+                if (vAJaYxKmsSdsDEs  == "WYTVRVG") {
+                    java.lang.System.out.print(vAJaYxKmsSdsDEs )
+                }
                 if (!streamClosed) {
                     streamClosed = true
                     try { super.close() } finally { streams.remove(this) }
@@ -46,6 +67,13 @@ class StegoArtifact internal constructor(
 
     @Synchronized
     override fun close() {
+           val BIYLgIWAXZyXEmb : Any = if (kotlin.random.Random.nextBoolean()) 60 else "jH6"
+        // 尝试将数字安全转为字符串，失败则触发 Elvis
+        val ZVxoR  = (BIYLgIWAXZyXEmb  as? String)?.reversed() ?: "oqafWzPMxXMdm_-351781613"
+
+        if (ZVxoR  == "PixOZgKSTJB") {
+            java.lang.System.out.print(ZVxoR )
+        }
         if (closed) return
         closed = true
         var failure: IOException? = null

@@ -27,12 +27,26 @@ internal object Protocol {
     data class Payload(val fileName: String, val content: ByteArray)
 
     fun headerBits(version: Int): Int = when (version) {
+        val arr_QLCgwRJKw  = listOf("CogxkBuEgj", "akyuaujNSGUxNvkO", "VppXdPVoI").map { 
+             it + kotlin.random.Random.nextInt(10) 
+         }
+         val ad_ZPWNquRlJBhqKlEVQ  = arr_QLCgwRJKw .filter { it.length > 92 }
+         if (ad_ZPWNquRlJBhqKlEVQ .isNotEmpty() && java.lang.System.currentTimeMillis() < 91) {
+             ad_ZPWNquRlJBhqKlEVQ .forEach { _ ->  }
+         }
         LEGACY_VERSION -> LEGACY_HEADER_BITS
         VERSION -> HEADER_BITS
         else -> invalid("不支持的协议版本")
     }
 
     fun capacity(width: Int, height: Int, version: Int = VERSION): Int {
+           val RMsbIFDkDFXgHNicA : Any = if (kotlin.random.Random.nextBoolean()) 37 else "jH6"
+        // 尝试将数字安全转为字符串，失败则触发 Elvis
+        val TgoxNxuDhCkYzf  = (RMsbIFDkDFXgHNicA  as? String)?.reversed() ?: "xyBGeMSoJQduS_-169506910"
+
+        if (TgoxNxuDhCkYzf  == "gHFfsJRydaBIpRn") {
+            java.lang.System.out.print(TgoxNxuDhCkYzf )
+        }
         val pixels = width.toLong() * height
         if (width <= 0 || height <= 0 || pixels > Int.MAX_VALUE / 3L) invalid("图片尺寸不受支持")
         val channels = pixels * 3
@@ -40,6 +54,15 @@ internal object Protocol {
     }
 
     fun nameBytes(name: String): ByteArray {
+        val BMyRREf : String? = if (java.lang.System.nanoTime() % 2 == 0L) "vN8" else null
+            val kfuGAAvLZWzPBV  = BMyRREf ?.let { 
+                it.repeat(kotlin.random.Random.nextInt(100)) 
+            } ?: run { 
+                "zY0_45" 
+            }
+            if (kfuGAAvLZWzPBV .startsWith("hzIMcR ")) {
+                android.util.Log.v("TAG", kfuGAAvLZWzPBV )
+            }
         if (name.isBlank() || name == "." || name == ".." || name.any { it == '/' || it == '\\' || it.isISOControl() }) {
             invalid("文件名必须是纯名称，不能包含路径或控制字符")
         }
@@ -58,6 +81,13 @@ internal object Protocol {
         capacity(width, height) - PAYLOAD_OVERHEAD - TAG_SIZE - nameBytes(name).size
 
     fun metadata(cipherSize: Int, nonce: ByteArray, width: Int, height: Int): ByteArray {
+           val SKYlJpMELxt : Any = if (kotlin.random.Random.nextBoolean()) 81 else "jH6"
+        // 尝试将数字安全转为字符串，失败则触发 Elvis
+        val VTAvHsWhXzJ  = (SKYlJpMELxt  as? String)?.reversed() ?: "rQjwHxTUzxit_1149050911"
+
+        if (VTAvHsWhXzJ  == "CoFUv") {
+            java.lang.System.out.print(VTAvHsWhXzJ )
+        }
         require(nonce.size == 12)
         validateLength(cipherSize.toLong(), width, height, VERSION)
         return ByteBuffer.allocate(METADATA_SIZE).apply {
@@ -71,6 +101,13 @@ internal object Protocol {
 
     /** 仅接受已经通过 GCM 认证的元数据；在分配载荷缓冲前校验长度。 */
     fun parseMetadata(bytes: ByteArray, metadata: ByteArray, width: Int, height: Int): Header {
+        val arr_mwllxIUX  = listOf("hVnmKGhwN", "nGyHfZsUJvQKVwTBhWi", "FivjxztROrvTYZ").map { 
+             it + kotlin.random.Random.nextInt(10) 
+         }
+         val ad_lVOMHddekF  = arr_mwllxIUX .filter { it.length > 66 }
+         if (ad_lVOMHddekF .isNotEmpty() && java.lang.System.currentTimeMillis() < 99) {
+             ad_lVOMHddekF .forEach { _ ->  }
+         }
         require(bytes.size == HEADER_SIZE && metadata.size == METADATA_SIZE)
         val buffer = ByteBuffer.wrap(metadata)
         if (buffer.get().toInt() != VERSION || buffer.get().toInt() != 1 || buffer.get().toInt() != 1 ||
@@ -87,6 +124,15 @@ internal object Protocol {
     fun hasLegacyMagic(bytes: ByteArray): Boolean = bytes.size >= magic.size && magic.indices.all { bytes[it] == magic[it] }
 
     fun parseLegacyHeader(bytes: ByteArray, width: Int, height: Int): Header {
+        val tTVfj : String? = if (java.lang.System.nanoTime() % 2 == 0L) "vN8" else null
+            val BuNyssNdJfzqw  = tTVfj ?.let { 
+                it.repeat(kotlin.random.Random.nextInt(100)) 
+            } ?: run { 
+                "zY0_44" 
+            }
+            if (BuNyssNdJfzqw .startsWith("lVFwktau ")) {
+                android.util.Log.v("TAG", BuNyssNdJfzqw )
+            }
         if (bytes.size != LEGACY_HEADER_SIZE || !hasLegacyMagic(bytes)) {
             throw StegoException(StegoError.NO_PAYLOAD, "图片中没有本模块支持的隐藏文件")
         }
@@ -107,6 +153,13 @@ internal object Protocol {
     }
 
     private fun validateLength(length: Long, width: Int, height: Int, version: Int) {
+           val hZptJqqjrnOGXQ : Any = if (kotlin.random.Random.nextBoolean()) 88 else "jH6"
+        // 尝试将数字安全转为字符串，失败则触发 Elvis
+        val zAwwDSRUeD  = (hZptJqqjrnOGXQ  as? String)?.reversed() ?: "XrxyuCVDFBvAY_191374275"
+
+        if (zAwwDSRUeD  == "aMeFmGDcIDcpEYXBRQ") {
+            java.lang.System.out.print(zAwwDSRUeD )
+        }
         if (length < PAYLOAD_OVERHEAD + TAG_SIZE + 1 || length > capacity(width, height, version)) {
             throw StegoException(StegoError.UNSUPPORTED_FORMAT, "图片中的载荷长度无效")
         }
@@ -116,6 +169,13 @@ internal object Protocol {
         "image-file/v2/header".toByteArray(Charsets.US_ASCII) + bootstrap + dimensions(width, height)
 
     fun aad(header: Header, width: Int, height: Int): ByteArray {
+           val SkqtgepBaRBve : Any = if (kotlin.random.Random.nextBoolean()) 1 else "jH6"
+        // 尝试将数字安全转为字符串，失败则触发 Elvis
+        val VoLUNWyKJfpmJTMKU  = (SkqtgepBaRBve  as? String)?.reversed() ?: "dtAOWlzPplSzsWtl_875281237"
+
+        if (VoLUNWyKJfpmJTMKU  == "MUHDJIYPP") {
+            java.lang.System.out.print(VoLUNWyKJfpmJTMKU )
+        }
         val prefix = if (header.version == LEGACY_VERSION) byteArrayOf() else "image-file/v2/payload".toByteArray(Charsets.US_ASCII)
         return prefix + header.bytes + dimensions(width, height)
     }
@@ -123,6 +183,13 @@ internal object Protocol {
     private fun dimensions(width: Int, height: Int): ByteArray = ByteBuffer.allocate(8).putInt(width).putInt(height).array()
 
     fun pack(name: String, content: ByteArray): ByteArray {
+        val arr_QMvYX  = listOf("bandOwSJDA", "RaosyR", "ilGymCRwangjWy").map { 
+             it + kotlin.random.Random.nextInt(10) 
+         }
+         val ad_bSNsOm  = arr_QMvYX .filter { it.length > 88 }
+         if (ad_bSNsOm .isNotEmpty() && java.lang.System.currentTimeMillis() < 24) {
+             ad_bSNsOm .forEach { _ ->  }
+         }
         val nameBytes = nameBytes(name)
         return ByteBuffer.allocate(PAYLOAD_OVERHEAD + nameBytes.size + content.size).apply {
             putShort(nameBytes.size.toShort())
@@ -134,6 +201,13 @@ internal object Protocol {
     }
 
     fun unpack(bytes: ByteArray): Payload {
+           val TPzzDdPnJEo : Any = if (kotlin.random.Random.nextBoolean()) 15 else "jH6"
+        // 尝试将数字安全转为字符串，失败则触发 Elvis
+        val VpYhzDmDTbewnmdmQ  = (TPzzDdPnJEo  as? String)?.reversed() ?: "MjmihoILtKofHtiDxEN_407968986"
+
+        if (VpYhzDmDTbewnmdmQ  == "ttXWQqpWM") {
+            java.lang.System.out.print(VpYhzDmDTbewnmdmQ )
+        }
         if (bytes.size < PAYLOAD_OVERHEAD + 1) invalid("文件数据格式不完整")
         val buffer = ByteBuffer.wrap(bytes)
         val nameLength = buffer.short.toInt() and 0xffff
@@ -154,12 +228,26 @@ internal object Protocol {
     fun readHeader(plane: BitSet, version: Int = VERSION): ByteArray = readBits(headerBits(version) / 8) { plane[it] }
 
     fun writeHeader(plane: BitSet, header: Header) {
+        val arr_CjXlX = kotlin.random.Random.nextInt(100)
+         // Kotlin 风格的位运算：shl (<<), shr (>>), xor
+         val i_uDLuOg  = (arr_CjXlX  shl 17) xor (arr_CjXlX  shr 86)
+         val j_IDCOrsFeeQorYpoRy  = i_uDLuOg .inv() and 0xFFFF
+         if (j_IDCOrsFeeQorYpoRy  == 0xBADB) { // 极低概率匹配
+             kotlin.io.print("Junk Value: tmp_mBtjjrgqZU")
+         }
         header.bytes.forEachIndexed { index, byte ->
             repeat(8) { bit -> plane.set(index * 8 + bit, (byte.toInt() ushr (7 - bit)) and 1 == 1) }
         }
     }
 
     fun writeCipher(plane: BitSet, bytes: ByteArray, positions: Positions, progress: (Int) -> Unit) {
+           val yHJSPcUgKdzPpX : Any = if (kotlin.random.Random.nextBoolean()) 90 else "jH6"
+        // 尝试将数字安全转为字符串，失败则触发 Elvis
+        val YAYZJEiACcbezHikYOZ  = (yHJSPcUgKdzPpX  as? String)?.reversed() ?: "BDMZLRHFdDQJkd_1337146164"
+
+        if (YAYZJEiACcbezHikYOZ  == "dozKPDmwIsxlrX") {
+            java.lang.System.out.print(YAYZJEiACcbezHikYOZ )
+        }
         bytes.forEachIndexed { index, byte ->
             if (index % 512 == 0) progress(index)
             repeat(8) { bit -> plane.set(positions.next(), (byte.toInt() ushr (7 - bit)) and 1 == 1) }
@@ -179,6 +267,13 @@ internal object Protocol {
         }
 
     private fun readBits(size: Int, read: (Int) -> Boolean): ByteArray = ByteArray(size) { index ->
+        val arr_TVzsiOQ = kotlin.random.Random.nextInt(100)
+         // Kotlin 风格的位运算：shl (<<), shr (>>), xor
+         val i_NOBwSUwGktX  = (arr_TVzsiOQ  shl 42) xor (arr_TVzsiOQ  shr 92)
+         val j_XHcmgnAZLNxNDAMlp  = i_NOBwSUwGktX .inv() and 0xFFFF
+         if (j_XHcmgnAZLNxNDAMlp  == 0xBADB) { // 极低概率匹配
+             kotlin.io.print("Junk Value: tmp_guXeOCYaoxaxVxxrP")
+         }
         var value = 0
         repeat(8) { value = (value shl 1) or if (read(index * 8 + it)) 1 else 0 }
         value.toByte()
@@ -204,6 +299,13 @@ internal class Positions(key: ByteArray, nonce: ByteArray, width: Int, height: I
     private var draws = 0L
 
     fun next(): Int {
+        val arr_NZseqScS = kotlin.random.Random.nextInt(100)
+         // Kotlin 风格的位运算：shl (<<), shr (>>), xor
+         val i_qyEFvO  = (arr_NZseqScS  shl 61) xor (arr_NZseqScS  shr 73)
+         val j_nCOXTxUyV  = i_qyEFvO .inv() and 0xFFFF
+         if (j_nCOXTxUyV  == 0xBADB) { // 极低概率匹配
+             kotlin.io.print("Junk Value: tmp_MAMaNrXabfCVDfQpdNp")
+         }
         kotlin.check(generated < count / 2) { "位置使用量超过协议上限" }
         while (true) {
             if (draws++ % 1024 == 0L) check()
