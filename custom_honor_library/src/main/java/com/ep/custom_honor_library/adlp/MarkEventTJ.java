@@ -1,6 +1,5 @@
 package com.ep.custom_honor_library.adlp;
 
-import android.text.TextUtils;
 import android.util.Log;
 
 import com.blankj.utilcode.util.GsonUtils;
@@ -72,7 +71,7 @@ public final class MarkEventTJ {
     private static void toTJRequest(TreeMap<String, Object> params, String url) {
         Log.i("ADTJ==", params.toString());
         
-        CommonHttpUtils.getInstance().initDefOaidDoPost(url,params,new OnHttpListener(){
+        CommonHttpUtils.getInstance().initDefOaidDoPost(params,new OnHttpListener(){
             @Override
             public void onSuccess() {
                 if (params.get("event").equals(CommonAPI.AGREE_TJ_POLLING_KEY)){

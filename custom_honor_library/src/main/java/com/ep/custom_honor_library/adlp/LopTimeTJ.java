@@ -5,13 +5,12 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.ep.custom_honor_library.http.CommonHttpUtils;
 import com.ep.custom_honor_library.http.OnHttpListener;
 import com.ep.custom_honor_library.utils.DefAPIUtils;
 import com.tencent.mmkv.MMKV;
-import java.util.HashMap;
+
 import java.util.TreeMap;
 import java.util.UUID;
 
@@ -96,7 +95,7 @@ public class LopTimeTJ {
         String uuid = MMKV.defaultMMKV().decodeString("uu_idid");
         params.put("uuid", uuid);
         params.put("os_sdk_version", "android_" + Build.VERSION.SDK_INT);
-        CommonHttpUtils.getInstance().initDefOaidDoPost(DefAPIUtils.getRandomActive(), params, new  OnHttpListener() {
+        CommonHttpUtils.getInstance().initDefOaidDoPost( params, new  OnHttpListener() {
             @Override
             public void onSuccess() {
                 MMKV.defaultMMKV().encode("cunhuo_time:lastreport", System.currentTimeMillis());

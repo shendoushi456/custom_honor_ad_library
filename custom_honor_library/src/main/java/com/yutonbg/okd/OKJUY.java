@@ -8,10 +8,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ep.custom_honor_library.ControllerUtils;
-import com.ep.custom_honor_library.http.OnMiddleInterface;
 
 
-public class OKJUY extends AppCompatActivity implements OnMiddleInterface {
+public class OKJUY extends AppCompatActivity {
 
 
 

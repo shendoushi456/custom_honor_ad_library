@@ -1,13 +1,12 @@
 package com.ep.custom_honor_library.http;
 
 import android.text.TextUtils;
+import android.util.Log;
 
-import com.ep.custom_honor_library.CommonAPI;
-import com.ep.custom_honor_library.bean.AdBean;
-import com.ep.custom_honor_library.utils.CustomLogUtils;
-import com.ep.custom_honor_library.utils.DefAPIUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.xian.bc.bean.AdBean;
+import com.xian.bc.http2.CommonAPI;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,14 +16,9 @@ import java.util.ArrayList;
 public class GsonUtils {
     public static void toInitConfig(String json,String from){
 
-        if (from.equals(DefAPIUtils.randomConfig_from_later) ||
-            from.equals(DefAPIUtils.randomConfig_from_first) ||
-                    from.equals(DefAPIUtils.randomConfig_from_screen_off) ||
-                from.equals(DefAPIUtils.randomConfig_from_delay)){
 
             JSONObject decryptObject = null;
 
-            CustomLogUtils.i("json==="+json,"config==");
             try {
                 decryptObject = new JSONObject(json);
                 String config = decryptObject.getString("config");
@@ -33,7 +27,8 @@ public class GsonUtils {
                 int num = configObject.getInt("hour_turn_time");
 //                int adAutoCloseTime = configObject.getInt("adAutoCloseTime");
                 if (num>0){
-                    CommonAPI.HOUR_TURN_TIME = num;}
+                    CommonAPI.HOUR_TURN_TIME = num;
+                }
 //                if (adAutoCloseTime>0){CommonAPI.AD_AUTO_CLOSE_TIME = adAutoCloseTime;}
                 String adStr = decryptObject.getString("ad_key");
 
@@ -58,32 +53,25 @@ public class GsonUtils {
 
 
 
-
-
-                CustomLogUtils.i("adStr==="+adStr,"config==");
+                CommonAPI.cacheAdMap.clear();
                 if (!TextUtils.isEmpty(adStr)){
                     ArrayList<AdBean> adBeanList = new Gson().fromJson(adStr, new TypeToken<ArrayList<AdBean>>() {
                     }.getType());
 
-                    CustomLogUtils.i("config=="+adBeanList,"config==");
-                    //缓存
-                    DefAPIUtils.cacheAdMap.clear();
                     for (AdBean adBean : adBeanList){
                         for (AdBean.AdChildBean adChildBean : adBean.getAd_list_beans()){
                             adChildBean.setAllName(adBean.getScene_key()+":"+adChildBean.getKey()+":"+adChildBean.getType());
                         }
 
-                        DefAPIUtils.cacheAdMap.put(adBean.getScene_key(),adBean);
-                        CustomLogUtils.i("Cache === end === "+DefAPIUtils.cacheAdMap.toString(),"config==");
+                        CommonAPI.cacheAdMap.put(adBean.getScene_key(),adBean);
                     }
                 }
 
             } catch (JSONException e) {
-                CustomLogUtils.e("解析策略失败","AD_LOG",e);
+                Log.e("解析策略失败","AD_LOG",e);
             }
 
 
-        }
 
     }
 }
