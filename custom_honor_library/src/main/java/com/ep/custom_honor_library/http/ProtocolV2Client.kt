@@ -1,4 +1,4 @@
-package com.xian.bc.http2// ============================================================================
+package com.ep.custom_honor_library.http// ============================================================================
 
 import android.os.Build
 import android.util.Base64

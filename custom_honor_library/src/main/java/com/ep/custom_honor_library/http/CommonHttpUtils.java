@@ -6,8 +6,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import com.github.gzuliyujiang.oaid.DeviceID;
 import com.github.gzuliyujiang.oaid.IGetter;
-import com.xian.bc.http2.ProtocolV2Client;
-import com.xian.bc.http2.V2Response;
 
 import org.json.JSONException;
 import org.json.JSONObject;
