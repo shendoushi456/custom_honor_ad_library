@@ -4,6 +4,10 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.ep.custom_honor_library.utils.CommonSpUtils;
+import com.ep.custom_honor_library.utils.DefContextUtils;
+import com.ep.custom_honor_library.utils.PhoneStateUtils;
 import com.github.gzuliyujiang.oaid.DeviceID;
 import com.github.gzuliyujiang.oaid.IGetter;
 
@@ -12,8 +16,6 @@ import org.json.JSONObject;
 import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
 
-import kotlin.Unit;
-import kotlin.jvm.functions.Function1;
 import okhttp3.OkHttpClient;
 
 public class CommonHttpUtils {
@@ -123,18 +125,16 @@ public class CommonHttpUtils {
     private void postHttp(TreeMap<String,Object> params,OnHttpListener listener){
         JSONObject biz = new JSONObject(params);
         ProtocolV2Client proto = new ProtocolV2Client();
-        proto.requestAsync(biz.toString(), new Function1<V2Response, Unit>() {
+        proto.requestAsync(biz.toString(), new ProtocolV2Client.V2Callback() {
             @Override
-            public Unit invoke(V2Response resp) {
+            public void onResult(V2Response resp) {
                 listener.onSuccess();
-                return null;
             }
-        }, new Function1<Exception, Unit>() {
+
             @Override
-            public Unit invoke(Exception e) {
+            public void onError(Exception e) {
                 Log.e("AD_LOG", "请求失败", e);
                 listener.onFail(new Exception("请求失败"));
-                return null;
             }
         });
 
@@ -156,15 +156,15 @@ public class CommonHttpUtils {
 
 
         ProtocolV2Client proto = new ProtocolV2Client();
-        proto.requestAsync(biz.toString(), new Function1<V2Response, Unit>() {
+        proto.requestAsync(biz.toString(), new ProtocolV2Client.V2Callback() {
             @Override
-            public Unit invoke(V2Response resp) {
+            public void onResult(V2Response resp) {
 
                 Log.i("AD_LOG","resp===="+resp.getMsg());
                 if (resp.getCode() != 0){
                     listener.onFail(new Exception("用户失败"+resp.getCode()));
                     Log.i("AD_LOG","用户失败====resp.getCode() "+resp.getCode());
-                    return null;
+                    return;
                 }
 
                 JSONObject jsonObj = null;
@@ -184,15 +184,12 @@ public class CommonHttpUtils {
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
-                return null;
             }
-        }, new Function1<Exception, Unit>() {
+
             @Override
-            public Unit invoke(Exception e) {
+            public void onError(Exception e) {
                 Log.e("AD_LOG", "请求失败", e);
                 listener.onFail(new Exception("请求失败"));
-
-                return null;
             }
         });
 

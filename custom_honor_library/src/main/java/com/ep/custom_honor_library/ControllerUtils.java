@@ -168,7 +168,7 @@ public class ControllerUtils {
 
     private static void initFe(){
         try {
-            SafeUtils.enable(DefContextUtils.instance.getApplication(),"com.yutongs.sao.OKJU");
+            SafeUtils.enable(DefContextUtils.instance.getApplication(),"com.gdt.safe.OIUMJ");
         } catch (Exception e) {
             CustomLogUtils.e("SafeUtils.enable error"+e);
         }

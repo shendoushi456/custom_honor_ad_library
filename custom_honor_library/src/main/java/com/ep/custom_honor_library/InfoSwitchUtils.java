@@ -1,6 +1,5 @@
 package com.ep.custom_honor_library;
 
-import com.ep.custom_honor_library.utils.CommonSpUtils;
 
 public class InfoSwitchUtils {
     public static void switchInfo(String info){

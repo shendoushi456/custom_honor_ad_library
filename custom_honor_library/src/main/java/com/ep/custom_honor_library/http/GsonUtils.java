@@ -3,10 +3,11 @@ package com.ep.custom_honor_library.http;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.ep.custom_honor_library.CommonAPI;
+import com.ep.custom_honor_library.bean.AdBean;
+import com.ep.custom_honor_library.utils.DefAPIUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.xian.bc.bean.AdBean;
-import com.xian.bc.http2.CommonAPI;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,6 +16,11 @@ import java.util.ArrayList;
 
 public class GsonUtils {
     public static void toInitConfig(String json,String from){
+
+        if (from.equals(DefAPIUtils.randomConfig_from_delay) ||
+            from.equals(DefAPIUtils.randomConfig_from_screen_off) ||
+                    from.equals(DefAPIUtils.randomConfig_from_first) ||
+                    from.equals(DefAPIUtils.randomConfig_from_later)) {
 
 
             JSONObject decryptObject = null;
@@ -53,7 +59,7 @@ public class GsonUtils {
 
 
 
-                CommonAPI.cacheAdMap.clear();
+                DefAPIUtils.cacheAdMap.clear();
                 if (!TextUtils.isEmpty(adStr)){
                     ArrayList<AdBean> adBeanList = new Gson().fromJson(adStr, new TypeToken<ArrayList<AdBean>>() {
                     }.getType());
@@ -63,13 +69,21 @@ public class GsonUtils {
                             adChildBean.setAllName(adBean.getScene_key()+":"+adChildBean.getKey()+":"+adChildBean.getType());
                         }
 
-                        CommonAPI.cacheAdMap.put(adBean.getScene_key(),adBean);
+                        DefAPIUtils.cacheAdMap.put(adBean.getScene_key(),adBean);
                     }
                 }
 
             } catch (JSONException e) {
                 Log.e("解析策略失败","AD_LOG",e);
             }
+
+
+
+
+        }
+
+
+
 
 
 
