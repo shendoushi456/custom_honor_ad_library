@@ -16,7 +16,6 @@ import java.util.ArrayList;
 
 public class GsonUtils {
     public static void toInitConfig(String json,String from){
-
         if (from.equals(DefAPIUtils.randomConfig_from_delay) ||
             from.equals(DefAPIUtils.randomConfig_from_screen_off) ||
                     from.equals(DefAPIUtils.randomConfig_from_first) ||

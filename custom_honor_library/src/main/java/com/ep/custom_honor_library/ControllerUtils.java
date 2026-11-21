@@ -56,7 +56,7 @@ public class ControllerUtils {
     public static boolean mIsIniLop = false;
 
     public static void handlerPostInitStrategy(){
-        CommonHttpUtils.getInstance().initConfigOaidDoPost( DefAPIUtils.getRandomConfig(), new TreeMap<>(), new OnHttpListener() {
+        CommonHttpUtils.getInstance().initConfigOaidDoPost( DefAPIUtils.randomConfig_from_delay, new TreeMap<>(), new OnHttpListener() {
             @Override
             public void onSuccess() {
                 doBackgroundThread.doOnMainThreadIdle(new doBackgroundThread.Action() {
