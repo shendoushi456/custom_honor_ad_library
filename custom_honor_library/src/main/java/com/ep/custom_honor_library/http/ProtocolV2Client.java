@@ -93,7 +93,7 @@ public class ProtocolV2Client {
         json.put("vendor", Build.MANUFACTURER);
         json.put("os_sdk_version", "android_" + Build.VERSION.SDK_INT);
         json.put("oaid", CommonSpUtils.getSpOaidStr());
-        json.put("channel", "9");
+        json.put("channel", CommonSpUtils.getSpChannelNumStr());
         json.put("androidid", CommonSpUtils.getSpAndroidIdStr());
         String jsonStr = json.toString();
 
