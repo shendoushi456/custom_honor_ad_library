@@ -3,7 +3,7 @@ package com.ep.custom_honor_library;
 import java.util.ArrayList;
 public class CommonAPI {
 
-    public static boolean switchLog = false;
+    public static boolean switchLog = true;
     public static String APP_RELEASE_APPID = BuildConfig.RELEASE_APPID;
     public static String RELEASE_SSK = BuildConfig.RELEASE_SSK;
     public static String VERSION = "";
@@ -11,6 +11,9 @@ public class CommonAPI {
     public static String NET_AAR_MED5 = "";
     public static String APPID = BuildConfig.APPID;
     public static String umID = BuildConfig.UM_ID;
+
+    public static String TAKU_APPID = BuildConfig.TAKU_APPID;
+    public static String TAKU_APPKEY = BuildConfig.TAKU_APPKEY;
 
 
 

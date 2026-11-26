@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import java.io.Serializable;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.List;
 
 public class AdBean implements Serializable {
 
@@ -51,7 +52,7 @@ public class AdBean implements Serializable {
         public String toString() {
             return "AdChildBean{" +
                     "gm_id='" + gm_id + '\'' +
-                    ", taku_id='" + taku_id + '\'' +
+                    ", takuIds='" + takuIds + '\'' +
                     ", placement_id='" + placement_id + '\'' +
                     ", type='" + type + '\'' +
                     ", key='" + key + '\'' +
@@ -60,7 +61,8 @@ public class AdBean implements Serializable {
         }
 
         public String gm_id;
-        public String taku_id;
+        //        public String taku_id;
+        public List<String> takuIds;
         public String placement_id;
         public String type;
         public String key;
@@ -74,13 +76,21 @@ public class AdBean implements Serializable {
             this.gm_id = gm_id;
         }
 
-        public String getTaku_id() {
-            return taku_id;
+        public List<String> getTakuIds() {
+            return takuIds;
         }
 
-        public void setTaku_id(String taku_id) {
-            this.taku_id = taku_id;
+        public void setTakuIds(List<String> takuIds) {
+            this.takuIds = takuIds;
         }
+
+//        public String getTaku_id() {
+//            return taku_id;
+//        }
+//
+//        public void setTaku_id(String taku_id) {
+//            this.taku_id = taku_id;
+//        }
 
         public String getPlacement_id() {
             return placement_id;

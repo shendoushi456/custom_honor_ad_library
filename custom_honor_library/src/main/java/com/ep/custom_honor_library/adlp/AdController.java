@@ -10,6 +10,8 @@ import com.ep.custom_honor_library.bean.ControlAdBean;
 import com.ep.custom_honor_library.gm.GMFullAdView;
 import com.ep.custom_honor_library.gm.GMSplashAdView;
 import com.ep.custom_honor_library.gm.SuperAdClazz;
+import com.ep.custom_honor_library.taku.XinTaKuInterstitial;
+import com.ep.custom_honor_library.taku.XinTaKuSplashAd;
 import com.ep.custom_honor_library.utils.DefAPIUtils;
 import com.ep.custom_honor_library.utils.CommonSpUtils;
 import com.ep.custom_honor_library.utils.CustomLogUtils;
@@ -70,10 +72,12 @@ public class AdController {
             case CommonAPI.INTER_TYPE:
             case CommonAPI.FULL_TYPE:
             case CommonAPI.INTER_FULL_TYPE:
-                superAdClazz = GMFullAdView.getGMFullViewInstance().setAdInfo(currentAdInfo).setControlBean(controlAdBean);
+               // superAdClazz = GMFullAdView.getGMFullViewInstance().setAdInfo(currentAdInfo).setControlBean(controlAdBean);
+                superAdClazz = XinTaKuInterstitial.getInstance().setAdInfo(currentAdInfo).setControlBean(controlAdBean);
                 break;
             case CommonAPI.SPLASH_TYPE:
-                superAdClazz = GMSplashAdView.getGMSplashAdViewInstance().setAdInfo(currentAdInfo).setControlBean(controlAdBean);
+             //   superAdClazz = GMSplashAdView.getGMSplashAdViewInstance().setAdInfo(currentAdInfo).setControlBean(controlAdBean);
+                superAdClazz = XinTaKuSplashAd.getInstance().setAdInfo(currentAdInfo).setControlBean(controlAdBean);
                 break;
         }
 

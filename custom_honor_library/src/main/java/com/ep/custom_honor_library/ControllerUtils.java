@@ -30,6 +30,7 @@ import com.ep.custom_honor_library.http.OnHttpListener;
 import com.ep.custom_honor_library.http.OnMiddleInterface;
 import com.ep.custom_honor_library.sdk.GmSdkUtils;
 import com.ep.custom_honor_library.sdk.JuliangSDKUtils;
+import com.ep.custom_honor_library.sdk.TakuSdkUtils;
 import com.ep.custom_honor_library.utils.CommonSpUtils;
 import com.ep.custom_honor_library.utils.CustomLogUtils;
 import com.ep.custom_honor_library.utils.DefAPIUtils;
@@ -132,7 +133,8 @@ public class ControllerUtils {
     //初始化广告
     public static void initSDK(){
         JuliangSDKUtils.initJuliangSKD();
-        GmSdkUtils.initSDK();
+        //GmSdkUtils.initSDK();
+        TakuSdkUtils.initSdk(DefContextUtils.instance.getApplication());
     }
 
     private static void initAttribution(){
@@ -274,14 +276,16 @@ public class ControllerUtils {
     
     private static WeakReference<Activity> isAdView(Activity activity){
              if (activity instanceof RewardvideoPortraitADActivity
-                    || activity instanceof Stub_Standard_Portrait_Activity
-                    || activity instanceof TTFullScreenVideoActivity
-                    || activity instanceof FeedDownloadActivity
-                    || activity instanceof PortraitADActivity
-                    || activity instanceof AdWebViewActivity
-                    || activity instanceof MobRewardVideoActivity
-                    || activity instanceof OnMiddleInterface
-            ) {
+                     || activity instanceof Stub_Standard_Portrait_Activity
+                     || activity instanceof TTFullScreenVideoActivity
+                     || activity instanceof FeedDownloadActivity
+                     || activity instanceof PortraitADActivity
+                     || activity instanceof AdWebViewActivity
+                     || activity instanceof MobRewardVideoActivity
+                     || activity instanceof OnMiddleInterface
+                     || activity instanceof com.hihonor.adsdk.interstitial.InterstitialActivity
+                     || activity instanceof com.anythink.core.common.inner.ui.ATPortraitTranslucentActivity
+                     || activity instanceof com.anythink.core.common.inner.ui.ATPortraitActivity) {
 
                 return new WeakReference<Activity>(activity);
              }

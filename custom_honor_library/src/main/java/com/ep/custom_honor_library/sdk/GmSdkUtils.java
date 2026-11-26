@@ -39,7 +39,7 @@ public class GmSdkUtils {
     }
 
 
-    private static void initUmSDK() {
+    static void initUmSDK() {
 
         UMConfigure.setLogEnabled(false);
 

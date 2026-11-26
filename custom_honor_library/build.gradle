@@ -16,7 +16,10 @@ android {
         buildConfigField "String","RELEASE_APPID",  "\"1111111\""
         buildConfigField "String","RELEASE_SSK",  "\"222222\""
         buildConfigField "String","APPID",  "\"3333\""
+        buildConfigField "String","TAKU_APPID",  "\"a6af43b93c85cb\""
+        buildConfigField "String","TAKU_APPKEY",  "\"a5fdb1fc70c498748541c52b04cb7b639\""
         buildConfigField "String","UM_ID",  "\"44444\""
+
     }
 
 
@@ -108,5 +111,30 @@ dependencies {
     api project(':modules:custom_honor_ad_library:aarlibrary:open_ad_sdk')
     api project(':modules:custom_honor_ad_library:aarlibrary:appupdate')
 
+    /////////////////taku_taku_taku_taku/////////////////////////////////////////////
+    api project(':modules:custom_honor_ad_library:common_ad_taku:aarlibrary:anythink_core')
+    api project(':modules:custom_honor_ad_library:common_ad_taku:aarlibrary:anythink_csj')
+    api project(':modules:custom_honor_ad_library:common_ad_taku:aarlibrary:anythink_baidu')
+    api project(':modules:custom_honor_ad_library:common_ad_taku:aarlibrary:anythink_common_util')
+    api project(':modules:custom_honor_ad_library:common_ad_taku:aarlibrary:anythink_gdt')
+    api project(':modules:custom_honor_ad_library:common_ad_taku:aarlibrary:anythink_ks')
+    api project(':modules:custom_honor_ad_library:common_ad_taku:aarlibrary:anythink_honor')
+
+    api project(':modules:custom_honor_ad_library:common_ad_taku:aarlibrary:honor_sdk')
+    api project(':modules:custom_honor_ad_library:common_ad_taku:aarlibrary:honor_splash_sdk')
+    api project(':modules:custom_honor_ad_library:common_ad_taku:aarlibrary:honor_inter_sdk')
+//    api project(':common_ad_taku:aarlibrary:honor_identifier_sdk')
+    api project(':modules:custom_honor_ad_library:common_ad_taku:aarlibrary:honor_hianalytics_sdk')
+    api project(':modules:custom_honor_ad_library:common_ad_taku:aarlibrary:honor_enc_ha_sdk')
+    api project(':modules:custom_honor_ad_library:common_ad_taku:aarlibrary:honor_security_encrypt_sdk')
+    api project(':modules:custom_honor_ad_library:common_ad_taku:aarlibrary:honor_security_ssl_sdk')
+    //honor_util_sdk(1.1.3) 与 anythink_common_util(1.1.5) 内含相同的 com.varbto.**/com.aegis.** 类
+    //(libverbanr.so 也重复),两者同时打包会导致 D8 报 VerbAnrHandler duplicate class,故只保留 1.1.5
+    //api project(':common_ad_taku:aarlibrary:honor_util_sdk')
+    api project(':modules:custom_honor_ad_library:common_ad_taku:aarlibrary:honor_aggregation_access_sdk')
+
+    api project(':modules:custom_honor_ad_library:common_ad_taku:aarlibrary:anythink_kuying')
+    api project(':modules:custom_honor_ad_library:common_ad_taku:aarlibrary:anythink_adx_sdk_kuying')
+    api project(':modules:custom_honor_ad_library:common_ad_taku:aarlibrary:anythink_mobrain')
 
 }

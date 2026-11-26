@@ -2,6 +2,7 @@ package com.ep.custom_honor_library.gm;
 
 import android.text.TextUtils;
 import android.util.Log;
+import com.anythink.core.api.ATAdInfo;
 import com.bytedance.sdk.openadsdk.mediation.manager.MediationAdEcpmInfo;
 import com.ep.custom_honor_library.adlp.MarkEventTJ;
 import com.ep.custom_honor_library.bean.AdBean;
@@ -40,7 +41,7 @@ public abstract class SuperAdClazz {
     }
 
 
-
+//GM
     public static EventTJBean createNATAdInfo(MediationAdEcpmInfo mediationAdEcpm,AdBean.AdChildBean adChildBean){
         EventTJBean natAdInfo;
         if (mediationAdEcpm != null) {
@@ -67,7 +68,41 @@ public abstract class SuperAdClazz {
         return natAdInfo;
     }
 
-
+    //TAKU
+    public static EventTJBean createNATAdInfo(ATAdInfo mATAdInfo,AdBean.AdChildBean adChildBean){
+        EventTJBean natAdInfo;
+        if (mATAdInfo != null) {
+            // String getSdkName() 获取SDK名称
+            //getCustomSdkName() 获取自定义ADN名称
+            // String getSlotId()  获取代码位ID
+            // String getEcpm()  获取价格 单位是分
+            // String getRitType() 获取代码位类型
+            // int getReqBiddingType() 获取bidding类型
+            // String getErrorMsg() 获取错误信息
+            // String getRequestId() 获取请求唯一标识 广告对应的request_id,目前只有穿山甲和mintegral才有，其余返回为空
+            String ecpm = String.valueOf(mATAdInfo.getEcpm());
+            Log.d("NAdBeanFactory","ecpm值>> "+ecpm);
+            if(TextUtils.isEmpty(ecpm)){
+                ecpm = "0";
+            }
+            String sdkName = mATAdInfo.getNetworkName();
+            if(TextUtils.isEmpty(sdkName)){
+                sdkName = "sdkname";
+            }
+            String slotId = mATAdInfo.getNetworkPlacementId();
+            if(TextUtils.isEmpty(slotId)){
+                slotId = "111111";
+            }
+            // Log.d("AD_LOG_TAKU_NAdBeanFactory","平台》〉"+mATAdInfo.getNetworkFirmId()+" placementId>> "+slotId+" ecpm值>> "+ecpm + "单位》〉"+mATAdInfo.getCurrency() + "竞价类型》〉"+mATAdInfo.getBidType());
+            natAdInfo = new EventTJBean(sdkName, slotId, ecpm,mATAdInfo.getBidType());
+        } else {
+            natAdInfo = new EventTJBean("","","",0);
+        }
+        final String uuid = UUID.randomUUID().toString();
+        Log.d("AD_LOG","TAKU 上报 广告展示的uuid >>"+uuid);
+        MarkEventTJ.onAdShowRequest(uuid,adChildBean.getAllName(),natAdInfo);
+        return natAdInfo;
+    }
 
     public interface OnShowStatusListener{
         void showAdSuccess();
