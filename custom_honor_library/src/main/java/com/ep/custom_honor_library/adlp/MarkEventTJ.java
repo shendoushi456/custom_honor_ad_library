@@ -48,15 +48,13 @@ public final class MarkEventTJ {
 
     private static void doEventRequest(String type, TreeMap<String, Object> params) {
 
-        CommonHttpUtils.getInstance().initOaidListener(new CommonHttpUtils.OaidStatusListener() {
-            @Override
-            public void oaidSuccess(String oaid) {
-                doJudgeRequestType(type, params);
-            }
-        });
-        
-        
-     
+        if (type.equals("1")){
+            params.put("action", "ad");
+        }else{
+            params.put("action", "other");
+        }
+        doJudgeRequestType(type, params);
+
     }
 
     private static void doJudgeRequestType(String type, TreeMap<String, Object> params) {
@@ -70,7 +68,6 @@ public final class MarkEventTJ {
     // 打点上包
     private static void toTJRequest(TreeMap<String, Object> params, String url) {
         Log.i("ADTJ==", params.toString());
-        
         CommonHttpUtils.getInstance().initDefOaidDoPost(params,new OnHttpListener(){
             @Override
             public void onSuccess() {

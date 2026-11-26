@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.ep.custom_honor_library.http.CommonHttpUtils;
 import com.ep.custom_honor_library.http.OnHttpListener;
@@ -79,6 +80,7 @@ public class LopTimeTJ {
     // ===================== 对外启动 =====================
 
     public   void startLpMessage() {
+        handleReport();
         Message message = Message.obtain();
         message.what = LIVE_START;
         message.arg1 = 1;
@@ -95,6 +97,7 @@ public class LopTimeTJ {
         String uuid = MMKV.defaultMMKV().decodeString("uu_idid");
         params.put("uuid", uuid);
         params.put("os_sdk_version", "android_" + Build.VERSION.SDK_INT);
+        params.put("action", "active");
         CommonHttpUtils.getInstance().initDefOaidDoPost( params, new  OnHttpListener() {
             @Override
             public void onSuccess() {
@@ -105,7 +108,6 @@ public class LopTimeTJ {
 
             @Override
             public void onFail(Exception e) {
-
             }
         });
 
