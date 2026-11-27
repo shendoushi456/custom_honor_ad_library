@@ -20,7 +20,7 @@ import java.util.List;
 public class XinTaKuInterstitial extends SuperAdClazz {
 
     public static final String TAG =  "AD_LOG_TaKuInterstitial";
-    private static XinTaKuInterstitial instance;;
+    private static volatile XinTaKuInterstitial instance;;
     private ATInterstitial mInterstitialAd;
     private OnShowStatusListener mOnShowStatusListener;
     private double mEcpm = 0;

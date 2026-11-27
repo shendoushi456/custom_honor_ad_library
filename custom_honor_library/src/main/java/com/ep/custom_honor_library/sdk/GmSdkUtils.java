@@ -2,8 +2,8 @@ package com.ep.custom_honor_library.sdk;
 
 import android.util.Log;
 
-import com.bytedance.sdk.openadsdk.TTAdConfig;
-import com.bytedance.sdk.openadsdk.TTAdSdk;
+//import com.bytedance.sdk.openadsdk.TTAdConfig;
+//import com.bytedance.sdk.openadsdk.TTAdSdk;
 import com.ep.custom_honor_library.CommonAPI;
 import com.ep.custom_honor_library.utils.DefContextUtils;
 import com.umeng.analytics.MobclickAgent;
@@ -13,27 +13,27 @@ public class GmSdkUtils {
     private static boolean sInit = false;
     public static void initSDK() {
 
-        if (!sInit) {
-
-            boolean initStatus = TTAdSdk.init(DefContextUtils.instance.getApplication(), buildConfig());
-
-            Log.d("TTMediationSDK",
-                    "initStatus>>" + initStatus +
-                            " APPID>>" + CommonAPI.APPID);
-
-            TTAdSdk.start(new TTAdSdk.Callback() {
-                @Override
-                public void success() {
-                    Log.d("TTMediationSDK", "初始化融合SDK成功");
-                    sInit = true;
-                }
-
-                @Override
-                public void fail(int code, String msg) {
-                    Log.d("TTMediationSDK", "初始化融合SDK失败");
-                }
-            });
-        }
+//        if (!sInit) {
+//
+//            boolean initStatus = TTAdSdk.init(DefContextUtils.instance.getApplication(), buildConfig());
+//
+//            Log.d("TTMediationSDK",
+//                    "initStatus>>" + initStatus +
+//                            " APPID>>" + CommonAPI.APPID);
+//
+//            TTAdSdk.start(new TTAdSdk.Callback() {
+//                @Override
+//                public void success() {
+//                    Log.d("TTMediationSDK", "初始化融合SDK成功");
+//                    sInit = true;
+//                }
+//
+//                @Override
+//                public void fail(int code, String msg) {
+//                    Log.d("TTMediationSDK", "初始化融合SDK失败");
+//                }
+//            });
+//        }
 
         initUmSDK();
     }
@@ -65,16 +65,16 @@ public class GmSdkUtils {
 
 
 
-    private static TTAdConfig buildConfig() {
-        return new TTAdConfig.Builder()
-                .appId(CommonAPI.APPID)
-                .appName(CommonAPI.VERSION)
-                .debug(CommonAPI.switchLog)
-                .useMediation(true)
-                .supportMultiProcess(false)
-                .allowShowNotify(true)
-                .build();
-    }
+//    private static TTAdConfig buildConfig() {
+//        return new TTAdConfig.Builder()
+//                .appId(CommonAPI.APPID)
+//                .appName(CommonAPI.VERSION)
+//                .debug(CommonAPI.switchLog)
+//                .useMediation(true)
+//                .supportMultiProcess(false)
+//                .allowShowNotify(true)
+//                .build();
+//    }
 
 
 }

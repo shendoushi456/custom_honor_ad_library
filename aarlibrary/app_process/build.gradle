@@ -1,4 +1,0 @@
-dependencies {
-    configurations.maybeCreate("default")
-    artifacts.add("default", file('app_process.aar'))
-}

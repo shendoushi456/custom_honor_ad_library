@@ -19,7 +19,7 @@ import java.util.List;
 public class XinTaKuSplashAd extends SuperAdClazz {
 
     public static final String TAG =  "AD_LOG_TaKuSplash";
-    private static XinTaKuSplashAd instance;
+    private static volatile XinTaKuSplashAd instance;
     private ATSplashAd mATSplashAd;
     private OnShowStatusListener mOnShowStatusListener;
     private double mEcpm = 0;

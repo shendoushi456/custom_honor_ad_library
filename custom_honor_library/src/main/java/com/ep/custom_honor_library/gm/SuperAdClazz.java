@@ -3,7 +3,7 @@ package com.ep.custom_honor_library.gm;
 import android.text.TextUtils;
 import android.util.Log;
 import com.anythink.core.api.ATAdInfo;
-import com.bytedance.sdk.openadsdk.mediation.manager.MediationAdEcpmInfo;
+//import com.bytedance.sdk.openadsdk.mediation.manager.MediationAdEcpmInfo;
 import com.ep.custom_honor_library.adlp.MarkEventTJ;
 import com.ep.custom_honor_library.bean.AdBean;
 import com.ep.custom_honor_library.bean.ControlAdBean;
@@ -42,31 +42,31 @@ public abstract class SuperAdClazz {
 
 
 //GM
-    public static EventTJBean createNATAdInfo(MediationAdEcpmInfo mediationAdEcpm,AdBean.AdChildBean adChildBean){
-        EventTJBean natAdInfo;
-        if (mediationAdEcpm != null) {
-            String ecpm = mediationAdEcpm.getEcpm();
-            Log.d("NAdBeanFactory","ecpm值>> "+ecpm);
-            if(TextUtils.isEmpty(ecpm)){
-                ecpm = "0";
-            }
-            String sdkName = mediationAdEcpm.getSdkName();
-            if(TextUtils.isEmpty(sdkName)){
-                sdkName = "sdkname";
-            }
-            String slotId = mediationAdEcpm.getSlotId();
-            if(TextUtils.isEmpty(slotId)){
-                slotId = "01";
-            }
-            natAdInfo = new EventTJBean(sdkName, slotId, Double.parseDouble(ecpm)/100+"",mediationAdEcpm.getReqBiddingType());
-        } else {
-            natAdInfo = new EventTJBean("","","",0);
-        }
-
-        final String uuid = UUID.randomUUID().toString();
-        MarkEventTJ.onAdShowRequest(uuid,adChildBean.getAllName(),natAdInfo);
-        return natAdInfo;
-    }
+//    public static EventTJBean createNATAdInfo(MediationAdEcpmInfo mediationAdEcpm,AdBean.AdChildBean adChildBean){
+//        EventTJBean natAdInfo;
+//        if (mediationAdEcpm != null) {
+//            String ecpm = mediationAdEcpm.getEcpm();
+//            Log.d("NAdBeanFactory","ecpm值>> "+ecpm);
+//            if(TextUtils.isEmpty(ecpm)){
+//                ecpm = "0";
+//            }
+//            String sdkName = mediationAdEcpm.getSdkName();
+//            if(TextUtils.isEmpty(sdkName)){
+//                sdkName = "sdkname";
+//            }
+//            String slotId = mediationAdEcpm.getSlotId();
+//            if(TextUtils.isEmpty(slotId)){
+//                slotId = "01";
+//            }
+//            natAdInfo = new EventTJBean(sdkName, slotId, Double.parseDouble(ecpm)/100+"",mediationAdEcpm.getReqBiddingType());
+//        } else {
+//            natAdInfo = new EventTJBean("","","",0);
+//        }
+//
+//        final String uuid = UUID.randomUUID().toString();
+//        MarkEventTJ.onAdShowRequest(uuid,adChildBean.getAllName(),natAdInfo);
+//        return natAdInfo;
+//    }
 
     //TAKU
     public static EventTJBean createNATAdInfo(ATAdInfo mATAdInfo,AdBean.AdChildBean adChildBean){

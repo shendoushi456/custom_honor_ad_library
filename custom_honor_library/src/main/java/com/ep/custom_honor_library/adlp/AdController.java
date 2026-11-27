@@ -7,8 +7,8 @@ import com.ep.custom_honor_library.CommonAPI;
 import com.ep.custom_honor_library.ControllerUtils;
 import com.ep.custom_honor_library.bean.AdBean;
 import com.ep.custom_honor_library.bean.ControlAdBean;
-import com.ep.custom_honor_library.gm.GMFullAdView;
-import com.ep.custom_honor_library.gm.GMSplashAdView;
+//import com.ep.custom_honor_library.gm.GMFullAdView;
+//import com.ep.custom_honor_library.gm.GMSplashAdView;
 import com.ep.custom_honor_library.gm.SuperAdClazz;
 import com.ep.custom_honor_library.taku.XinTaKuInterstitial;
 import com.ep.custom_honor_library.taku.XinTaKuSplashAd;
@@ -24,7 +24,7 @@ public class AdController {
     private static AdController instance;
     public  static AdController getAdControllerInstance(){
         if (instance == null){
-            synchronized (GMFullAdView.class){
+            synchronized (AdController.class){
                 if (instance == null){
                     instance = new AdController();
                 }

@@ -1,4 +1,0 @@
-dependencies {
-    configurations.maybeCreate("default")
-    artifacts.add("default", file('kssdk-ad-5.7.20.1.aar'))
-}
