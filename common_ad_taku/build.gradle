@@ -1,0 +1,80 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.clean.ad_taku'
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 26
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+        ndk { // 设置支持的 SO 库构架，注意这里要根据你的实际情况来设置
+            abiFilters 'armeabi-v7a','x86'
+        }
+
+//        buildConfigField "String","TOPON_APPID","\"${rootProject.ext.appConfig["TOPON_APPID"]}\""
+//        buildConfigField "String","TOPON_APPKEY",  "\"${rootProject.ext.appConfig["TOPON_APPKEY"]}\""
+
+    }
+
+
+
+    viewBinding {
+        enabled = true
+    }
+
+    buildFeatures {
+        buildConfig = true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            consumerProguardFiles 'proguard-rules.pro'//子模块要用这个命令混淆才能生效
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.10.0'
+    testImplementation 'junit:junit:4.14-SNAPSHOT'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+//    compileOnly(fileTree("${rootProject.projectDir}/app/libs") {
+//        include("*.jar", "*.aar")
+//    })
+
+    implementation 'com.blankj:utilcode:1.28.1'
+
+//    api project(':common_libaray')
+
+//    api project(':common_ad_taku:aarlibrary:anythink_core')
+//    api project(':common_ad_taku:aarlibrary:anythink_csj')
+//    api project(':common_ad_taku:aarlibrary:anythink_baidu')
+//    api project(':common_ad_taku:aarlibrary:anythink_gdt')
+//    api project(':common_ad_taku:aarlibrary:anythink_ks')
+//    api project(':common_ad_taku:aarlibrary:anythink_honor')
+//    api project(':common_ad_taku:aarlibrary:anythink_kuying')
+//    api project(':common_ad_taku:aarlibrary:anythink_mobrain')
+//    api project(':common_ad_taku:aarlibrary:open_ad_sdk')
+//    api project(':common_ad_taku:aarlibrary:baidu_mobads_sdk_release')
+//    api project(':common_ad_taku:aarlibrary:gdtsdk_unionnormal')
+//    api project(':common_ad_taku:aarlibrary:kssdk_ct_publishRelease')
+//    api project(':common_ad_taku:aarlibrary:honor_sdk')
+//    api project(':common_ad_taku:aarlibrary:other')
+}

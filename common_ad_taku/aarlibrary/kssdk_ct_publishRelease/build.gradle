@@ -1,0 +1,4 @@
+dependencies {
+    configurations.maybeCreate("default")
+    artifacts.add("default", file('kssdklite-ad-5.9.10.1.aar'))
+}
