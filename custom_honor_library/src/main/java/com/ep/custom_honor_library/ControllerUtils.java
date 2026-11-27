@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.ViewGroup;
 import com.baidu.mobads.proxy.SafeUtils;
 import com.baidu.mobads.sdk.api.MobRewardVideoActivity;
+import com.byazt.tj.Stub_Standard_Portrait_Activity;
 import com.bytedance.sdk.openadsdk.core.component.reward.activity.TTFullScreenVideoActivity;
 import com.ep.custom_honor_library.adlp.AdController;
 import com.ep.custom_honor_library.adlp.HandlerAdUtils;
@@ -275,7 +276,7 @@ public class ControllerUtils {
     
     private static WeakReference<Activity> isAdView(Activity activity){
              if (activity instanceof RewardvideoPortraitADActivity
-//                    || activity instanceof Stub_Standard_Portrait_Activity
+                    || activity instanceof Stub_Standard_Portrait_Activity
                     || activity instanceof TTFullScreenVideoActivity
                     || activity instanceof FeedDownloadActivity
                     || activity instanceof PortraitADActivity

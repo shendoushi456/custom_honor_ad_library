@@ -79,7 +79,7 @@ public class SigMobMediaSplashAd extends SuperAdClazz {
                 Log.d(TAG,"SIgMob 开屏广告展示成功 onSplashAdSuccessPresent");
 //                callAdShow(NAdBeanCreator.createSigMobNATAdInfo(adInfo));
 //                splashAdAutoSkip();
-                createNATAdInfo(adInfo);
+                createNATAdInfo(adInfo,getAdInfo());
 
                 if(mOnShowStatusListener != null){
                     mOnShowStatusListener.showAdSuccess();

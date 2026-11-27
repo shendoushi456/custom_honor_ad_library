@@ -1,0 +1,4 @@
+dependencies {
+    configurations.maybeCreate("default")
+    artifacts.add("default", file("windmill-baidu-adapter-9.460-5.5.6.aar"))
+}

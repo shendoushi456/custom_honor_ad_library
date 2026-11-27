@@ -20,6 +20,7 @@ public class SigMobMediaInterstitial extends SuperAdClazz {
     private static String TAG = "AD_LOG_SIGMOB_LOG";
     private static volatile SigMobMediaInterstitial instance;
     private WMInterstitialAd mInterstitialAd;//全局对象
+    private OnShowStatusListener mOnShowStatusListener;
 
     public static SigMobMediaInterstitial getInstance(){
         if (instance == null) {
@@ -80,8 +81,12 @@ public class SigMobMediaInterstitial extends SuperAdClazz {
             @Override
             public void onInterstitialAdPlayStart(AdInfo adInfo) {
                 Log.d(TAG,"SIgMob 广告展示成功 onInterstitialAdPlayStart");
-//                callAdShow(NAdBeanCreator.createSigMobNATAdInfo(adInfo));
+           //     callAdShow(NAdBeanCreator.createSigMobNATAdInfo(adInfo));
 //                interOrFullAdAutoClose();
+                createNATAdInfo(adInfo,getAdInfo());
+                 if (mOnShowStatusListener!=null){
+                     mOnShowStatusListener.showAdSuccess();
+                    }
             }
 
             @Override
@@ -126,7 +131,7 @@ public class SigMobMediaInterstitial extends SuperAdClazz {
             Log.i(TAG,"SigMob mInterstitialAd==null");
             return;
         }
-
+        mOnShowStatusListener = onShowStatusListener;
         Log.i(TAG,"SigMob mInterstitialAd=isReady=="+isHasReadAd());
         if (isHasReadAd()){
             Log.i(TAG,"SigMob mInterstitialAd= 调用show()开始 展示广告mInterstitialAd=="+mInterstitialAd.toString());

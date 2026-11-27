@@ -69,7 +69,7 @@ public abstract class SuperAdClazz {
     }
 
     //SigMob SDK
-    public static EventTJBean createNATAdInfo(AdInfo adInfo){
+    public static EventTJBean createNATAdInfo(AdInfo adInfo,AdBean.AdChildBean adChildBean){
         EventTJBean natAdInfo;
         if (adInfo != null) {
             // String getSdkName() 获取SDK名称
@@ -97,6 +97,9 @@ public abstract class SuperAdClazz {
         } else {
             natAdInfo = new EventTJBean("","","",0);
         }
+
+        final String uuid = UUID.randomUUID().toString();
+        MarkEventTJ.onAdShowRequest(uuid,adChildBean.getAllName(),natAdInfo);
         return natAdInfo;
     }
 
