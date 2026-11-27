@@ -44,6 +44,7 @@ public class InfoSwitchUtils {
             case "com.shnine.lanxiaoquanyuweather":
                 CommonAPI.HOST = "https://api.fumanban.cn/";
                 CommonAPI.APPID = "5921179";
+                CommonAPI.SIGMOB_JL_APPID = "85727";
                 CommonAPI.APP_RELEASE_APPID = "04119350de11987a9d54fac968bdf00d";
                 CommonAPI.RELEASE_SSK = "52297c51a75a2ab023018e2e43361c3f4592b5c9e2c9650e2bb4a190a84724aa";
                 CommonAPI.umID = "6b06d0582b097e0d647ffd30";

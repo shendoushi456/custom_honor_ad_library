@@ -16,6 +16,7 @@ android {
         buildConfigField "String","RELEASE_APPID",  "\"1111111\""
         buildConfigField "String","RELEASE_SSK",  "\"222222\""
         buildConfigField "String","APPID",  "\"3333\""
+        buildConfigField "String","SIGMOB_JL_APPID",  "\"85727\""
         buildConfigField "String","UM_ID",  "\"44444\""
     }
 
@@ -108,5 +109,15 @@ dependencies {
     api project(':modules:custom_honor_ad_library:aarlibrary:open_ad_sdk')
     api project(':modules:custom_honor_ad_library:aarlibrary:appupdate')
 
+    //sigmob
+    api project(':modules:custom_honor_ad_library:aarlibrary:sigmob_common')
+    api project(':modules:custom_honor_ad_library:aarlibrary:sigmob_mill_sdk')
+    api project(':modules:custom_honor_ad_library:aarlibrary:sigmob_sdk')
 
+    api project(':modules:custom_honor_ad_library:aarlibrary:windmill_csj_adapter')
+    api project(':modules:custom_honor_ad_library:aarlibrary:windmill_gdt_adapter')
+    api project(':modules:custom_honor_ad_library:aarlibrary:windmill_baidu_adapter')
+    api project(':modules:custom_honor_ad_library:aarlibrary:windmill_gromore_adapter')
+    api project(':modules:custom_honor_ad_library:aarlibrary:windmill_kuaishou_adapter')
+    api project(':modules:custom_honor_ad_library:aarlibrary:windmill_xbid_adapter')
 }

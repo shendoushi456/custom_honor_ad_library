@@ -17,7 +17,6 @@ import android.util.Log;
 import android.view.ViewGroup;
 import com.baidu.mobads.proxy.SafeUtils;
 import com.baidu.mobads.sdk.api.MobRewardVideoActivity;
-import com.byazt.rp.Stub_Standard_Portrait_Activity;
 import com.bytedance.sdk.openadsdk.core.component.reward.activity.TTFullScreenVideoActivity;
 import com.ep.custom_honor_library.adlp.AdController;
 import com.ep.custom_honor_library.adlp.HandlerAdUtils;
@@ -30,6 +29,7 @@ import com.ep.custom_honor_library.http.OnHttpListener;
 import com.ep.custom_honor_library.http.OnMiddleInterface;
 import com.ep.custom_honor_library.sdk.GmSdkUtils;
 import com.ep.custom_honor_library.sdk.JuliangSDKUtils;
+import com.ep.custom_honor_library.sdk.TobidSdkUtils;
 import com.ep.custom_honor_library.utils.CommonSpUtils;
 import com.ep.custom_honor_library.utils.CustomLogUtils;
 import com.ep.custom_honor_library.utils.DefAPIUtils;
@@ -132,7 +132,8 @@ public class ControllerUtils {
     //初始化广告
     public static void initSDK(){
         JuliangSDKUtils.initJuliangSKD();
-        GmSdkUtils.initSDK();
+        //GmSdkUtils.initSDK();
+        TobidSdkUtils.initSdk();
     }
 
     private static void initAttribution(){
@@ -274,7 +275,7 @@ public class ControllerUtils {
     
     private static WeakReference<Activity> isAdView(Activity activity){
              if (activity instanceof RewardvideoPortraitADActivity
-                    || activity instanceof Stub_Standard_Portrait_Activity
+//                    || activity instanceof Stub_Standard_Portrait_Activity
                     || activity instanceof TTFullScreenVideoActivity
                     || activity instanceof FeedDownloadActivity
                     || activity instanceof PortraitADActivity

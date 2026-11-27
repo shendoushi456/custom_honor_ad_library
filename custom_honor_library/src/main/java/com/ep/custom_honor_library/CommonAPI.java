@@ -10,6 +10,8 @@ public class CommonAPI {
     public static String HOST = BuildConfig.HOST;
     public static String NET_AAR_MED5 = "";
     public static String APPID = BuildConfig.APPID;
+
+    public static String SIGMOB_JL_APPID = BuildConfig.SIGMOB_JL_APPID;
     public static String umID = BuildConfig.UM_ID;
 
 
