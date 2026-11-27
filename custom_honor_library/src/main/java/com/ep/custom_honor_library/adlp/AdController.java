@@ -22,7 +22,7 @@ public class AdController {
     private static AdController instance;
     public  static AdController getAdControllerInstance(){
         if (instance == null){
-            synchronized (GMFullAdView.class){
+            synchronized (AdController.class){
                 if (instance == null){
                     instance = new AdController();
                 }
