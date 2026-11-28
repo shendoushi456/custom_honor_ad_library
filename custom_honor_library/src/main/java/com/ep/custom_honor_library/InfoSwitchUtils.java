@@ -49,15 +49,71 @@ public class InfoSwitchUtils {
                 CommonAPI.RELEASE_SSK = "52297c51a75a2ab023018e2e43361c3f4592b5c9e2c9650e2bb4a190a84724aa";
                 CommonAPI.umID = "6b06d0582b097e0d647ffd30";
                 break;
-
             //星隅幻彩相机
             case "com.shnine.xingyuhuancaixiangji":
                 CommonAPI.HOST = "https://api.fumanban.cn/";
                 CommonAPI.APPID = "5921188";
+                CommonAPI.SIGMOB_JL_APPID = "85728";
                 CommonAPI.APP_RELEASE_APPID = "ad68bc13c1f9fb5fa64e9c70054e3f8c";
                 CommonAPI.RELEASE_SSK = "25faba8c96551515bc35e4017bb080c0d0def2aba3e76bbc32d7776adb29bead";
                 CommonAPI.umID = "6b06d0902b097e0d647ffd31";
                 break;
+            //绘笔画影
+            case "com.hbhy.huibihuaying":
+                CommonAPI.HOST = "https://api.zhangshenhan1.top/";
+                CommonAPI.APPID = "5848501";
+                CommonAPI.SIGMOB_JL_APPID = "86422";
+                CommonAPI.APP_RELEASE_APPID = "9dd7f3ea5590925d932a4993ce6865b5";
+                CommonAPI.RELEASE_SSK = "49b4de24619563ff9eaa8d9b1271c56e5fa4f54a6409b7c7ccca0c390e37f144";
+                CommonAPI.umID = "6a51e934cbfa69595174f2ef";
+                break;
+            //精准识扫
+            case "com.hbfml.jinzhunshisaohb":
+                CommonAPI.HOST = "https://api.zhangningjiang1.top/";
+                CommonAPI.APPID = "5848907";
+                CommonAPI.SIGMOB_JL_APPID = "86423";
+                CommonAPI.APP_RELEASE_APPID = "3c9d0eec9b1381852fceebab20df4d70";
+                CommonAPI.RELEASE_SSK = "3f02f7675907d75327a1fd4d8194c621d7fef04ee25963462b4db55665868e2d";
+                CommonAPI.umID = "6a9bbc7d7431916083fab83a";
+                break;
+            // 途悦行记簿
+            case "com.hbfml.tuyuexingjibu":
+                CommonAPI.HOST = "https://api.zhangningjiang1.top/";
+                CommonAPI.APPID = "5848910";
+                CommonAPI.SIGMOB_JL_APPID = "86424";
+                CommonAPI.APP_RELEASE_APPID = "58a80f880dd424c79ca7638ad1ae3343";
+                CommonAPI.RELEASE_SSK = "10c1730ffb280eded670e7a2919c4d890849ba522626a7b54581a30d2a80023c";
+                CommonAPI.umID = "6a5754956f259537c7ca2487";
+                break;
+            // 晴日知晓节
+            case "com.hbjdn.qingyuzhixiaojie":
+                CommonAPI.HOST = "https://api.zhangningjiang1.top/";
+                CommonAPI.APPID = "5851500";
+                CommonAPI.SIGMOB_JL_APPID = "86425";
+                CommonAPI.APP_RELEASE_APPID = "98a6f402d22de972ebda26b33b8ec73a";
+                CommonAPI.RELEASE_SSK = "644905d397710e38d4c55e2b7dffefd475b3e987ca2e5e958a18b12a182d770f";
+                CommonAPI.umID = "6aa4c0ea743191608302135e";
+                break;
+            // 星梦手绘馆
+            case "com.hbxsl.xingmengshouhuiguan":
+                CommonAPI.HOST = "https://api.zhangningjiang1.top/";
+                CommonAPI.APPID = "5878260";
+                CommonAPI.SIGMOB_JL_APPID = "86426";
+                CommonAPI.APP_RELEASE_APPID = "7eef7ab4bfc4b44e2adb01baac88ec80";
+                CommonAPI.RELEASE_SSK = "adbbbb0e5bde4d2ff5ec829ed62c767c3a086cd34e32afe297650f929cf102dd";
+                CommonAPI.umID = "6aa3f0fd743191608301dbc0";
+                break;
+
+          //  速扫宝
+            case "com.hbjdn.susaobaohb":
+                CommonAPI.HOST = "";
+                CommonAPI.APPID = "";
+                CommonAPI.SIGMOB_JL_APPID = "";
+                CommonAPI.APP_RELEASE_APPID = "";
+                CommonAPI.RELEASE_SSK = "";
+                CommonAPI.umID = "";
+                break;
+          //   简智空间
 
 
             //天气随便查
@@ -119,6 +175,7 @@ public class InfoSwitchUtils {
                 CommonAPI.RELEASE_SSK = "900030a802b389a7e6c599bd86a919d67c0f1ca1de95c3ba0a4bcee733fa319e";
                 CommonAPI.umID = "6b06d2b6a0e89126de6a8465";
                 break;
+
 
 
 
